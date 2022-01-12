@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react'
+import { BsArrowRight } from 'react-icons/bs'
+import Fade from 'react-reveal/Fade'
+
+import './index.scss'
+
+import pokemonApi from '../../core/apis/pokemon.api'
+
+function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
+  const [pokeEvolutions, setPokeEvolutions] = useState()
+
+  useEffect(async () => {
+    const evolutions = await downloadEvolutions(pokemonEvolutions)
+    setPokeEvolutions(evolutions)
+  }, [pokemonEvolutions])
+
+  const downloadEvolutions = async (chain) => {
+    if (!chain) return {}
+    if (pokemon?.name === chain.pokemon.name) {
+      chain.pokemon = pokemon
+    } else {
+      chain.pokemon = await pokemonApi.pokemons.getById(chain.pokemon.id)
+    }
+
+    chain.next = await Promise.all(chain.next.map(downloadEvolutions))
+    return chain
+  }
+
+  const generatePokeEvolutionTree = (chain) => {
+    if (!chain) return
+    return (
+      <Fade left>
+        <div className='evolution-node'>
+          <div className='evolution-node-pokemon'>
+            <a href={`/pokemons/${chain?.pokemon?.name}`}>
+              <img src={chain.pokemon?.sprites.other['official-artwork'].front_default} alt={chain?.pokemon?.name} />
+            </a>
+          </div>
+          <div className='evolution-node-arrow'>
+            {
+              (chain.next?.length > 0) &&
+              <BsArrowRight size={18} />
+            }
+          </div>
+          <div className='evolution-node-nexts'>
+            {
+              (chain.next?.length > 0) &&
+              chain.next?.map((chain, index) => (
+                <div key={index}>
+                    {generatePokeEvolutionTree(chain)}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </Fade>
+    )
+  }
+
+  return (
+    <div className='poke-evolutions'>
+      <div className='poke-evolutions__header'>
+        <span>Evolutions</span>
+      </div>
+      <div className='poke-evolutions__body'>
+        {generatePokeEvolutionTree(pokeEvolutions)}
+      </div>
+    </div>
+  )
+}
+
+export default PokeEvolutions

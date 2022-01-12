@@ -1,0 +1,313 @@
+#pokemon-details {
+  width: 1200px;
+  padding: 24px 0;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .navigation {
+    width: 100%;
+    height: 70px;
+
+    box-sizing: border-box;
+    padding: 8px 16px;
+
+    background-color: rgb(22, 22, 22);
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      color: white;
+      font-weight: 600;
+
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        transition: .5s;
+        opacity: 0.5;
+      }
+    }
+
+    &__current {
+      cursor: unset !important;
+
+      &:hover {
+        opacity: initial !important;
+      }
+    }
+  }
+}
+
+
+.pokemon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+
+  width: 100%;
+  height: 650px;
+
+  > div {
+    background-color: rgb(22, 22, 22);
+    border-radius: 5px;
+  }
+
+
+  &__profile {
+    width: 35%;
+
+    font-weight: 600;
+    color: white;
+
+    &__skeleton {
+      width: 35%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 12px 12px;
+
+      color: white;
+      font-weight: 600;
+      font-size: 20px;
+
+      border-bottom: solid .5px #2e2e2e;
+
+      &__modifier {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+
+        color: white;
+        font-size: 16px;
+        text-shadow: 0px 0px 2px black;
+
+        padding: 2px 8px;
+        border-radius: 2px;
+
+        user-select: none;
+      }
+
+      &__types {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 0;
+
+      > img {
+        width: 230px;
+        height: 230px;
+        padding-bottom: 8px;
+      }
+
+      &__measures {
+        width: 100%;
+        padding: 0 24px;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      &__stats {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        padding: 14px 24px 0 24px;
+        box-sizing: border-box;
+
+        border-top: solid .5px #2e2e2e;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          // &.hp {
+          //   color: yellowgreen;
+          // }
+
+          // &.attack {
+          //   color: tomato;
+          // }
+
+          // &.defense {
+          //   color: skyblue;
+          // }
+
+          // &.special-attack {
+          //   color: tomato;
+          // }
+
+          // &.special-defense {
+          //   color: skyblue;
+          // }
+
+          // &.speed {
+          //   color: gold;
+          // }
+        }
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+
+      border-top: solid .5px #2e2e2e;
+      border-bottom: solid .5px #2e2e2e;
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      &__damage-table {
+        display: flex;
+        flex-direction: column;
+
+        > span {
+          width: 100%;
+          padding: 8px 0;
+          border-bottom: solid .5px #2e2e2e;
+
+          text-align: center;
+        }
+
+        &__elements {
+          height: 100%;
+
+          display: flex;
+          flex-direction: row;
+
+          > div {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 80px;
+
+            padding: 12px;
+            border-right: solid .5px #2e2e2e;
+
+            &:last-child {
+              border-right: none;
+            }
+
+            .elements {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: 3px;
+
+              img {
+                width: 22px;
+                height: 22px;
+              }
+            }
+          }
+        }
+      }
+
+      &__weakness {
+
+      }
+
+      &__resistance {
+
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    width: 65%;
+    padding: 12px 24px;
+    overflow-y: scroll;
+
+    .loading-more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .load-more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 8px;
+      color: white;
+      font-weight: 600;
+      border-radius: 3px;
+      background-color: rgb(32, 32, 32);
+
+      cursor: pointer;
+      user-select: none;
+      transition: 0.5s;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: white;
+
+      .total-items {
+        font-weight: normal;
+        color: #8d8d8d;
+        font-size: 14px;
+        padding: 0 2px;
+      }
+    }
+  }
+}

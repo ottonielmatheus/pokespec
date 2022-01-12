@@ -1,0 +1,25 @@
+#not-found-page {
+  width: 1200px;
+  padding: 24px 0;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  a {
+    font-weight: 600;
+    color: #dcb778;
+    text-decoration: none;
+  }
+
+  > div {
+    img {
+      width: 500px;
+      height: 500px;
+    }
+  }
+}

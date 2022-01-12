@@ -1,0 +1,59 @@
+.tippy-tooltip {
+  font-weight: 600;
+  color: white;
+
+  &.grass-theme {
+    background-color: #63bb5b !important;
+  }
+  &.fire-theme {
+    background-color: #ff9c54 !important;
+  }
+  &.bug-theme {
+    background-color: #95c436 !important;
+  }
+  &.dragon-theme {
+    background-color: #0e70c5 !important;
+  }
+  &.fairy-theme {
+    background-color: #ec8fe6 !important;
+  }
+  &.ghost-theme {
+    background-color: #5167a9 !important;
+  }
+  &.ground-theme {
+    background-color: #d97746 !important;
+  }
+  &.normal-theme {
+    background-color: #9099a1 !important;
+  }
+  &.psychic-theme {
+    background-color: #f97176 !important;
+  }
+  &.steel-theme {
+    background-color: #5a8ea1 !important;
+  }
+  &.dark-theme {
+    background-color: #575062 !important;
+  }
+  &.electric-theme {
+    background-color: #f3d23b !important;
+  }
+  &.fighting-theme {
+    background-color: #ce4069 !important;
+  }
+  &.flying-theme {
+    background-color: #92aade !important;
+  }
+  &.ice-theme {
+    background-color: #74cec0 !important;
+  }
+  &.poison-theme {
+    background-color: #ab6ac8 !important;
+  }
+  &.rock-theme {
+    background-color: #c7b78b !important;
+  }
+  &.water-theme {
+    background-color: #4d90d5 !important;
+  }
+}

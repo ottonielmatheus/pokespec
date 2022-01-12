@@ -1,0 +1,28 @@
+#home {
+  display: flex;
+  flex-direction: column;
+
+  width: 1200px;
+  padding: 24px 0;
+  margin: 0 auto;
+
+  .poke-cards {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    gap: 16px;
+
+    overflow: visible !important;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+
+
+
+
+

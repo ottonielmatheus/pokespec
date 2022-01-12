@@ -1,0 +1,65 @@
+.poke-evolutions {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > span {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+
+    .evolution-node {
+      display: flex;
+      gap: 8px;
+      border-radius: 5px;
+
+      .evolution-node-pokemon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        padding: 8px 24px;
+
+        font-weight: 600;
+        border-radius: 3px;
+        cursor: pointer;
+
+        img {
+          width: 100px;
+          height: 100px;
+        }
+
+        &:hover {
+          transition: 0.5s;
+          opacity: 0.5;
+        }
+      }
+
+      .evolution-node-nexts {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+
+        > div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
