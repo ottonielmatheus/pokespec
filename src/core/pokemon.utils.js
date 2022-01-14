@@ -84,7 +84,7 @@ const formatAbilities = (abilities) => {
     name: i18n(ability.names).name,
     description: i18n(ability.effect_entries).effect || null,
     shortDescription: i18n(ability.effect_entries).short_effect || null,
-    hidden: ability.is_hidden
+    hidden: ability.hidden
   }))
 }
 
@@ -96,7 +96,9 @@ const formatMoves = async (moves) => {
     shortDescription: i18n(move.effect_entries).short_effect,
     type: await formatType(move.type),
     power: move.power,
-    effectChance: move.effect_chance
+    effectChance: move.effect_chance,
+    accuracy: move.accuracy,
+    pp: move.pp
   }))
   return await Promise.all(formatedMoves)
 }

@@ -40,10 +40,30 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: solid .5px rgb(22, 22, 22);
+        padding: 8px 14px;
+        box-sizing: border-box;
 
         img {
           width: 22px;
           height: 22px;
+        }
+
+        &-values {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+
+          padding: 0 4px;
+
+          > div {
+            > span {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            }
+          }
         }
 
         &-name {
@@ -51,12 +71,14 @@
           align-items: center;
           gap: 12px;
 
-          padding: 8px 14px;
           font-weight: 600;
         }
 
         &-damage {
-          padding: 8px 14px;
+          font-weight: 600;
+        }
+
+        &-accuracy {
           font-weight: 600;
         }
       }

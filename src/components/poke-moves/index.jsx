@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
+import { BsLightningChargeFill } from 'react-icons/bs'
+import { BiTargetLock } from 'react-icons/bi'
 
 import './index.scss'
 
@@ -49,8 +51,31 @@ function PokeMoves ({ pokemonMoves }) {
                     {move?.name}
                   </span>
                 </div>
-                <div className='move-header-damage'>
-                  <span style={{ color: move?.type?.color }}>{move?.power}</span>
+                <div className='move-header-values'>
+                  {
+                    move?.power &&
+                    <div className='move-header-damage'>
+                      <span style={{ color: move?.type?.color }}>
+                        <BsLightningChargeFill /> {move?.power}
+                      </span>
+                    </div>
+                  }
+                  {
+                    move?.accuracy &&
+                    <div className='move-header-accuracy'>
+                      <span style={{ color: move?.type?.color }}>
+                        <BiTargetLock /> {move?.accuracy}
+                      </span>
+                    </div>
+                  }
+                  {
+                    move?.pp &&
+                    <div className='move-header-pp'>
+                      <span style={{ color: move?.type?.color }}>
+                        <strong>PP</strong> {move?.pp}
+                      </span>
+                    </div>
+                  }
                 </div>
               </div>
               <span className='move-description'>

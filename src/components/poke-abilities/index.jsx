@@ -21,7 +21,13 @@ function PokeAbilities ({ pokemonAbilities }) {
 
     if (!abilities) return
 
-    const requests = abilities.map(item => pokemonApi.abilities.getByName(item.ability.name))
+    const requests = abilities.map(async item => {
+      const detailedAbility = await pokemonApi.abilities.getByName(item.ability.name)
+      return {
+        ...detailedAbility,
+        hidden: item.is_hidden
+      }
+    })
     abilities = await Promise.all(requests)
 
     const formatedAbilities = pokemonUtils.formatAbilities(abilities)
@@ -46,7 +52,10 @@ function PokeAbilities ({ pokemonAbilities }) {
         {pokeAbilities?.map((ability, index) => (
           <Fade key={index}>
             <div className='ability'>
-              <span className='ability-name'>{ability.name}</span>
+              <div className='ability-header'>
+                <span className='ability-name'>{ability.name}</span>
+                <small className='ability-visibility'>{ability.hidden ? 'hidden' : ''}</small>
+              </div>
               <span className='ability-description'>{ability.shortDescription}</span>
             </div>
           </Fade>

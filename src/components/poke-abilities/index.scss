@@ -22,7 +22,11 @@
       border-radius: 3px;
       background-color: rgb(32, 32, 32);
 
-      &-name {
+      &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
         padding: 8px 14px;
         font-weight: 600;
         border-bottom: solid .5px rgb(22, 22, 22);
