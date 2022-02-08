@@ -75,9 +75,8 @@
     font-weight: 600;
     color: white;
 
-    &__skeleton {
+    &--skeleton {
       width: 35%;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -250,14 +249,6 @@
           }
         }
       }
-
-      &__weakness {
-
-      }
-
-      &__resistance {
-
-      }
     }
   }
 
@@ -307,6 +298,59 @@
         color: #8d8d8d;
         font-size: 14px;
         padding: 0 2px;
+      }
+    }
+  }
+}
+
+@media (min-width: 375px) and (max-width: 414px) {
+  #pokemon-details {
+    width: 100% !important;
+
+    flex-direction: column;
+    box-sizing: border-box;
+
+    > div {
+      border-radius: 0;
+    }
+
+    .navigation {
+      top: 0;
+      left: 0;
+      z-index: 10;
+      position: fixed;
+      padding: 16px 16px;
+      border-radius: 0;
+
+      .pokemon-name {
+        display: none;
+      }
+    }
+
+    .pokemon {
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+      margin-top: calc(34px + 16px);
+
+      > div {
+        border-radius: 0;
+      }
+
+      &__profile {
+        width: 100%;
+
+        &--skeleton {
+          width: 100%;
+        }
+      }
+
+      &__info {
+        width: 100%;
+        padding: 16px 12px;
+        box-sizing: border-box;
+
+        overflow-y: auto;
       }
     }
   }

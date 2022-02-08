@@ -63,9 +63,10 @@ function PokeAbilities ({ pokemonAbilities }) {
           loadingMore ? <div className='loading-more'><ReactLoading type='bubbles' color='#2e2e2e' /></div> :
           (pokeAbilities?.length < pokemonAbilities?.length) &&
           <div className='load-more'
-            onClick={async () =>
-              await getAbilitiesDetails(pokemonAbilities?.slice(pokeAbilities.length, pokeAbilities.length + 1), true)
-            }>
+            onClick={async () => {
+              const currentAbilitiesPage = pokemonAbilities?.slice(pokeAbilities.length, pokeAbilities.length + 1)
+              await getAbilitiesDetails(currentAbilitiesPage, true)
+            }}>
             <small>load more</small>
           </div>
         }

@@ -88,18 +88,18 @@ function PokemonDetails () {
           previousPokemon &&
           <div className='navigation__previous' onClick={async() => await goPreviousPokemon()}>
             <BsArrowLeft size={22} />
-              <span>{_.capitalize(previousPokemon?.name)}</span>
+              <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
               <span>#{previousPokemon?.id}</span>
           </div>
         }
         <div className='navigation__current'>
-          <span>{_.capitalize(pokemonName)}</span>
+          <span className='pokemon-name'>{_.capitalize(pokemonName)}</span>
           <span>#{pokemon?.id}</span>
         </div>
         {
           nextPokemon &&
           <div className='navigation__next' onClick={async() => await goNextPokemon()}>
-            <span>{_.capitalize(nextPokemon?.name)}</span>
+            <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
             <span>#{nextPokemon?.id}</span>
             <BsArrowRight size={22} />
           </div>
@@ -108,7 +108,7 @@ function PokemonDetails () {
       <div className='pokemon'>
         {
           loading ?
-          <div className='pokemon__profile__skeleton'>
+          <div className='pokemon__profile--skeleton'>
             <ReactLoading type='bubbles' color='#2e2e2e' />
           </div> :
           <div className='pokemon__profile'>

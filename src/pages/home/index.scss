@@ -21,6 +21,29 @@
   }
 }
 
+@media (min-width: 375px) and (max-width: 414px) {
+  #home {
+    width: 375px;
+    flex-direction: column;
+
+    padding: 24px 0;
+    margin: 0 auto;
+
+    .poke-cards {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+      gap: 16px;
+
+      overflow: visible !important;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
 
 
 
