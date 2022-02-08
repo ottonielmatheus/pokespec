@@ -64,7 +64,7 @@ function PokeMoves ({ pokemonMoves }) {
                     move?.accuracy &&
                     <div className='move-header-accuracy'>
                       <span style={{ color: move?.type?.color }}>
-                        <BiTargetLock /> {move?.accuracy}
+                        <BiTargetLock /> {move?.accuracy}%
                       </span>
                     </div>
                   }
