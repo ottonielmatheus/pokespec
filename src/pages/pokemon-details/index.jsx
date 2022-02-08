@@ -26,7 +26,7 @@ function PokemonDetails () {
 
   useEffect(async () => {
     await currentPokemon(pokemonName)
-  }, [])
+  }, [pokemonName])
 
   const currentPokemon = async (pokeName) => {
     setLoading(true)

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import Fade from 'react-reveal/Fade'
 
@@ -32,9 +33,9 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
       <Fade left>
         <div className='evolution-node'>
           <div className='evolution-node-pokemon'>
-            <a href={`/pokemons/${chain?.pokemon?.name}`}>
+            <Link to={`/pokemons/${chain?.pokemon?.name}`}>
               <img src={chain.pokemon?.sprites.other['official-artwork'].front_default} alt={chain?.pokemon?.name} />
-            </a>
+            </Link>
           </div>
           <div className='evolution-node-arrow'>
             {

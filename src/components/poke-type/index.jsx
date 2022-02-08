@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Tippy from '@tippyjs/react'
 import _ from 'lodash'
 
@@ -16,9 +17,9 @@ function PokeType ({ type }) {
         </div>
       }
       >
-        <a href={`/types/${type.name}`}>
+        <Link to={`/types/${type.name}`}>
           <img src={type.icon} alt={type.name} />
-        </a>
+        </Link>
     </Tippy>
   )
 }

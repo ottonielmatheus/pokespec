@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './index.scss'
 
@@ -10,7 +11,7 @@ function NotFound () {
       <div>
         <img src={notFoundImage} alt="not found" />
         <h1>NOT FOUND</h1>
-        <p>Nothing here, but you can know more about this <span><a href="/pokemons/psyduck">pokémon</a></span>.</p>
+        <p>Nothing here, but you can know more about this <span><Link to={'/pokemons/psyduck'}>pokemon</Link></span>.</p>
       </div>
     </div>
   )

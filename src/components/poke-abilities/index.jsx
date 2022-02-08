@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
-import { useState } from 'react/cjs/react.development'
 import ReactLoading from 'react-loading'
 
 import './index.scss'
