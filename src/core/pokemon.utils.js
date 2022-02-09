@@ -41,6 +41,11 @@ const formatName = (name) => {
     genre = _.endsWith(name, '-f') ? 'female' : 'male'
   }
 
+  const regions = [
+    { name: 'alola', regex: /(-alola)$/ },
+    { name: 'galar', regex: /(-galar)$/ }
+  ]
+
   const modifiers = [
     { name: 'mega', regex: /(-mega)$/ },
     { name: 'mega-x', regex: /(-mega-x)$/ },
@@ -49,12 +54,14 @@ const formatName = (name) => {
     { name: 'eternamax', regex: /(-eternamax)$/ }
   ]
 
+  const pokeRegion = _.find(regions, region => region.regex.test(name))
   const pokeModifier = _.find(modifiers, modifier => modifier.regex.test(name))
 
   return {
     genre,
+    region: pokeRegion?.name,
     modifier: pokeModifier?.name,
-    formatedName: _.capitalize(name).replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax)$/, '')
+    formatedName: _.capitalize(name).replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
   }
 }
 

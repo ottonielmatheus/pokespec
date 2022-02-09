@@ -42,10 +42,11 @@ function PokemonDetails () {
     setNextPokemon(nextPoke)
     setPreviousPokemon(previousPoke)
 
-    const { formatedName, genre, modifier } = pokemonUtils.formatName(poke.name)
+    const { formatedName, genre, modifier, region } = pokemonUtils.formatName(poke.name)
     poke.formatedName = formatedName
     poke.genre = genre
     poke.modifier = modifier
+    poke.region = region
 
     poke.types = await pokemonUtils.formatTypes(poke.types)
 
@@ -114,28 +115,43 @@ function PokemonDetails () {
           <div className='pokemon__profile'>
             <div className='pokemon__profile__header'>
               {pokemon.formatedName}
-              <div className='pokemon__profile__header__modifier'
-                style={{
-                  backgroundImage: {
-                    gmax: 'linear-gradient(315deg, #d99058 0%, #f8de7e 74%)',
-                    mega: 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                    'mega-x': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                    'mega-y': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                    'eternamax': 'linear-gradient(315deg, #0cbaba 0%, #380036 74%)'
-                  }[pokemon.modifier]
-                }}>
-                {pokemon.modifier?.toUpperCase()}
-              </div>
               <div className='pokemon__profile__header__types'>
                 {pokemon?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
               </div>
             </div>
             <div className='pokemon__profile__body'>
+              <div className='pokemon__profile__body__variations'>
+                {pokemon?.modifer &&
+                  <div className='pokemon__profile__body__variations__modifier'
+                    style={{
+                      backgroundImage: {
+                        gmax: 'linear-gradient(315deg, #d99058 0%, #f8de7e 74%)',
+                        mega: 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
+                        'mega-x': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
+                        'mega-y': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
+                        'eternamax': 'linear-gradient(315deg, #0cbaba 0%, #380036 74%)'
+                      }[pokemon.modifier]
+                    }}>
+                    {pokemon.modifier?.toUpperCase()}
+                  </div>
+                }
+                {pokemon?.region &&
+                  <div className='pokemon__profile__body__variations__region'
+                    style={{
+                      backgroundImage: {
+                        alola: 'linear-gradient(90deg, rgba(108,9,121,1) 0%, rgba(255,222,0,1) 100%)',
+                        galar: 'linear-gradient(90deg, rgba(20,9,121,1) 0%, rgba(255,0,44,1) 100%)'
+                      }[pokemon.region]
+                    }}>
+                    {pokemon.region?.toUpperCase()}
+                  </div>
+                }
+              </div>
+              <img src={pokemon?.sprites?.other['official-artwork']?.front_default} alt={pokemon.formatedName} />
               <div className='pokemon__profile__body__measures'>
                   <span>{pokemon.height}&quot;</span>
                   <span>{pokemon.weight} lbs</span>
               </div>
-              <img src={pokemon?.sprites?.other['official-artwork']?.front_default} alt={pokemon.formatedName} />
               <div className='pokemon__profile__body__stats'>
                 <div className='hp'>
                   <small>HP</small>
