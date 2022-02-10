@@ -55,7 +55,7 @@ function PokeAbilities ({ pokemonAbilities }) {
                 <span className='ability-name'>{ability.name}</span>
                 <small className='ability-visibility'>{ability.hidden ? 'hidden' : ''}</small>
               </div>
-              <span className='ability-description'>{ability.shortDescription}</span>
+              <span className='ability-description'>{ability.shortDescription || <i>nothing about.</i>}</span>
             </div>
           </Fade>
         ))}

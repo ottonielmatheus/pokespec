@@ -26,6 +26,13 @@ function PokeCard ({ name }) {
     details.weakness = weakness
     details.resistance = resistance
 
+    details.stats = {
+      hp: pokemonUtils.getStatsValue(details.stats, 'hp'),
+      attack: pokemonUtils.getStatsValue(details.stats, 'attack'),
+      defense: pokemonUtils.getStatsValue(details.stats, 'defense'),
+      speed: pokemonUtils.getStatsValue(details.stats, 'speed')
+    }
+
     setPokeDetails(details)
     setLoading(false)
   }, [])
@@ -86,7 +93,7 @@ function PokeCard ({ name }) {
         {pokeDetails?.types?.map((type, index) => (<img key={index} src={type.icon} alt={type.name} />))}
       </div>
       <span className="poke-card__stats--hp">
-        <span><small>HP</small> {pokemonUtils.getStatsValue(pokeDetails?.stats, 'hp')}</span>
+        <span><small>HP</small> {pokeDetails?.stats.hp.baseValue}</span>
       </span>
       <div className='poke-card__image'>
         <img
@@ -121,17 +128,17 @@ function PokeCard ({ name }) {
       <div className="poke-card__stats">
         <span className="poke-card__stats--attack">
           <span className='value'>
-            {pokemonUtils.getStatsValue(pokeDetails?.stats, 'attack')}
+            {pokeDetails?.stats.attack.baseValue}
           </span>
         </span>
         <span className="poke-card__stats--defense">
           <span className='value'>
-            {pokemonUtils.getStatsValue(pokeDetails?.stats, 'defense')}
+            {pokeDetails?.stats.defense.baseValue}
           </span>
         </span>
         <span className="poke-card__stats--speed">
           <span className='value'>
-            {pokemonUtils.getStatsValue(pokeDetails?.stats, 'speed')}
+            {pokeDetails?.stats.speed.baseValue}
           </span>
         </span>
       </div>

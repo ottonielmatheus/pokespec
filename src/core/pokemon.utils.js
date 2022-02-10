@@ -68,7 +68,7 @@ const formatName = (name) => {
 const getStatsValue = (stats, field) => {
   if (stats) {
     const stat = _.chain(stats)
-      .map(s => ({ name: s.stat.name, value: s.base_stat}))
+      .map(s => ({ name: s.stat.name, value: s.base_stat }))
       .find(['name', field]).value()
     return {
       baseValue: stat.value,
@@ -92,8 +92,8 @@ const formatAbilities = (abilities) => {
   return abilities.map(ability => ({
     id: ability.name,
     name: i18n(ability.names).name,
-    description: i18n(ability.effect_entries).effect || null,
-    shortDescription: i18n(ability.effect_entries).short_effect || null,
+    description: i18n(ability.effect_entries)?.effect || null,
+    shortDescription: i18n(ability.effect_entries)?.short_effect || null,
     hidden: ability.hidden
   }))
 }
