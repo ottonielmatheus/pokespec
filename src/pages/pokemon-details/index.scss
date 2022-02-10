@@ -187,30 +187,23 @@
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          align-items: center;
+          column-gap: 16px;
 
-          // &.hp {
-          //   color: yellowgreen;
-          // }
+          span:first-child {
+            width: 100px;
+            text-align: end;
+          }
 
-          // &.attack {
-          //   color: tomato;
-          // }
+          span:last-child {
+            width: 30px;
+            text-align: start;
+          }
+        }
 
-          // &.defense {
-          //   color: skyblue;
-          // }
-
-          // &.special-attack {
-          //   color: tomato;
-          // }
-
-          // &.special-defense {
-          //   color: skyblue;
-          // }
-
-          // &.speed {
-          //   color: gold;
-          // }
+        &__bar {
+          width: 50%;
+          height: 10px;
         }
       }
     }

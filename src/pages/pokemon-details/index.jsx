@@ -11,6 +11,7 @@ import PokeAbilities from '../../components/poke-abilities'
 import PokeEvolutions from '../../components/poke-evolutions'
 import PokeEvolutionsSkeleton from '../../components/poke-evolutions/skeleton'
 import PokeType from '../../components/poke-type'
+import PercentageBar from '../../components/shared/percentage-bar'
 
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
@@ -63,6 +64,15 @@ function PokemonDetails () {
     poke.species = await pokemonApi.species.getByName(poke.species.name)
     poke.evolutions = await pokemonApi.evolution.getByUrl(poke.species.evolution_chain.url)
     poke.evolutions = await pokemonUtils.formatEvolutions(poke.evolutions.chain)
+
+    poke.stats = {
+      hp: pokemonUtils.getStatsValue(poke.stats, 'hp'),
+      attack: pokemonUtils.getStatsValue(poke.stats, 'attack'),
+      specialAttack: pokemonUtils.getStatsValue(poke.stats, 'special-attack'),
+      defense: pokemonUtils.getStatsValue(poke.stats, 'defense'),
+      specialDefense: pokemonUtils.getStatsValue(poke.stats, 'special-defense'),
+      speed: pokemonUtils.getStatsValue(poke.stats, 'speed')
+    }
 
     setPokemon(poke)
     setLoading(false)
@@ -121,7 +131,7 @@ function PokemonDetails () {
             </div>
             <div className='pokemon__profile__body'>
               <div className='pokemon__profile__body__variations'>
-                {pokemon?.modifer &&
+                {pokemon?.modifier &&
                   <div className='pokemon__profile__body__variations__modifier'
                     style={{
                       backgroundImage: {
@@ -154,28 +164,34 @@ function PokemonDetails () {
               </div>
               <div className='pokemon__profile__body__stats'>
                 <div className='hp'>
-                  <small>HP</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'hp')}</span>
+                  <span>HP</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#5f9747' value={pokemon?.stats.hp.basePercentage} />
+                  <span>{pokemon?.stats.hp.baseValue}</span>
                 </div>
                 <div className='attack'>
-                  <small>Attack</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'attack')}</span>
-                </div>
-                <div className='defense'>
-                  <small>Defense</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'special-attack')}</span>
+                  <span>Attack</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#f44336' value={pokemon?.stats.attack.basePercentage} />
+                  <span>{pokemon?.stats.attack.baseValue}</span>
                 </div>
                 <div className='special-attack'>
-                  <small>Special Attack</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'defense')}</span>
+                  <span>Spc attack</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#aa2e25' value={pokemon?.stats.specialAttack.basePercentage} />
+                  <span>{pokemon?.stats.specialAttack.baseValue}</span>
+                </div>
+                <div className='defense'>
+                  <span>Defense</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='skyblue' value={pokemon?.stats.defense.basePercentage} />
+                  <span>{pokemon?.stats.defense.baseValue}</span>
                 </div>
                 <div className='special-defense'>
-                  <small>Special Defense</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'special-defense')}</span>
+                  <span>Spc defense</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#436775' value={pokemon?.stats.specialDefense.basePercentage} />
+                  <span>{pokemon?.stats.specialDefense.baseValue}</span>
                 </div>
                 <div className='speed'>
-                  <small>Speed</small>
-                  <span>{pokemonUtils.getStatsValue(pokemon?.stats, 'speed')}</span>
+                  <span>Speed</span>
+                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#e69138' value={pokemon?.stats.speed.basePercentage} />
+                  <span>{pokemon?.stats.speed.baseValue}</span>
                 </div>
               </div>
             </div>

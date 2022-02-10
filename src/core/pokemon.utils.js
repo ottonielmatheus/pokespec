@@ -70,7 +70,10 @@ const getStatsValue = (stats, field) => {
     const stat = _.chain(stats)
       .map(s => ({ name: s.stat.name, value: s.base_stat}))
       .find(['name', field]).value()
-    return stat.value
+    return {
+      baseValue: stat.value,
+      basePercentage: (stat.value / 255) * 100
+    }
   }
   return 0
 }
