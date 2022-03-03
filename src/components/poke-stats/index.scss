@@ -1,0 +1,33 @@
+.pokemon-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 14px 24px 0 24px;
+  box-sizing: border-box;
+
+  border-top: solid .5px #2e2e2e;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 16px;
+
+    span:first-child {
+      width: 100px;
+      text-align: end;
+    }
+
+    span:last-child {
+      width: 30px;
+      text-align: start;
+    }
+  }
+
+  &__bar {
+    width: 50%;
+    height: 10px;
+  }
+}

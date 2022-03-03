@@ -1,0 +1,35 @@
+.footer {
+  height: 100px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #161616;
+  padding: 24px 48px;
+
+  &__limit {
+    width: 1200px;
+
+    a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+
+      span {
+        font-weight: 600;
+        color: white;
+      }
+
+      &:hover {
+        opacity: .5;
+        transition: 500ms;
+      }
+    }
+  }
+
+}

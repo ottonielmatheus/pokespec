@@ -2,6 +2,10 @@ import _ from 'lodash'
 
 import i18n from './i18n'
 import pokeTypeMapper from './mappers/pokemon-types.mapper'
+import getHabitatImage from '../components/shared/habitats'
+import getShapeImage from '../components/shared/shapes'
+import getCharacteristicImage from '../components/shared/characteristics'
+
 import pokemonApi from './apis/pokemon.api'
 
 const mapElementType = async (typeName) => {
@@ -172,6 +176,68 @@ const formatEvolutions = (evolution) => {
   }
 }
 
+const formatSpecies = async (species) => {
+  console.log(species)
+  const characteristics = []
+
+  if (species.is_baby) {
+    characteristics.push({ name: 'Baby', image: await getCharacteristicImage('baby') })
+  }
+
+  if (species.is_mythical) {
+    characteristics.push({ name: 'Mythical', image: await getCharacteristicImage('mythical') })
+  }
+
+  if (species.is_legendary) {
+    characteristics.push({ name: 'Legendary', image: await getCharacteristicImage('legendary') })
+  }
+
+  const generationNumber = species.generation.name.split('-')[1]
+
+  return {
+    varieties: species.varieties,
+    genus: i18n(species.genera).genus,
+    habitat: {
+      name: species.habitat?.name,
+      image: await getHabitatImage(species.habitat?.name)
+    },
+    shape: {
+      color: species.color.name,
+      name: species.shape?.name,
+      image: await getShapeImage(species.shape?.name)
+    },
+    happiness: {
+      base: species.base_happiness,
+      percentage: (species.base_happiness / 255) * 100
+    },
+    captureRate: (species.capture_rate / 255) * 100,
+    about: i18n(species.flavor_text_entries).flavor_text,
+    generation: 'Generation ' + generationNumber.toUpperCase(),
+    characteristics
+  }
+}
+
+const formatItems = (items) => {
+  return items.map(item => ({
+    name: i18n(item.names).name,
+    image: item.sprites.default,
+    cost: item.cost,
+    description: i18n(item.flavor_text_entries).text || null,
+    effect: i18n(item.effect_entries).short_effect || null
+  }))
+}
+
+const formatVarieties = (varieties) => {
+  return varieties.map(variety => {
+    const { region, modifier } = formatName(variety.name)
+    return {
+      badges: { region, modifier },
+      default: variety.is_default,
+      ...variety
+    }
+  })
+}
+
 export default {
   formatName,
   formatTypes,
@@ -181,5 +247,8 @@ export default {
   getStatsValue,
   getMainAbility,
   getWeaknessAndResistance,
-  getEffectiveness
+  getEffectiveness,
+  formatSpecies,
+  formatItems,
+  formatVarieties
 }

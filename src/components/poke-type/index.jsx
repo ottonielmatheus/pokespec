@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Tippy from '@tippyjs/react'
 import _ from 'lodash'
 
+import 'tippy.js/dist/tippy.css'
 import './index.scss'
 
 

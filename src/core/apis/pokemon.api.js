@@ -35,6 +35,16 @@ const getByName = async (name) => {
   }
 }
 
+const getByUrl = async (url) => {
+  try {
+    const res = await fetch(url)
+    const body = await res.json()
+    return body
+  } catch (err) {
+    return null
+  }
+}
+
 const getAbilityByName = async (name) => {
   const res = await fetch(apiUrl + `ability/${name}`)
   const body = await res.json()
@@ -47,8 +57,8 @@ const getMoveByName = async (name) => {
   return body
 }
 
-const getSpecieByName = async (name) => {
-  const res = await fetch(apiUrl + `pokemon-species/${name}`)
+const getSpecieByUrl = async (url) => {
+  const res = await fetch(url)
   const body = await res.json()
   return body
 }
@@ -59,10 +69,17 @@ const getEvolutionByUrl = async (url) => {
   return body
 }
 
+const getItemByUrl = async (url) => {
+  const res = await fetch(url)
+  const body = await res.json()
+  return body
+}
+
 export default {
   pokemons: {
     getAll,
     getById,
+    getByUrl,
     getByName
   },
   abilities: {
@@ -72,9 +89,12 @@ export default {
     getByName: getMoveByName
   },
   species: {
-    getByName: getSpecieByName
+    getByUrl: getSpecieByUrl
   },
   evolution: {
     getByUrl: getEvolutionByUrl
+  },
+  drops: {
+    getByUrl: getItemByUrl
   }
 }

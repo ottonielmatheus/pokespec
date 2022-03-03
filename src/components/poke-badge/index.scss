@@ -1,0 +1,15 @@
+.poke-badge {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+
+  color: white;
+  font-size: .85rem;
+  font-weight: 600;
+  text-shadow: 0px 0px 2px black;
+
+  padding: 2px 8px;
+  border-radius: 2px;
+
+  user-select: none;
+}

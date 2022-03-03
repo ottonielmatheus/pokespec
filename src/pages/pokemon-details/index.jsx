@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
@@ -11,7 +10,14 @@ import PokeAbilities from '../../components/poke-abilities'
 import PokeEvolutions from '../../components/poke-evolutions'
 import PokeEvolutionsSkeleton from '../../components/poke-evolutions/skeleton'
 import PokeType from '../../components/poke-type'
-import PercentageBar from '../../components/shared/percentage-bar'
+import PokeStats from '../../components/poke-stats'
+import PokeItems from '../../components/poke-items'
+import PokeHabitat from '../../components/poke-habitat'
+import PokeBadge from '../../components/poke-badge'
+import PokeVarieties from '../../components/poke-varieties'
+import PokeNavigation from '../../components/poke-navigation'
+import PokeNavigationSkeleton from '../../components/poke-navigation/skeleton'
+import PokeShape from '../../components/poke-shape'
 
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
@@ -22,8 +28,6 @@ function PokemonDetails () {
 
   const [loading, setLoading] = useState(true)
   const [pokemon, setPokemon] = useState()
-  const [nextPokemon, setNextPokemon] = useState()
-  const [previousPokemon, setPreviousPokemon] = useState()
 
   useEffect(async () => {
     await currentPokemon(pokemonName)
@@ -36,12 +40,6 @@ function PokemonDetails () {
     if (!poke) {
       goNotFound()
     }
-
-    const nextPoke = await pokemonApi.pokemons.getById(poke.id + 1)
-    const previousPoke = await pokemonApi.pokemons.getById(poke.id - 1)
-
-    setNextPokemon(nextPoke)
-    setPreviousPokemon(previousPoke)
 
     const { formatedName, genre, modifier, region } = pokemonUtils.formatName(poke.name)
     poke.formatedName = formatedName
@@ -61,8 +59,10 @@ function PokemonDetails () {
 
     poke.effectiveness = pokemonUtils.getEffectiveness(poke.weakness, poke.resistance, poke.immune)
 
-    poke.species = await pokemonApi.species.getByName(poke.species.name)
+    poke.species = await pokemonApi.species.getByUrl(poke.species.url)
     poke.evolutions = await pokemonApi.evolution.getByUrl(poke.species.evolution_chain.url)
+
+    poke.species = await pokemonUtils.formatSpecies(poke.species)
     poke.evolutions = await pokemonUtils.formatEvolutions(poke.evolutions.chain)
 
     poke.stats = {
@@ -78,44 +78,13 @@ function PokemonDetails () {
     setLoading(false)
   }
 
-  const goNextPokemon = async () => {
-    navigate(`/pokemons/${nextPokemon.name}`)
-    await currentPokemon(nextPokemon.name)
-  }
-
-  const goPreviousPokemon = async () => {
-    navigate(`/pokemons/${previousPokemon.name}`)
-    await currentPokemon(previousPokemon.name)
-  }
-
   const goNotFound = async () => {
     navigate(`/not-found`)
   }
 
   return (
     <section id="pokemon-details">
-      <div className='navigation'>
-        {
-          previousPokemon &&
-          <div className='navigation__previous' onClick={async() => await goPreviousPokemon()}>
-            <BsArrowLeft size={22} />
-              <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
-              <span>#{previousPokemon?.id}</span>
-          </div>
-        }
-        <div className='navigation__current'>
-          <span className='pokemon-name'>{_.capitalize(pokemonName)}</span>
-          <span>#{pokemon?.id}</span>
-        </div>
-        {
-          nextPokemon &&
-          <div className='navigation__next' onClick={async() => await goNextPokemon()}>
-            <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
-            <span>#{nextPokemon?.id}</span>
-            <BsArrowRight size={22} />
-          </div>
-        }
-      </div>
+      {loading ? <PokeNavigationSkeleton /> : <PokeNavigation current={pokemon} /> }
       <div className='pokemon'>
         {
           loading ?
@@ -130,70 +99,37 @@ function PokemonDetails () {
               </div>
             </div>
             <div className='pokemon__profile__body'>
-              <div className='pokemon__profile__body__variations'>
-                {pokemon?.modifier &&
-                  <div className='pokemon__profile__body__variations__modifier'
-                    style={{
-                      backgroundImage: {
-                        gmax: 'linear-gradient(315deg, #d99058 0%, #f8de7e 74%)',
-                        mega: 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                        'mega-x': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                        'mega-y': 'linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 74%)',
-                        'eternamax': 'linear-gradient(315deg, #0cbaba 0%, #380036 74%)'
-                      }[pokemon.modifier]
-                    }}>
-                    {pokemon.modifier?.toUpperCase()}
-                  </div>
-                }
-                {pokemon?.region &&
-                  <div className='pokemon__profile__body__variations__region'
-                    style={{
-                      backgroundImage: {
-                        alola: 'linear-gradient(90deg, rgba(108,9,121,1) 0%, rgba(255,222,0,1) 100%)',
-                        galar: 'linear-gradient(90deg, rgba(20,9,121,1) 0%, rgba(255,0,44,1) 100%)'
-                      }[pokemon.region]
-                    }}>
-                    {pokemon.region?.toUpperCase()}
+              <div className='pokemon__profile__body__badges'>
+                <div className='pokemon__profile__body__badges__variations'>
+                  {pokemon?.modifier &&
+                    <PokeBadge badge={pokemon?.modifier} />
+                  }
+                  {pokemon?.region &&
+                    <PokeBadge badge={pokemon?.region} />
+                  }
+                </div>
+                {
+                  pokemon?.species.characteristics.length > 0 &&
+                  <div className='pokemon__profile__body__badges__characteristics'>
+                  {
+                    pokemon?.species.characteristics.map((characteristic, index) => (
+                      <div key={index}>
+                        <img src={characteristic.image} alt={characteristic.name} />
+                        <p>{characteristic.name}</p>
+                      </div>
+                    ))
+                  }
                   </div>
                 }
               </div>
-              <img src={pokemon?.sprites?.other['official-artwork']?.front_default} alt={pokemon.formatedName} />
+              <img alt={pokemon.formatedName}
+                src={pokemon?.sprites?.other['official-artwork']?.front_default || pokemon.sprites.front_default}
+              />
               <div className='pokemon__profile__body__measures'>
                   <span>{pokemon.height}&quot;</span>
                   <span>{pokemon.weight} lbs</span>
               </div>
-              <div className='pokemon__profile__body__stats'>
-                <div className='hp'>
-                  <span>HP</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#5f9747' value={pokemon?.stats.hp.basePercentage} />
-                  <span>{pokemon?.stats.hp.baseValue}</span>
-                </div>
-                <div className='attack'>
-                  <span>Attack</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#f44336' value={pokemon?.stats.attack.basePercentage} />
-                  <span>{pokemon?.stats.attack.baseValue}</span>
-                </div>
-                <div className='special-attack'>
-                  <span>Spc attack</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#aa2e25' value={pokemon?.stats.specialAttack.basePercentage} />
-                  <span>{pokemon?.stats.specialAttack.baseValue}</span>
-                </div>
-                <div className='defense'>
-                  <span>Defense</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='skyblue' value={pokemon?.stats.defense.basePercentage} />
-                  <span>{pokemon?.stats.defense.baseValue}</span>
-                </div>
-                <div className='special-defense'>
-                  <span>Spc defense</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#436775' value={pokemon?.stats.specialDefense.basePercentage} />
-                  <span>{pokemon?.stats.specialDefense.baseValue}</span>
-                </div>
-                <div className='speed'>
-                  <span>Speed</span>
-                  <PercentageBar className='pokemon__profile__body__stats__bar' color='#e69138' value={pokemon?.stats.speed.basePercentage} />
-                  <span>{pokemon?.stats.speed.baseValue}</span>
-                </div>
-              </div>
+              <PokeStats pokemonStats={pokemon?.stats} />
             </div>
             <div className='pokemon__profile__footer'>
               <div className='pokemon__profile__footer__damage-table'>
@@ -258,6 +194,34 @@ function PokemonDetails () {
             (pokemon?.moves?.length > 0) &&
             (loading ? <PokeMovesSkeleton /> : <PokeMoves pokemonMoves={pokemon?.moves} />)
           }
+        </div>
+      </div>
+      <div className='pokemon__metadata'>
+        <PokeHabitat pokemonHabitat={pokemon?.species.habitat}>
+          <div className='pokemon__metadata__habitat__name'>
+            <small>from </small><span>{pokemon?.species.generation}</span>
+            <p>{pokemon?.species.genus}</p>
+          </div>
+          <div className='pokemon__metadata__habitat__body'>
+            <div className='pokemon__metadata__habitat__body__about'>
+              <p>{pokemon?.species.about.replace('', ' ')}</p>
+            </div>
+          </div>
+        </PokeHabitat>
+        <div className='pokemon__metadata__body'>
+          <div className='pokemon__metadata__body__info'>
+            {
+              pokemon?.held_items.length > 0 &&
+              <PokeItems pokemonItems={pokemon?.held_items} />
+            }
+            {
+              pokemon?.species.varieties.length > 1 &&
+              <PokeVarieties pokemonVarieties={pokemon?.species.varieties} />
+            }
+          </div>
+          <div className='pokemon__metadata__body__details'>
+            <PokeShape pokemonSpecies={pokemon?.species} />
+          </div>
         </div>
       </div>
     </section>
