@@ -4,13 +4,16 @@ import ReactLoading from 'react-loading'
 import { Link } from 'react-router-dom'
 
 import './index.scss'
+import PokeVarietiesSkeleton from './skeleton'
 import PokeBadge from '../poke-badge'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
 
 
 function PokeVarieties ({ pokemonVarieties }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeVarieties, setPokeVarieties] = useState()
 
@@ -41,7 +44,7 @@ function PokeVarieties ({ pokemonVarieties }) {
     setLoadingMore(false)
   }
 
-  return (
+  return rootLoading ? <PokeVarietiesSkeleton /> : (
     <div className='poke-varieties'>
       <div className='poke-varieties__header'>
         <span>Varieties</span>

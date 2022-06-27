@@ -6,11 +6,14 @@ import { followCursor } from 'tippy.js'
 
 import 'tippy.js/dist/tippy.css'
 import './index.scss'
+import PokeItemsSkeleton from './skeleton'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeItems ({ pokemonItems }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeItems, setPokeItems] = useState()
 
@@ -43,7 +46,7 @@ function PokeItems ({ pokemonItems }) {
     setLoadingMore(false)
   }
 
-  return (
+  return rootLoading ? <PokeItemsSkeleton /> : (
     <div className='poke-items'>
       <div className='poke-items__header'>
         <span>Drops</span>

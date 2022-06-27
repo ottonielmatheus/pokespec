@@ -61,11 +61,16 @@ const formatName = (name) => {
   const pokeRegion = _.find(regions, region => region.regex.test(name))
   const pokeModifier = _.find(modifiers, modifier => modifier.regex.test(name))
 
+  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
+    .split('-')
+    .map(_.capitalize)
+    .join(' ')
+
   return {
     genre,
+    formatedName,
     region: pokeRegion?.name,
-    modifier: pokeModifier?.name,
-    formatedName: _.capitalize(name).replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
+    modifier: pokeModifier?.name
   }
 }
 

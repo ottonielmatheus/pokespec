@@ -5,13 +5,16 @@ import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
 import './index.scss'
+import PokeNavigationSkeleton from './skeleton'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 
 
 function PokeNavigation ({ current }) {
   const navigate = useNavigate()
 
+  const { loading: rootLoading } = usePokemonContext()
   const [loading, setLoading] = useState(false)
   const [previousPokemon, setPreviousPokemon] = useState()
   const [currentPokemon, setCurrentPokemon] = useState()
@@ -55,7 +58,7 @@ function PokeNavigation ({ current }) {
     navigate(`/pokemons/${previousPokemon.name}`)
   }
 
-  return (
+  return rootLoading ? <PokeNavigationSkeleton /> : (
     <div className='navigation'>
       {
         loading ? <ReactLoading type='bubbles' color='#2e2e2e' /> :

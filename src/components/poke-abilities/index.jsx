@@ -3,11 +3,14 @@ import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
 
 import './index.scss'
+import PokeMovesSkeleton from './../poke-moves/skeleton'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeAbilities ({ pokemonAbilities }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeAbilities, setPokeAbilities] = useState()
 
@@ -41,7 +44,7 @@ function PokeAbilities ({ pokemonAbilities }) {
     setLoadingMore(false)
   }
 
-  return (
+  return rootLoading ? <PokeMovesSkeleton /> : (
     <div className='poke-abilities'>
       <div className='poke-abilities__header'>
         <span>Abilities</span>

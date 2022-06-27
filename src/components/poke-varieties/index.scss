@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 18px;
 
   .total-items {
     font-weight: normal;
@@ -27,12 +27,14 @@
     gap: 32px;
     flex-wrap: wrap;
     overflow-x: auto;
+    overflow: visible;
 
     .variety {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: start;
+      justify-content: center;
       gap: 2px;
 
       img {
@@ -49,7 +51,7 @@
         justify-content: center;
         color: white;
         font-weight: 600;
-        border-radius: 3px;
+        border-radius: 50%;
         background-color: rgb(32, 32, 32);
 
         cursor: pointer;
@@ -62,6 +64,9 @@
       }
 
       &__badges {
+        top: -12px;
+        right: -20px;
+        position: absolute;
         display: center;
         justify-content: center;
       }

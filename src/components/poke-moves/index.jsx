@@ -5,11 +5,14 @@ import { BsLightningChargeFill } from 'react-icons/bs'
 import { BiTargetLock } from 'react-icons/bi'
 
 import './index.scss'
+import PokeMovesSkeleton from './skeleton'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeMoves ({ pokemonMoves }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeMoves, setPokeMoves] = useState([])
 
@@ -33,7 +36,7 @@ function PokeMoves ({ pokemonMoves }) {
     setLoadingMore(false)
   }
 
-  return (
+  return rootLoading ? <PokeMovesSkeleton /> : (
     <div className='poke-moves'>
       <div className='poke-moves__header'>
         <span>Moves</span>

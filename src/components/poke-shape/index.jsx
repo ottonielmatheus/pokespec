@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 
 import './index.scss'
+import PokeShapeSkeleton from './skeleton'
 import PercentageBar from '../shared/percentage-bar'
+
+import { usePokemonContext } from '../../contexts/pokemon.context'
 
 
 function PokeShape ({ pokemonSpecies }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [pokeSpecies, usePokeSpecies] = useState()
 
   useEffect(async () => {
     usePokeSpecies(pokemonSpecies)
   }, [pokemonSpecies])
 
-  return (
+  return rootLoading ? <PokeShapeSkeleton /> : (
     <div className='pokemon-shape'>
       <div className='pokemon-shape__head'>
         <span className='pokemon-shape__head__title'>Details</span>

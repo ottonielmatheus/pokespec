@@ -6,17 +6,21 @@ import Home from './pages/home'
 import PokemonDetails from './pages/pokemon-details'
 import Footer from './components/footer'
 
+import { PokemonContextProvider } from './contexts/pokemon.context'
+
 function App () {
   return (
   <>
-    <HashRouter>
-      <Routes>
-        <Route path='pokemons/:pokemonName' element={<PokemonDetails />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='/' element={<Home />} />
-      </Routes>
-    </HashRouter>
-    <Footer />
+    <PokemonContextProvider>
+      <HashRouter>
+        <Routes>
+          <Route path='pokemons/:pokemonName' element={<PokemonDetails />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/' element={<Home />} />
+        </Routes>
+      </HashRouter>
+      <Footer />
+    </PokemonContextProvider>
   </>
   )
 }

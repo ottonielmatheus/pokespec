@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { usePokemonContext } from '../../contexts/pokemon.context'
 
 import './index.scss'
+import PokeHabitatSkeleton from './skeleton'
 
 function PokeHabitat ({ pokemonHabitat, children }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [pokeHabitat, usePokeHabitat] = useState()
 
   useEffect(async () => {
     usePokeHabitat(pokemonHabitat)
   }, [pokemonHabitat])
 
-  return (
+  return rootLoading ? <PokeHabitatSkeleton /> : (
     <div className='pokemon-habitat' style={{ backgroundImage: `url(${pokeHabitat?.image})` }}>
       <div className='pokemon-habitat__blackground'>
         <div className='pokemon-habitat__blackground__body'>

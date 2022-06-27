@@ -4,10 +4,14 @@ import { BsArrowRight } from 'react-icons/bs'
 import Fade from 'react-reveal/Fade'
 
 import './index.scss'
+import PokeEvolutionsSkeleton from './skeleton'
+
 
 import pokemonApi from '../../core/apis/pokemon.api'
+import { usePokemonContext } from '../../contexts/pokemon.context'
 
 function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
+  const { loading: rootLoading } = usePokemonContext()
   const [pokeEvolutions, setPokeEvolutions] = useState()
 
   useEffect(async () => {
@@ -45,7 +49,6 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
           </div>
           <div className='evolution-node-nexts'>
             {
-              (chain.next?.length > 0) &&
               chain.next?.map((chain, index) => (
                 <div key={index}>
                     {generatePokeEvolutionTree(chain)}
@@ -58,7 +61,7 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
     )
   }
 
-  return (
+  return rootLoading ? <PokeEvolutionsSkeleton /> : (
     <div className='poke-evolutions'>
       <div className='poke-evolutions__header'>
         <span>Evolutions</span>

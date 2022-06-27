@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import './index.scss'
+
 import PokeMoves from './../../components/poke-moves'
-import PokeMovesSkeleton from './../../components/poke-moves/skeleton'
 import PokeAbilities from '../../components/poke-abilities'
 import PokeEvolutions from '../../components/poke-evolutions'
-import PokeEvolutionsSkeleton from '../../components/poke-evolutions/skeleton'
 import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
 import PokeItems from '../../components/poke-items'
@@ -16,7 +16,6 @@ import PokeHabitat from '../../components/poke-habitat'
 import PokeBadge from '../../components/poke-badge'
 import PokeVarieties from '../../components/poke-varieties'
 import PokeNavigation from '../../components/poke-navigation'
-import PokeNavigationSkeleton from '../../components/poke-navigation/skeleton'
 import PokeShape from '../../components/poke-shape'
 
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -26,7 +25,7 @@ function PokemonDetails () {
   const navigate = useNavigate()
   const { pokemonName } = useParams()
 
-  const [loading, setLoading] = useState(true)
+  const { loading, setLoading } = usePokemonContext()
   const [pokemon, setPokemon] = useState()
 
   useEffect(async () => {
@@ -84,7 +83,7 @@ function PokemonDetails () {
 
   return (
     <section id="pokemon-details">
-      {loading ? <PokeNavigationSkeleton /> : <PokeNavigation current={pokemon} /> }
+      <PokeNavigation current={pokemon} />
       <div className='pokemon'>
         {
           loading ?
@@ -183,16 +182,15 @@ function PokemonDetails () {
         <div className='pokemon__info'>
           {
             pokemon?.evolutions &&
-            (loading ? <PokeEvolutionsSkeleton />
-              : <PokeEvolutions pokemon={pokemon} pokemonEvolutions={pokemon?.evolutions} />)
+            <PokeEvolutions pokemon={pokemon} pokemonEvolutions={pokemon?.evolutions} />
           }
           {
             (pokemon?.abilities?.length > 0) &&
-            (loading ? <PokeMovesSkeleton /> : <PokeAbilities pokemonAbilities={pokemon?.abilities} />)
+            <PokeAbilities pokemonAbilities={pokemon?.abilities} />
           }
           {
             (pokemon?.moves?.length > 0) &&
-            (loading ? <PokeMovesSkeleton /> : <PokeMoves pokemonMoves={pokemon?.moves} />)
+            <PokeMoves pokemonMoves={pokemon?.moves} />
           }
         </div>
       </div>
