@@ -29,18 +29,26 @@ function PokeShape ({ pokemonSpecies }) {
         <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
+        <span className='pokemon-shape__row__title'>Color</span>
+        <span>{_.capitalize(pokeSpecies?.shape.color) || '???'}</span>
+      </div>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Habitat</span>
         <span>{_.capitalize(pokeSpecies?.habitat.name).replaceAll('-', ' ') || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Happiness</span>
-        <PercentageBar className='pokemon-stats__bar' color='#ffd700' value={pokeSpecies?.happiness.percentage} />
-        <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.happiness.percentage).toFixed(0)}%</span>
+        <span className='pokemon-shape__row__title'>Growth</span>
+        <span>{pokeSpecies?.growthRate.replaceAll('-', ' ') || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Catch rate</span>
         <PercentageBar className='pokemon-stats__bar' color='#0a75ad' value={pokeSpecies?.captureRate} />
         <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.captureRate).toFixed(0)}%</span>
+      </div>
+      <div className='pokemon-shape__row'>
+        <span className='pokemon-shape__row__title'>Happiness</span>
+        <PercentageBar className='pokemon-stats__bar' color='#ffd700' value={pokeSpecies?.happiness.percentage} />
+        <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.happiness.percentage).toFixed(0)}%</span>
       </div>
     </div>
   )

@@ -215,6 +215,7 @@ const formatSpecies = async (species) => {
       base: species.base_happiness,
       percentage: (species.base_happiness / 255) * 100
     },
+    growthRate: species.growth_rate.name,
     captureRate: (species.capture_rate / 255) * 100,
     about: i18n(species.flavor_text_entries).flavor_text,
     generation: 'Generation ' + generationNumber.toUpperCase(),

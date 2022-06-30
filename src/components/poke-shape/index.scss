@@ -1,12 +1,9 @@
 .pokemon-shape {
+  height: 100%;
   color: white;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-
-  border: solid .5px #2e2e2e;
-  background-color: #161616;
-  border-radius: 5px;
 
   &__head {
     width: 100%;

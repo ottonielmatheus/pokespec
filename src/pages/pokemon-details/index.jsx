@@ -195,31 +195,34 @@ function PokemonDetails () {
         </div>
       </div>
       <div className='pokemon__metadata'>
-        <PokeHabitat pokemonHabitat={pokemon?.species.habitat}>
-          <div className='pokemon__metadata__habitat__name'>
-            <small>from </small><span>{pokemon?.species.generation}</span>
-            <p>{pokemon?.species.genus}</p>
-          </div>
-          <div className='pokemon__metadata__habitat__body'>
-            <div className='pokemon__metadata__habitat__body__about'>
-              <p>{pokemon?.species.about.replace('', ' ')}</p>
+        <div className='pokemon__metadata__info'>
+          <PokeHabitat pokemonHabitat={pokemon?.species.habitat}>
+            <div className='pokemon__metadata__info__habitat__name'>
+              <small>from </small><span>{pokemon?.species.generation}</span>
+              <p>{pokemon?.species.genus}</p>
             </div>
-          </div>
-        </PokeHabitat>
-        <div className='pokemon__metadata__body'>
-          <div className='pokemon__metadata__body__info'>
-            {
-              pokemon?.held_items.length > 0 &&
-              <PokeItems pokemonItems={pokemon?.held_items} />
-            }
-            {
-              pokemon?.species.varieties.length > 1 &&
-              <PokeVarieties pokemonVarieties={pokemon?.species.varieties} />
-            }
-          </div>
-          <div className='pokemon__metadata__body__details'>
-            <PokeShape pokemonSpecies={pokemon?.species} />
-          </div>
+            <div className='pokemon__metadata__info__habitat__body'>
+              <div className='pokemon__metadata__info__habitat__body__about'>
+                <p>{pokemon?.species.about.replace('', ' ')}</p>
+              </div>
+            </div>
+          </PokeHabitat>
+          {
+            (pokemon?.held_items.length > 0 || pokemon?.species.varieties.length > 1) &&
+            <div className='pokemon__metadata__info__body'>
+              {
+                pokemon?.held_items.length > 0 &&
+                <PokeItems pokemonItems={pokemon?.held_items} />
+              }
+              {
+                pokemon?.species.varieties.length > 1 &&
+                <PokeVarieties pokemonVarieties={pokemon?.species.varieties} />
+              }
+            </div>
+          }
+        </div>
+        <div className='pokemon__metadata__details'>
+          <PokeShape pokemonSpecies={pokemon?.species} />
         </div>
       </div>
     </section>
