@@ -62,8 +62,8 @@ function PokeVarieties ({ pokemonVarieties }) {
                 </Link>
               </div>
               <div className='variety__badges'>
-                {pokemon.badges.region && <PokeBadge badge={pokemon.badges.region} />}
-                {pokemon.badges.modifier && <PokeBadge badge={pokemon.badges.modifier} />}
+                {pokemon.badges.region && <PokeBadge type='image' badge={pokemon.badges.region} />}
+                {pokemon.badges.modifier && <PokeBadge type='image' badge={pokemon.badges.modifier} />}
               </div>
             </div>
           </Fade>

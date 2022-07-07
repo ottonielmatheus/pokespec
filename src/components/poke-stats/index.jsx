@@ -1,10 +1,15 @@
 import React from 'react'
+import _ from 'lodash'
 import PercentageBar from '../../components/shared/percentage-bar'
 
 import './index.scss'
 
 
 function PokeStats ({ pokemonStats }) {
+  const totalStat = _.values(pokemonStats)
+    .map(stat => stat.baseValue)
+    .reduce((acc, value) => acc + value, 0)
+
   return (
     <div className='pokemon-stats'>
       <div className='hp'>
@@ -36,6 +41,10 @@ function PokeStats ({ pokemonStats }) {
         <span>Speed</span>
         <PercentageBar className='pokemon-stats__bar' color='#e69138' value={pokemonStats?.speed.basePercentage} />
         <span>{pokemonStats?.speed.baseValue}</span>
+      </div>
+      <div className='total' style={{ paddingTop: '8px' }}>
+        <span>Total</span>
+        <span>{totalStat}</span>
       </div>
     </div>
   )

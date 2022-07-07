@@ -46,8 +46,8 @@ const formatName = (name) => {
   }
 
   const regions = [
-    { name: 'alola', regex: /(-alola)$/ },
-    { name: 'galar', regex: /(-galar)$/ }
+    { name: 'alola', regex: /(-alola)/ },
+    { name: 'galar', regex: /(-galar)/ }
   ]
 
   const modifiers = [
@@ -61,7 +61,7 @@ const formatName = (name) => {
   const pokeRegion = _.find(regions, region => region.regex.test(name))
   const pokeModifier = _.find(modifiers, modifier => modifier.regex.test(name))
 
-  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
+  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)/, '')
     .split('-')
     .map(_.capitalize)
     .join(' ')
@@ -217,7 +217,7 @@ const formatSpecies = async (species) => {
     },
     growthRate: species.growth_rate.name,
     captureRate: (species.capture_rate / 255) * 100,
-    about: i18n(species.flavor_text_entries).flavor_text,
+    about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
     characteristics
   }

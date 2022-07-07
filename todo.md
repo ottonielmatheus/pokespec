@@ -1,14 +1,14 @@
 To do:
 
-  pokemon details:
-  - [x] shape
-  - [] color
-  - [x] generation
-  - [x] happy rate
-  - [x] cap rate
-  - [] growth rate
+ - Funcionalidade:
+  - [ ] search bar (pokemon sprite, name, original name, types, variety)
+  - [ ] cache system to search bar
+  - [ ] Aprender sobre indexação da página
 
-  - [] total pokemon stat
-  - [] pokemon image error loading
-  - [x] skeleton to pokemon details
-  - [x] responsive pokemon details
+ - Layout:
+  - [ ] Adicionar o nome original do pokemon (japones)
+  - [ ] Adicionar flags para Alola, Galar, GMAX, ETERNAMAX
+  - [ ] pokemon image error loading
+
+ - Desempenho:
+  - [ ] Otimizar busca por evoluções (não buscar pelo mesmo pokemon 2x)

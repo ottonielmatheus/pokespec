@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
+import { setPageTitle, setPageDescription } from './../../core/browserfy.utils'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import './index.scss'
 
@@ -29,6 +30,7 @@ function PokemonDetails () {
   const [pokemon, setPokemon] = useState()
 
   useEffect(async () => {
+    setPageTitle(`${pokemonUtils.formatName(pokemonName).formatedName}`)
     await currentPokemon(pokemonName)
   }, [pokemonName])
 
@@ -75,6 +77,7 @@ function PokemonDetails () {
 
     setPokemon(poke)
     setLoading(false)
+    setPageDescription(poke.species.about)
   }
 
   const goNotFound = async () => {
@@ -125,8 +128,8 @@ function PokemonDetails () {
                 src={pokemon?.sprites?.other['official-artwork']?.front_default || pokemon.sprites.front_default}
               />
               <div className='pokemon__profile__body__measures'>
-                  <span>{pokemon.height}&quot;</span>
-                  <span>{pokemon.weight} lbs</span>
+                  <span>{(pokemon.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
+                  <span>{Math.round(pokemon.weight / 4.536)} lbs</span>
               </div>
               <PokeStats pokemonStats={pokemon?.stats} />
             </div>
@@ -203,7 +206,7 @@ function PokemonDetails () {
             </div>
             <div className='pokemon__metadata__info__habitat__body'>
               <div className='pokemon__metadata__info__habitat__body__about'>
-                <p>{pokemon?.species.about.replace('', ' ')}</p>
+                <p>{pokemon?.species.about}</p>
               </div>
             </div>
           </PokeHabitat>
