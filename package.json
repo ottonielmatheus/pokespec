@@ -1,5 +1,5 @@
 {
-  "homepage": "https://ottonielmatheus.github.io/pokelab/",
+  "homepage": "https://ottonielmatheus.github.io/pokespec/",
   "name": "pokedex",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "@tippyjs/react": "^4.2.6",
     "bootstrap-icons": "^1.7.2",
     "chart.js": "^3.7.0",
+    "idb": "^7.0.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-animated-css": "^1.2.1",

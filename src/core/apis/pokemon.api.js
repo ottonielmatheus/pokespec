@@ -10,15 +10,19 @@ const querify = (limit, skip) => {
 }
 
 const getAll = async ({ skip, limit, next }) => {
-  const res = await fetch(next || apiUrl + 'pokemon' + querify(limit, skip))
+  const uri = next || apiUrl + 'pokemon' + querify(limit, skip)
+  const res = await fetch(uri)
   const body = await res.json()
+
   return body
 }
 
 const getById = async (id) => {
   try {
-    const res = await fetch(apiUrl + `pokemon/${id}`)
+    const uri = apiUrl + `pokemon/${id}`
+    const res = await fetch(uri)
     const body = await res.json()
+
     return body
   } catch (err) {
     return null
@@ -27,8 +31,10 @@ const getById = async (id) => {
 
 const getByName = async (name) => {
   try {
-    const res = await fetch(apiUrl + `pokemon/${name}`)
+    const uri =apiUrl + `pokemon/${name}`
+    const res = await fetch(uri)
     const body = await res.json()
+
     return body
   } catch (err) {
     return null
@@ -39,6 +45,7 @@ const getByUrl = async (url) => {
   try {
     const res = await fetch(url)
     const body = await res.json()
+
     return body
   } catch (err) {
     return null
@@ -46,8 +53,10 @@ const getByUrl = async (url) => {
 }
 
 const getAbilityByName = async (name) => {
-  const res = await fetch(apiUrl + `ability/${name}`)
+  const uri = apiUrl + `ability/${name}`
+  const res = await fetch(uri)
   const body = await res.json()
+
   return body
 }
 

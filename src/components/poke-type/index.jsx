@@ -1,26 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react'
 import _ from 'lodash'
 
 import 'tippy.js/dist/tippy.css'
 import './index.scss'
+import pokemonUtils from '../../core/pokemon.utils'
 
 
 function PokeType ({ type }) {
+  const [pokemonType, setPokemonType] = useState()
+
+  useEffect(async () => {
+    if ('icon' in type) {
+      setPokemonType(type)
+    } else {
+      setPokemonType(await pokemonUtils.formatType(type))
+    }
+  }, [type])
+
   return (
     <Tippy
-      className={`tippy-tooltip ${type.name}-theme`}
+      className={`tippy-tooltip ${pokemonType?.name}-theme`}
       arrow={false}
       content={
         <div>
-          <span>{_.capitalize(type.name)}</span>
+          <span>{_.capitalize(pokemonType?.name)}</span>
         </div>
       }
       >
-        <Link to={`/types/${type.name}`}>
-          <img src={type.icon} alt={type.name} />
-        </Link>
+      <img width={30} height={30} src={pokemonType?.icon} alt={pokemonType?.name} />
     </Tippy>
   )
 }

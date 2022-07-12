@@ -30,7 +30,6 @@ function PokemonDetails () {
   const [pokemon, setPokemon] = useState()
 
   useEffect(async () => {
-    setPageTitle(`${pokemonUtils.formatName(pokemonName).formatedName}`)
     await currentPokemon(pokemonName)
   }, [pokemonName])
 
@@ -77,6 +76,7 @@ function PokemonDetails () {
 
     setPokemon(poke)
     setLoading(false)
+    setPageTitle(formatedName)
     setPageDescription(poke.species.about)
   }
 
@@ -95,7 +95,7 @@ function PokemonDetails () {
           </div> :
           <div className='pokemon__profile'>
             <div className='pokemon__profile__header'>
-              {pokemon.formatedName}
+              {pokemon?.formatedName}
               <div className='pokemon__profile__header__types'>
                 {pokemon?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
               </div>
@@ -124,12 +124,12 @@ function PokemonDetails () {
                   </div>
                 }
               </div>
-              <img alt={pokemon.formatedName}
-                src={pokemon?.sprites?.other['official-artwork']?.front_default || pokemon.sprites.front_default}
+              <img alt={pokemon?.formatedName}
+                src={pokemon?.sprites?.other['official-artwork']?.front_default || pokemon?.sprites.front_default}
               />
               <div className='pokemon__profile__body__measures'>
-                  <span>{(pokemon.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
-                  <span>{Math.round(pokemon.weight / 4.536)} lbs</span>
+                <span>{(pokemon?.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
+                <span>{Math.round(pokemon?.weight / 4.536)} lbs</span>
               </div>
               <PokeStats pokemonStats={pokemon?.stats} />
             </div>

@@ -4,11 +4,13 @@ import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
+import { store } from '../../core/storage'
+import { usePokemonContext } from '../../contexts/pokemon.context'
+import pokemonApi from '../../core/apis/pokemon.api'
+
 import './index.scss'
 import PokeNavigationSkeleton from './skeleton'
 
-import { usePokemonContext } from '../../contexts/pokemon.context'
-import pokemonApi from '../../core/apis/pokemon.api'
 
 
 function PokeNavigation ({ current }) {
@@ -42,11 +44,21 @@ function PokeNavigation ({ current }) {
 
   const getNextAndPrevious = async (current) => {
     setLoading(true)
-    const nextPoke = await pokemonApi.pokemons.getById(current.id + 1)
-    const previousPoke = await pokemonApi.pokemons.getById(current.id - 1)
 
-    setNextPokemon(nextPoke)
-    setPreviousPokemon(previousPoke)
+    if (current) {
+      const nextPoke = await pokemonApi.pokemons.getById(current.id + 1)
+      if (current.id > 1) {
+        const previousPoke = await pokemonApi.pokemons.getById(current.id - 1)
+
+        setPreviousPokemon(previousPoke)
+        store('pokemonsSearch').put(previousPoke)
+      }
+
+      setNextPokemon(nextPoke)
+      store('pokemonsSearch').put(current)
+      store('pokemonsSearch').put(nextPoke)
+    }
+
     setLoading(false)
   }
 

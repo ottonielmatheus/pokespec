@@ -17,9 +17,18 @@ const mapElementType = async (typeName) => {
 }
 
 const formatType = async (t) => {
-  const type = pokeTypeMapper[t.name]
+  let type = null
+
+  if ('slot' in t) {
+    type = pokeTypeMapper[t.type.name]
+    type.name = t.type.name
+  } else {
+    type = pokeTypeMapper[t.name]
+    type.name = t.name
+  }
+
   return {
-    name: t.name,
+    name: type.name,
     icon: await type.icon,
     color: type.color,
     background: await type.background,
@@ -34,8 +43,7 @@ const formatTypes = async (types) => {
     return []
   }
 
-  const formatedTypes = types.map(async t => await formatType(t.type))
-  return await Promise.all(formatedTypes)
+  return await Promise.all(types.map(formatType))
 }
 
 const formatName = (name) => {
@@ -61,7 +69,7 @@ const formatName = (name) => {
   const pokeRegion = _.find(regions, region => region.regex.test(name))
   const pokeModifier = _.find(modifiers, modifier => modifier.regex.test(name))
 
-  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)/, '')
+  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
     .split('-')
     .map(_.capitalize)
     .join(' ')
@@ -98,13 +106,16 @@ const getMainAbility = async (abilities) => {
 }
 
 const formatAbilities = (abilities) => {
-  return abilities.map(ability => ({
-    id: ability.name,
-    name: i18n(ability.names).name,
-    description: i18n(ability.effect_entries)?.effect || null,
-    shortDescription: i18n(ability.effect_entries)?.short_effect || null,
-    hidden: ability.hidden
-  }))
+  return _.chain(abilities)
+    .map(ability => ({
+      id: ability.name,
+      name: i18n(ability.names).name,
+      description: i18n(ability.effect_entries)?.effect || null,
+      shortDescription: i18n(ability.effect_entries)?.short_effect || null,
+      hidden: ability.hidden
+    }))
+    .orderBy('hidden')
+    .value()
 }
 
 const formatMoves = async (moves) => {
@@ -136,9 +147,9 @@ const getWeaknessAndResistance = async (types) => {
   }
 
   const result = {
-    weakness: _.chain(mergedTypes.weakness).uniq().difference(mergedTypes.resistance),
-    resistance: _.chain(mergedTypes.resistance).uniq().difference(mergedTypes.weakness),
-    immune: _.uniq(mergedTypes.immune)
+    weakness: _.chain(mergedTypes.weakness).difference(mergedTypes.resistance),
+    resistance: _.chain(mergedTypes.resistance).difference(mergedTypes.weakness),
+    immune: mergedTypes.immune
   }
 
   result.weakness = await Promise.all(result.weakness.map(mapElementType))
@@ -149,7 +160,6 @@ const getWeaknessAndResistance = async (types) => {
 }
 
 const getEffectiveness = (weakness, resistance, immune) => {
-
   const multipliers = _.chain(resistance)
     .map(r => ({ type: r, calc: total => total / 2 }))
     .concat(weakness.map(w => ({ type: w, calc: total => total * 2 })))
@@ -166,6 +176,7 @@ const getEffectiveness = (weakness, resistance, immune) => {
       value: multipliers[type.name].calc(total[type.name]?.value || 1)
     }
   }
+
 
   return _.chain(total)
     .groupBy('value')
@@ -200,6 +211,7 @@ const formatSpecies = async (species) => {
   const generationNumber = species.generation.name.split('-')[1]
 
   return {
+    originalName: i18n(species.names, 'ja').name,
     varieties: species.varieties,
     genus: i18n(species.genera).genus,
     habitat: {
@@ -246,6 +258,7 @@ const formatVarieties = (varieties) => {
 
 export default {
   formatName,
+  formatType,
   formatTypes,
   formatAbilities,
   formatMoves,

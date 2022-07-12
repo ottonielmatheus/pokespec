@@ -1,5 +1,5 @@
 const setPageTitle = (title) => {
-  document.title = 'Pokelab | ' + title
+  document.title = title + ' | Pokespec'
 }
 
 const setPageDescription = (description) => {

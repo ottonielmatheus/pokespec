@@ -29,6 +29,10 @@ function PokeShape ({ pokemonSpecies }) {
         <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
+        <span className='pokemon-shape__row__title'>Name</span>
+        <span>{pokeSpecies?.originalName || '???'}</span>
+      </div>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Color</span>
         <span>{_.capitalize(pokeSpecies?.shape.color) || '???'}</span>
       </div>
@@ -44,11 +48,6 @@ function PokeShape ({ pokemonSpecies }) {
         <span className='pokemon-shape__row__title'>Catch rate</span>
         <PercentageBar className='pokemon-stats__bar' color='#0a75ad' value={pokeSpecies?.captureRate} />
         <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.captureRate).toFixed(0)}%</span>
-      </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Happiness</span>
-        <PercentageBar className='pokemon-stats__bar' color='#ffd700' value={pokeSpecies?.happiness.percentage} />
-        <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.happiness.percentage).toFixed(0)}%</span>
       </div>
     </div>
   )

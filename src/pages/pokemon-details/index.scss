@@ -1,6 +1,6 @@
 #pokemon-details {
   width: 1200px;
-  padding: 24px 0;
+  padding: 8px 0;
   margin: 0 auto;
 
   display: flex;
@@ -324,7 +324,7 @@
     }
 
     .navigation {
-      top: 0;
+      top: 56px;
       left: 0;
       z-index: 10;
       position: fixed;

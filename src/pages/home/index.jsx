@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import './index.scss'
 
+import { store } from './../../core/storage'
 import pokemonApi from '../../core/apis/pokemon.api'
 import PokeCard from '../../components/poke-card'
 
@@ -26,6 +27,11 @@ function Home () {
     setNextPage(res.next)
     setTotalPokemons(res.count)
     setPokemons(pokemons.concat(res.results))
+    storePokemons(pokemons)
+  }
+
+  const storePokemons = async (pokemons) => {
+    Promise.all(pokemons.map(store('pokemonsSearch').add))
   }
 
   const loadMore = async () => {

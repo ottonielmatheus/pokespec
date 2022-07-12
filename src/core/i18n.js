@@ -1,6 +1,6 @@
 import _ from 'lodash'
-const language = 'en'
+const defaultLanguage = 'en'
 
-export default (data) => {
-  return _.find(data, data => data.language.name === language)
+export default (data, language) => {
+  return _.find(data, data => data.language.name === (language || defaultLanguage))
 }
