@@ -1,9 +1,9 @@
 input, input:before, input:after {
-  -webkit-user-select: initial;
-  -khtml-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 body {

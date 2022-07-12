@@ -1,12 +1,19 @@
 import { openDB } from 'idb'
 
 const db = async () => {
-  return await openDB('pokespec', 1, {
-    upgrade (db) {
-      const store = db.createObjectStore('pokemonsSearch', { keyPath: 'name' })
-      store.createIndex('name', 'name', { unique: true })
-    }
-  })
+  try {
+    return await openDB('pokespec', 1, {
+      upgrade (db) {
+        const store = db.createObjectStore('pokemonsSearch', { keyPath: 'name' })
+        store.createIndex('name', 'name', { unique: true })
+      },
+      terminated () {
+        alert('indexedDB closed.')
+      }
+    })
+  } catch (err) {
+    alert(err)
+  }
 }
 
 const store = (storeName) => {

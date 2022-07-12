@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
-import { setPageTitle, setPageDescription } from './../../core/browserfy.utils'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import './index.scss'
 
@@ -76,8 +75,6 @@ function PokemonDetails () {
 
     setPokemon(poke)
     setLoading(false)
-    setPageTitle(formatedName)
-    setPageDescription(poke.species.about)
   }
 
   const goNotFound = async () => {
