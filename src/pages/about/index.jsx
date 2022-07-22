@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
-
-import githubApi from './../../core/apis/github.api'
 
 import './index.scss'
 import pokeApiLogo from './../../components/shared/logos/pokeapi-logo.png'
 import nintendoLogo from './../../components/shared/logos/nintendo-logo.png'
 import ashPokemon from './../../components/shared/logos/ash-about.png'
+import GitHubUser from './../../components/shared/github-user'
 
 
 function About () {
-  const [user, setUser] = useState(null)
-
-  useEffect(async () => {
-    setUser(await githubApi.getUser('ottonielmatheus'))
-  }, [])
-
   return (
     <section className='about'>
       <div className='row'>
@@ -53,22 +46,9 @@ function About () {
         </div>
         <div className='about__me'>
           <h2>Who I am?</h2>
-          <div className='about__me__avatar'>
-            <img width={150} src={user?.avatar_url} alt="profile picture" />
-          </div>
-          <div className='about__me__name'>
-            <h3>{user?.name}</h3>
-            <span>{user?.login}</span>
-          </div>
-          <p className='about__me__description'>
-            <span>{user?.bio.split('\r\n\r\n')[0]}</span>
-            <br />
-            <br />
-            <span>{user?.bio.split('\r\n\r\n')[2]}</span>
-          </p>
-          <span className='about__me__location'>{user?.location}</span>
+          <GitHubUser username={'ottonielmatheus'} />
           <div className='about__me__links'>
-            <a href={user?.html_url}>
+            <a href='https://github.com/ottonielmatheus'>
               <BsGithub size={32} />
             </a>
             <a href='https://www.linkedin.com/in/ottoniel-matheus-de-souza-756a64170/'>

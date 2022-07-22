@@ -94,40 +94,6 @@
     padding: 0 24px;
     gap: 4px;
 
-    &__avatar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        border-radius: 50%;
-      }
-    }
-
-    h3 {
-      margin-bottom: 0;
-    }
-
-    &__name {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      span {
-        opacity: .5;
-      }
-    }
-
-    &__description {
-      opacity: .9;
-      text-align: center;
-    }
-
-    &__location {
-      opacity: .5;
-      text-align: center;
-    }
-
     &__links {
       display: flex;
       align-items: center;
