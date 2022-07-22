@@ -82,7 +82,7 @@ function PokeMoves ({ pokemonMoves }) {
                 </div>
               </div>
               <span className='move-description'>
-                {move?.shortDescription?.replaceAll('$effect_chance', move?.effectChance)}
+                {move?.shortDescription?.replaceAll('$effect_chance', move?.effectChance) || <i>nothing about.</i>}
               </span>
             </div>
           </Fade>

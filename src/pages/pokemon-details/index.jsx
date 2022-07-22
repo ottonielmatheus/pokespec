@@ -216,7 +216,7 @@ function PokemonDetails () {
               }
               {
                 pokemon?.species.varieties.length > 1 &&
-                <PokeVarieties pokemonVarieties={pokemon?.species.varieties} />
+                <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
               }
             </div>
           }

@@ -83,7 +83,7 @@ const pokeTypeMapper = {
     immune: ['poison']
   },
   dark: {
-    color: '#575062',
+    color: '#827693',
     icon: getIcon('dark'),
     background: getBackground('dark'),
     weakness: ['fighting', 'bug', 'fairy'],

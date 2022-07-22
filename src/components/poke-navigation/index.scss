@@ -26,20 +26,18 @@
     color: white;
     font-weight: 600;
 
+    opacity: 0.5;
     cursor: pointer;
     user-select: none;
 
     &:hover {
       transition: .5s;
-      opacity: 0.5;
+      opacity: 1;
     }
   }
 
   &__current {
+    opacity: 1 !important;
     cursor: unset !important;
-
-    &:hover {
-      opacity: initial !important;
-    }
   }
 }

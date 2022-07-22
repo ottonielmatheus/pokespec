@@ -17,6 +17,10 @@ body {
   background-color: #2f2f2f;
 }
 
+hr {
+  border: solid .5px #2f2f2f;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

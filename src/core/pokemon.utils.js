@@ -122,8 +122,8 @@ const formatMoves = async (moves) => {
   const formatedMoves = moves.map(async move => ({
     id: move.name,
     name: i18n(move.names).name,
-    description: i18n(move.effect_entries).effect,
-    shortDescription: i18n(move.effect_entries).short_effect,
+    description: i18n(move.effect_entries)?.effect,
+    shortDescription: i18n(move.effect_entries)?.short_effect,
     type: await formatType(move.type),
     power: move.power,
     effectChance: move.effect_chance,
@@ -184,10 +184,9 @@ const getEffectiveness = (weakness, resistance, immune) => {
 }
 
 const formatEvolutions = (evolution) => {
-  const pokemonId = /\/(\d{1,})\//.exec(evolution.species.url)[1]
   return {
     trigger: evolution.evolution_details[0]?.trigger?.name,
-    pokemon: { id: pokemonId },
+    pokemon: { name: evolution.species.name },
     next: evolution.evolves_to.map(formatEvolutions)
   }
 }

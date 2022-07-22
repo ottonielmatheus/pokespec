@@ -20,11 +20,13 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
   }, [pokemonEvolutions])
 
   const downloadEvolutions = async (chain) => {
-    if (!chain) return {}
-    if (pokemon?.name === chain.pokemon.name) {
+    const regionPokemonName = chain?.pokemon.name + (pokemon.region ? `-${pokemon.region}` : '')
+    if (!regionPokemonName) return {}
+    if (pokemon?.name === regionPokemonName) {
       chain.pokemon = pokemon
     } else {
-      chain.pokemon = await pokemonApi.pokemons.getById(chain.pokemon.id)
+      chain.pokemon = await pokemonApi.pokemons.getByName(regionPokemonName)
+        || await pokemonApi.pokemons.getByName(chain.pokemon.name)
     }
 
     chain.next = await Promise.all(chain.next.map(downloadEvolutions))

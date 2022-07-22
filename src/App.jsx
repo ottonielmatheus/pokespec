@@ -3,6 +3,7 @@ import { Routes, Route, HashRouter } from 'react-router-dom'
 
 import NotFound from './pages/errors/404'
 import Home from './pages/home'
+import About from './pages/about'
 import PokemonDetails from './pages/pokemon-details'
 import Header from './components/header'
 import Footer from './components/footer'
@@ -16,9 +17,10 @@ function App () {
       <HashRouter>
         <Header />
         <Routes>
-          <Route path='pokemons/:pokemonName' element={<PokemonDetails />} />
           <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='pokemons/:pokemonName' element={<PokemonDetails />} />
         </Routes>
         <Footer />
       </HashRouter>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import ReactLoading from 'react-loading'
@@ -13,7 +13,6 @@ import './index.scss'
 import PokeNavigationSkeleton from './skeleton'
 
 
-
 function PokeNavigation ({ current }) {
   const navigate = useNavigate()
 
@@ -23,25 +22,12 @@ function PokeNavigation ({ current }) {
   const [currentPokemon, setCurrentPokemon] = useState()
   const [nextPokemon, setNextPokemon] = useState()
 
-  const handleKeyPress = useCallback(event => {
-    if (event.key === 'ArrowLeft') {
-      navigate(`/pokemons/${previousPokemon.name}`)
-    }
-
-    if (event.key === 'ArrowRight') {
-      navigate(`/pokemons/${nextPokemon.name}`)
-    }
-  }, [])
-
   useEffect(async () => {
     if (current) {
       setCurrentPokemon(current)
       await getNextAndPrevious(current)
     }
-
-    document.addEventListener('keydown', handleKeyPress)
-    return () => document.removeEventListener('keydown', handleKeyPress)
-  }, [current, handleKeyPress])
+  }, [current])
 
   const getNextAndPrevious = async (current) => {
     setLoading(true)
@@ -53,6 +39,8 @@ function PokeNavigation ({ current }) {
 
         setPreviousPokemon(previousPoke)
         store('pokemonsSearch').put(previousPoke)
+      } else {
+        setPreviousPokemon(null)
       }
 
       setNextPokemon(nextPoke)

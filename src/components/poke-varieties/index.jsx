@@ -12,7 +12,7 @@ import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
 
 
-function PokeVarieties ({ pokemonVarieties }) {
+function PokeVarieties ({ pokemon, pokemonVarieties }) {
   const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeVarieties, setPokeVarieties] = useState()
@@ -27,8 +27,8 @@ function PokeVarieties ({ pokemonVarieties }) {
     if (!varieties) return
 
     const requests = varieties.map(async variety => {
-      const detailedItem = await pokemonApi.pokemons.getByUrl(variety.pokemon.url)
-      return detailedItem
+      if (pokemon.name === variety.pokemon.name) return pokemon
+      return pokemonApi.pokemons.getByUrl(variety.pokemon.url)
     })
     varieties = await Promise.all(requests)
 

@@ -84,7 +84,7 @@ function PokeSearch () {
         style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
         onClick={() => setShowSuggestions(false)}></div>
       <div className='poke-search__input-group'>
-        <input className='poke-search__input-group__input' type="text" placeholder='Search pokemon' autoComplete='off'
+        <input className='poke-search__input-group__input' type='text' placeholder='Search pokemon' autoComplete='off'
           ref={queryInput}
           onFocus={() => setShowSuggestions(pokemonSuggestions.length > 0)}
           onChange={async (e) => await getPokemonSuggestions(e.target.value)}
