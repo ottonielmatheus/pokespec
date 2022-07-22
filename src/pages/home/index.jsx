@@ -43,23 +43,21 @@ function Home () {
   }
 
   return (
-    <section>
-      <div id="home">
-        <InfiniteScroll className='poke-cards'
-          next={loadMore}
-          dataLength={pokemons.length}
-          hasMore={pokemons.length < totalPokemons}>
-            {
-              pokemons.map((pokemon, index) => (
-                <Fade key={index} bottom>
-                  <div onClick={() => getDetailsFromPokemon(pokemon.name)}>
-                    <PokeCard name={pokemon.name} />
-                  </div>
-                </Fade>
-              ))
-            }
-        </InfiniteScroll>
-      </div>
+    <section id="home">
+      <InfiniteScroll className='poke-cards'
+        next={loadMore}
+        dataLength={pokemons.length}
+        hasMore={pokemons.length < totalPokemons}>
+          {
+            pokemons.map((pokemon, index) => (
+              <Fade key={index} bottom>
+                <div onClick={() => getDetailsFromPokemon(pokemon.name)}>
+                  <PokeCard name={pokemon.name} />
+                </div>
+              </Fade>
+            ))
+          }
+      </InfiniteScroll>
     </section>
   )
 }

@@ -1,5 +1,5 @@
 .header {
-  height: 56px;
+  height: 72px;
 
   &__container {
     position: fixed;
@@ -14,10 +14,44 @@
 
     &__limit {
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
       width: 1200px;
-      padding: 12px 0;
+      padding: 12px 4px;
       box-sizing: border-box;
+
+      &__nav {
+        display: flex;
+        align-items: center;
+
+        &__menu {
+          display: none;
+          padding-right: 12px;
+        }
+
+        ul {
+          display: flex;
+          gap: 18px;
+          margin: 0;
+          padding: 0;
+
+          list-style-type: none;
+
+          li {
+            color: #fff;
+            font-weight: 500;
+            opacity: .7;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+
+          a {
+            text-decoration: none !important;
+          }
+        }
+      }
 
       &__search {
         width: 35%;
@@ -38,6 +72,21 @@
         justify-content: center;
         width: 100%;
         padding: 8px 12px;
+
+        &__nav {
+          display: flex;
+          align-items: center;
+
+          ul {
+            display: none;
+          }
+
+          &__menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
 
         &__search {
           width: 100%;

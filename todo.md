@@ -1,15 +1,21 @@
 To do:
 
+  - [ ] Pokespec logo (Justrevo)
+
  - Layout:
   - [ ] Adicionar flags para Alola, Galar, GMAX, ETERNAMAX
+  - [ ] Arrumar o tamanho da flag para MEGA
   - [ ] pokemon image error loading
+  - [x] Responsive about page
+  - [x] Responsive header menu
+  - [ ] Light theme (?)
 
  - Desempenho:
-  - [ ] Otimizar busca por evoluções (não buscar pelo mesmo pokemon 2x)
-
- - Details:
-   - [ ] Adicionar XP ganha ao abater
+  - [ ] Image lazy laod
 
  - Bugs:
-    - [ ] identify move/ability errors
     - [ ] IOS pokemon search error
+    - [ ] Menu no mobile
+
+ - Pages:
+  - [ ] About

@@ -314,7 +314,7 @@
 @media (min-width: 350px) and (max-width: 1200px) {
   #pokemon-details {
     width: 100% !important;
-    padding-top: 0;
+    padding-top: 62px;
 
     flex-direction: column;
     box-sizing: border-box;
@@ -341,7 +341,6 @@
       flex-direction: column;
       height: 100%;
       box-sizing: border-box;
-      margin-top: 78px;
 
       > div {
         border-radius: 0;
