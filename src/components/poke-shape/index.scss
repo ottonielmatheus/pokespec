@@ -1,6 +1,7 @@
+@use './../shared/global.scss' as global;
+
 .pokemon-shape {
   height: 100%;
-  color: white;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -30,7 +31,7 @@
   &__row {
     width: 100%;
     padding: 12px;
-    border-bottom: solid 0.5px #2e2e2e;
+    border-bottom: solid 0.5px;
     box-sizing: border-box;
 
     display: flex;

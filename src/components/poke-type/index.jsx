@@ -20,7 +20,7 @@ function PokeType ({ type }) {
 
   return (
     <Tippy
-      className={`tippy-tooltip ${pokemonType?.name}-theme`}
+      className={`tippy-tooltip-type ${pokemonType?.name}-theme`}
       arrow={false}
       content={
         <div>

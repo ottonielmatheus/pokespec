@@ -1,0 +1,79 @@
+@use './global.scss' as global;
+
+html[data-theme="dark"] {
+  color: global.$dark-font-color;
+
+  .primary {
+    &-box {
+      background-color: global.$dark-primary-color;
+    }
+
+    &-border {
+      border-color: global.$dark-primary-color;
+    }
+  }
+
+  .secondary {
+    &-box {
+      background-color: global.$dark-secondary-color;
+    }
+
+    &-border {
+      border-color: global.$dark-secondary-color !important;
+    }
+  }
+
+  .third {
+    &-box {
+      background-color: global.$dark-third-color;
+    }
+
+    &-border {
+      border-color: global.$dark-third-color;
+    }
+  }
+
+  .loading {
+    fill: global.$dark-secondary-color !important;
+  }
+
+  .skeleton {
+    span {
+      background-color: global.$dark-third-color;
+    }
+
+    div {
+      border-color: global.$dark-secondary-color !important;
+    }
+  }
+
+  body {
+    background-color: global.$dark-secondary-color;
+  }
+
+  hr {
+    border: solid .5px global.$dark-secondary-color;
+  }
+
+  input {
+    color: global.$dark-font-color;
+  }
+
+  a, svg {
+    color: global.$dark-font-color;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: global.$dark-primary-color;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: global.$dark-secondary-color;
+    border-radius: 20px;
+    border: 3px solid global.$dark-primary-color;
+  }
+}

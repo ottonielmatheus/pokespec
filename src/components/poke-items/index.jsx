@@ -55,13 +55,13 @@ function PokeItems ({ pokemonItems }) {
       <div className='poke-items__body'>
         {pokeItems?.map((item, index) => (
           <Fade key={index}>
-            <Tippy className={`tippy-tooltip item-theme`}
+            <Tippy className={`tippy-tooltip item-theme primary-box secondary-border`}
               plugins={[followCursor]}
               followCursor={true}
               arrow={false}
               content={
                 <div>
-                  <div className='head'>
+                  <div className='head primary-box secondary-border'>
                     <span>{item.name}</span>
                     <span>P$ {item.cost}</span>
                   </div>
@@ -70,22 +70,22 @@ function PokeItems ({ pokemonItems }) {
                   </div>
                 </div>
               }>
-              <div className='item'>
+              <div className='item secondary-box'>
                 <img src={item.image} alt={item.name} />
               </div>
             </Tippy>
           </Fade>
         ))}
         {
-          loadingMore ? <div className='loading-more'><ReactLoading type='bubbles' color='#2e2e2e' /></div> :
-          (pokeItems?.length < pokemonItems?.length) &&
-          <div className='item load-more'
-            onClick={async () => {
-              const currentItemsPage = pokemonItems?.slice(pokeItems.length, pokeItems.length + 1)
-              await getItemsDetails(currentItemsPage, true)
-            }}>
-            <strong>+</strong>
-          </div>
+          loadingMore ? <div className='loading-more'><ReactLoading className='loading' type='bubbles' /></div>
+          : (pokeItems?.length < pokemonItems?.length) &&
+            <div className='item load-more secondary-box'
+              onClick={async () => {
+                const currentItemsPage = pokemonItems?.slice(pokeItems.length, pokeItems.length + 1)
+                await getItemsDetails(currentItemsPage, true)
+              }}>
+              <strong>+</strong>
+            </div>
         }
       </div>
     </div>

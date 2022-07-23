@@ -1,3 +1,5 @@
+@use './../../components/shared/global.scss' as global;
+
 .about {
   display: flex;
   flex-direction: column;
@@ -29,17 +31,13 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-
     border-radius: 5px;
-    background-color: rgb(22, 22, 22);
-    color: white;
 
     h2 {
       padding: 0 24px;
     }
 
     a {
-      color: #fff;
       font-weight: 500;
     }
 
@@ -65,8 +63,6 @@
       gap: 8px;
 
       border-radius: 5px;
-      background-color: rgb(22, 22, 22);
-      color: white;
 
       img {
         width: 150px;
@@ -87,8 +83,6 @@
     width: 30%;
 
     border-radius: 5px;
-    background-color: rgb(22, 22, 22);
-    color: white;
 
     box-sizing: border-box;
     padding: 0 24px;
@@ -102,7 +96,6 @@
       padding: 28px 32px;
 
       a {
-        color: #fff;
         text-decoration: none;
       }
     }

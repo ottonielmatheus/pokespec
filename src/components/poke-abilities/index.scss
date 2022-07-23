@@ -1,3 +1,5 @@
+@use './../shared/global.scss' as global;
+
 .poke-abilities {
   &__header {
     display: flex;
@@ -20,7 +22,6 @@
       flex-direction: column;
 
       border-radius: 3px;
-      background-color: rgb(32, 32, 32);
 
       &-header {
         display: flex;
@@ -29,12 +30,45 @@
 
         padding: 8px 14px;
         font-weight: 600;
-        border-bottom: solid .5px rgb(22, 22, 22);
+        border-bottom: solid .5px;
       }
 
       &-description {
         padding: 14px;
       }
+    }
+  }
+
+  .loading-more {
+    height: 33px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .total-items {
+    font-weight: normal;
+    opacity: .7;
+    font-size: 14px;
+    padding: 0 2px;
+  }
+
+  .load-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+    font-weight: 600;
+    border-radius: 3px;
+
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 0.5;
     }
   }
 }

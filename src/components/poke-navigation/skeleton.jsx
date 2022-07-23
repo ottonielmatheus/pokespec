@@ -5,18 +5,18 @@ import './index.scss'
 
 function PokeNavigationSkeleton () {
   return (
-    <div className='navigation' style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div className='navigation primary-box skeleton' style={{ display: 'flex', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex' }}>
         <BsArrowLeft size={22} />
-        <div className='skeleton' style={{ width: '50px', height: '10px', backgroundColor: '#2c2c2c' }}></div>
+        <span style={{ width: '50px', height: '10px' }}></span>
       </div>
 
-      <div style={{ display: 'flex' }}>
-        <div className='skeleton' style={{ width: '100px', height: '10px', backgroundColor: '#2c2c2c' }}></div>
+      <div className='skeleton' style={{ display: 'flex' }}>
+        <span style={{ width: '100px', height: '10px' }}></span>
       </div>
 
-      <div style={{ display: 'flex' }}>
-        <div className='skeleton' style={{ width: '50px', height: '10px', backgroundColor: '#2c2c2c' }}></div>
+      <div className='skeleton' style={{ display: 'flex' }}>
+        <span style={{ width: '50px', height: '10px' }}></span>
         <BsArrowRight size={22} />
       </div>
 

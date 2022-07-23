@@ -53,8 +53,8 @@ function PokeAbilities ({ pokemonAbilities }) {
       <div className='poke-abilities__body'>
         {pokeAbilities?.map((ability, index) => (
           <Fade key={index}>
-            <div className='ability'>
-              <div className='ability-header'>
+            <div className='ability third-box'>
+              <div className='ability-header primary-border'>
                 <span className='ability-name'>{ability.name}</span>
                 <small className='ability-visibility'>{ability.hidden ? 'hidden' : ''}</small>
               </div>
@@ -63,9 +63,9 @@ function PokeAbilities ({ pokemonAbilities }) {
           </Fade>
         ))}
         {
-          loadingMore ? <div className='loading-more'><ReactLoading type='bubbles' color='#2e2e2e' /></div> :
+          loadingMore ? <div className='loading-more'><ReactLoading className='loading' type='bubbles' /></div> :
           (pokeAbilities?.length < pokemonAbilities?.length) &&
-          <div className='load-more'
+          <div className='load-more third-box'
             onClick={async () => {
               const currentAbilitiesPage = pokemonAbilities?.slice(pokeAbilities.length, pokeAbilities.length + 1)
               await getAbilitiesDetails(currentAbilitiesPage, true)

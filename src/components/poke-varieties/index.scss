@@ -1,3 +1,5 @@
+@use './../shared/global.scss' as global;
+
 .poke-varieties {
   width: 100%;
   display: flex;
@@ -6,7 +8,7 @@
 
   .total-items {
     font-weight: normal;
-    color: #8d8d8d;
+    opacity: .7;
     font-size: 14px;
     padding: 0 2px;
   }
@@ -44,14 +46,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
         font-weight: 600;
         border-radius: 50%;
-        background-color: rgb(32, 32, 32);
 
         cursor: pointer;
         user-select: none;
-        transition: 0.5s;
+        transition: opacity 0.5s;
 
         &:hover {
           opacity: 0.5;
@@ -75,44 +75,10 @@
         }
 
         &:hover {
-          transition: 0.5s;
+          transition: opacity 0.5s;
           opacity: 0.5;
         }
       }
-    }
-  }
-}
-
-.tippy-tooltip {
-  color: white;
-  margin: 0 !important;
-  padding: 0 !important;
-
-  &.item-theme {
-    border: solid .5px #2e2e2e !important;
-    background-color: #161616 !important;
-    border-radius: 5px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-
-    .head {
-      width: 100%;
-      padding: 12px 14px;
-      border-bottom: solid 0.5px #2e2e2e;
-      box-sizing: border-box;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .title {
-        font-size: 18px;
-        font-weight: 600;
-      }
-    }
-
-    .body {
-      padding: 12px 14px;
     }
   }
 }

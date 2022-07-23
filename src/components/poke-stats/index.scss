@@ -1,3 +1,5 @@
+@use './../shared/global.scss' as global;
+
 .pokemon-stats {
   width: 100%;
   display: flex;
@@ -6,7 +8,7 @@
   padding: 14px 24px 0 24px;
   box-sizing: border-box;
 
-  border-top: solid .5px #2e2e2e;
+  border-top: solid .5px;
 
   > div {
     display: flex;

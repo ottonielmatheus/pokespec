@@ -1,15 +1,9 @@
+@use './../shared/global.scss' as global;
+
 .poke-moves {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  color: white;
-
-  .total-items {
-    font-weight: normal;
-    color: #8d8d8d;
-    font-size: 14px;
-    padding: 0 2px;
-  }
 
   &__header {
     display: flex;
@@ -30,16 +24,14 @@
     .move {
       display: flex;
       flex-direction: column;
-
       border-radius: 3px;
-      background-color: rgb(32, 32, 32);
 
       &-header {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: solid .5px rgb(22, 22, 22);
+        border-bottom: solid .5px;
         padding: 8px 14px;
         box-sizing: border-box;
 
@@ -77,6 +69,39 @@
       &-description {
         padding: 14px;
       }
+    }
+  }
+
+  .total-items {
+    font-weight: normal;
+    opacity: .7;
+    font-size: 14px;
+    padding: 0 2px;
+  }
+
+  .loading-more {
+    height: 33px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .load-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+    font-weight: 600;
+    border-radius: 3px;
+
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 0.5;
     }
   }
 }

@@ -1,11 +1,13 @@
+@use './../shared/global.scss' as global;
+
+$nav-height: 70px;
+
 .navigation {
   width: 100%;
-  height: 70px;
+  height: $nav-height;
 
   box-sizing: border-box;
   padding: 8px 16px;
-
-  background-color: rgb(22, 22, 22);
   border-radius: 5px;
 
   display: flex;
@@ -22,8 +24,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-
-    color: white;
     font-weight: 600;
 
     opacity: 0.5;
@@ -31,7 +31,7 @@
     user-select: none;
 
     &:hover {
-      transition: .5s;
+      transition: opacity 0.5s;
       opacity: 1;
     }
   }
@@ -39,5 +39,25 @@
   &__current {
     opacity: 1 !important;
     cursor: unset !important;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 1200px) {
+  .navigation {
+    position: fixed;
+    top: global.$header-height;
+    left: 0;
+    z-index: 10;
+    max-height: $nav-height;
+    padding: 16px 16px;
+    border-radius: 0;
+
+    &__box {
+      height: $nav-height - 8px;
+    }
+
+    .pokemon-name {
+      display: none;
+    }
   }
 }

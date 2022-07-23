@@ -45,8 +45,8 @@ function PokeMoves ({ pokemonMoves }) {
       <div className='poke-moves__body'>
         {pokeMoves?.map((move, index) => (
           <Fade key={index}>
-            <div className='move'>
-              <div className='move-header'>
+            <div className='move third-box'>
+              <div className='move-header primary-border'>
                 <div className='move-header-name'>
                   <img src={move?.type?.icon} alt={move?.type} />
                   <span
@@ -88,13 +88,14 @@ function PokeMoves ({ pokemonMoves }) {
           </Fade>
         ))}
         {
-          loadingMore ? <div className='loading-more'><ReactLoading type='bubbles' color='#2e2e2e' /></div> :
-          (pokeMoves?.length < pokemonMoves?.length) &&
-          <div className='load-more' onClick={
-            async () => await getMovesDetails(pokemonMoves?.slice(pokeMoves.length, pokeMoves.length + 5), true)
-          }>
-            <small>load more</small>
-          </div>
+          loadingMore ?
+          <div className='loading-more'><ReactLoading className='loading' type='bubbles' /></div>
+          : (pokeMoves?.length < pokemonMoves?.length) &&
+            <div className='load-more third-box' onClick={
+              async () => await getMovesDetails(pokemonMoves?.slice(pokeMoves.length, pokeMoves.length + 5), true)
+            }>
+              <small>load more</small>
+            </div>
         }
       </div>
     </div>

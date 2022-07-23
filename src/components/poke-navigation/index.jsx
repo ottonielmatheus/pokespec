@@ -62,31 +62,33 @@ function PokeNavigation ({ current }) {
   }
 
   return rootLoading ? <PokeNavigationSkeleton /> : (
-    <div className='navigation'>
-      {
-        loading ? <ReactLoading type='bubbles' color='#2e2e2e' /> :
-        previousPokemon ?
-        <div className='navigation__previous' onClick={goPreviousPokemon}>
-          <BsArrowLeft size={22} />
-          <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
-          <span>#{previousPokemon?.id}</span>
+    <div className='navigation__box'>
+      <div className='navigation primary-box'>
+        {
+          loading ? <ReactLoading className='loading' type='bubbles' /> :
+          previousPokemon ?
+          <div className='navigation__previous' onClick={goPreviousPokemon}>
+            <BsArrowLeft size={22} />
+            <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
+            <span>#{previousPokemon?.id}</span>
+          </div>
+          : null
+        }
+        <div className='navigation__current'>
+          <span className='pokemon-name'>{_.capitalize(currentPokemon?.name)}</span>
+          <span>#{currentPokemon?.id}</span>
         </div>
-        : null
-      }
-      <div className='navigation__current'>
-        <span className='pokemon-name'>{_.capitalize(currentPokemon?.name)}</span>
-        <span>#{currentPokemon?.id}</span>
+        {
+          loading ? <ReactLoading className='loading' type='bubbles' /> :
+          nextPokemon ?
+          <div className='navigation__next' onClick={goNextPokemon}>
+            <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
+            <span>#{nextPokemon?.id}</span>
+            <BsArrowRight size={22} />
+          </div>
+          : null
+        }
       </div>
-      {
-        loading ? <ReactLoading type='bubbles' color='#2e2e2e' /> :
-        nextPokemon ?
-        <div className='navigation__next' onClick={goNextPokemon}>
-          <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
-          <span>#{nextPokemon?.id}</span>
-          <BsArrowRight size={22} />
-        </div>
-        : null
-      }
     </div>
   )
 }

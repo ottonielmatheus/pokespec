@@ -1,0 +1,43 @@
+// colors
+$dark-primary-color: #161616;
+$dark-secondary-color: #2f2f2f;
+$dark-third-color: #202020;
+$dark-font-color: #fff;
+
+$light-primary-color: #fff;
+$light-secondary-color: #EFF0F4;
+$light-third-color: #f4f4f6;
+$light-font-color: rgb(48, 48, 48);
+
+$header-height: 72px;
+
+html {
+  .skeleton {
+    span {
+      opacity: .5;
+      border-radius: 3px;
+    }
+
+    div {
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@keyframes loading-logo-pulse {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

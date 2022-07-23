@@ -3,8 +3,6 @@
   display: none;
   align-items: center;
   justify-content: center;
-
-  background-color: #161616;
   padding: 24px 48px;
 
   &__limit {
@@ -22,7 +20,6 @@
 
       span {
         font-weight: 600;
-        color: white;
       }
 
       &:hover {

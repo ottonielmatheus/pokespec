@@ -79,24 +79,26 @@ function PokeSearch () {
   }
 
   return (
-    <div className='poke-search'>
+    <div className='poke-search primary-box'>
       <div className='poke-search__overlay'
         style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
         onClick={() => setShowSuggestions(false)}></div>
-      <div className='poke-search__input-group'>
-        <input className='poke-search__input-group__input' type='text' placeholder='Search pokemon' autoComplete='off'
+      <div className='poke-search__input-group third-box'>
+        <input className='poke-search__input-group__input'
+          type='text' placeholder='Search pokemon' autoComplete='off'
           ref={queryInput}
           onFocus={() => setShowSuggestions(pokemonSuggestions.length > 0)}
           onChange={async (e) => await getPokemonSuggestions(e.target.value)}
           onKeyDown={handleInputKeyDown}
         />
         <div className='poke-search__input-group__icon'>
-          <BsSearch color='#fff' size={16} />
+          <BsSearch size={16} />
         </div>
       </div>
       {
         pokemonSuggestions.length > 0 &&
-        <div className={`poke-search__suggestions${showSuggestions ? '--visible' : ''}`} id='poke-search__suggestions'>
+        <div className={`primary-box secondary-border
+          poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
             {
               pokemonSuggestions.map((suggestion, index) => (
                 <div key={index}
