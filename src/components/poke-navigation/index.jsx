@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { BsCaretLeftFill, BsCaretRightFill } from 'react-icons/bs'
 import ReactLoading from 'react-loading'
 import _ from 'lodash'
 
@@ -68,7 +68,7 @@ function PokeNavigation ({ current }) {
           loading ? <ReactLoading className='loading' type='bubbles' /> :
           previousPokemon ?
           <div className='navigation__previous' onClick={goPreviousPokemon}>
-            <BsArrowLeft size={22} />
+            <BsCaretLeftFill size={22} />
             <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
             <span>#{previousPokemon?.id}</span>
           </div>
@@ -84,7 +84,7 @@ function PokeNavigation ({ current }) {
           <div className='navigation__next' onClick={goNextPokemon}>
             <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
             <span>#{nextPokemon?.id}</span>
-            <BsArrowRight size={22} />
+            <BsCaretRightFill size={22} />
           </div>
           : null
         }

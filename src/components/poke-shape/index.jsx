@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import './index.scss'
 import PokeShapeSkeleton from './skeleton'
-import PercentageBar from '../shared/percentage-bar'
+import PokeHabitat from '../../components/poke-habitat'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 
@@ -28,26 +28,23 @@ function PokeShape ({ pokemonSpecies }) {
         <span className='pokemon-shape__row__title'>Shape</span>
         <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
       </div>
+      <PokeHabitat habitat={pokeSpecies?.habitat}>
+        <div className='pokemon-shape__row'>
+          <span className='pokemon-shape__row__title'>Habitat</span>
+          <span>{_.capitalize(pokeSpecies?.habitat.name).replaceAll('-', ' ') || '???'}</span>
+        </div>
+      </PokeHabitat>
       <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Name</span>
-        <span>{pokeSpecies?.originalName || '???'}</span>
+        <span className='pokemon-shape__row__title'>Generation</span>
+        <span>{pokeSpecies?.generation || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Color</span>
-        <span>{_.capitalize(pokeSpecies?.shape.color) || '???'}</span>
+        <span className='pokemon-shape__row__title'>Genus</span>
+        <span>{pokeSpecies?.genus || '???'}</span>
       </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Habitat</span>
-        <span>{_.capitalize(pokeSpecies?.habitat.name).replaceAll('-', ' ') || '???'}</span>
-      </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Growth</span>
-        <span>{pokeSpecies?.growthRate.replaceAll('-', ' ') || '???'}</span>
-      </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Catch rate</span>
-        <PercentageBar className='pokemon-stats__bar' color='rgb(30 158 225)' value={pokeSpecies?.captureRate} />
-        <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.captureRate).toFixed(0)}%</span>
+      <div className='pokemon-shape__row__column'>
+        <span className='pokemon-shape__row__column__title'>Description</span>
+        <span>{pokeSpecies?.about || '???'}</span>
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ To do:
  - Layout:
   - [ ] Adicionar flags para Alola, Galar, GMAX, ETERNAMAX (?)
   - [ ] pokemon image error loading
-  - [ ] habitat background
+  - [x] habitat background
   - [ ] mobile menu scroll
 
  - Desempenho:

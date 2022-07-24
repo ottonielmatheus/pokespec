@@ -42,8 +42,9 @@ function PokeStats ({ pokemonStats }) {
         <PercentageBar className='pokemon-stats__bar' color='#f4d35e' value={pokemonStats?.speed.basePercentage} />
         <span>{pokemonStats?.speed.baseValue}</span>
       </div>
-      <div className='total' style={{ paddingTop: '8px' }}>
+      <div className='total'>
         <span>Total</span>
+        <span className='pokemon-stats__bar'></span>
         <span>{totalStat}</span>
       </div>
     </div>

@@ -12,7 +12,6 @@ import PokeEvolutions from '../../components/poke-evolutions'
 import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
 import PokeItems from '../../components/poke-items'
-import PokeHabitat from '../../components/poke-habitat'
 import PokeBadge from '../../components/poke-badge'
 import PokeVarieties from '../../components/poke-varieties'
 import PokeNavigation from '../../components/poke-navigation'
@@ -197,17 +196,6 @@ function PokemonDetails () {
       <div className='pokemon__metadata'>
         <div className='pokemon__metadata__column'>
           <div className='pokemon__metadata__info'>
-            <PokeHabitat pokemonHabitat={pokemon?.species.habitat}>
-              <div className='pokemon__metadata__info__habitat__name'>
-                <small>from </small><span>{pokemon?.species.generation}</span>
-                <p>{pokemon?.species.genus}</p>
-              </div>
-              <div className='pokemon__metadata__info__habitat__body'>
-                <div className='pokemon__metadata__info__habitat__body__about'>
-                  <p>{pokemon?.species.about}</p>
-                </div>
-              </div>
-            </PokeHabitat>
             {
               (pokemon?.species.varieties.length > 1) &&
               <div className='pokemon__metadata__info__body'>
