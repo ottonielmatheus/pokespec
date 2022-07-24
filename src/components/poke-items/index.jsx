@@ -55,13 +55,13 @@ function PokeItems ({ pokemonItems }) {
       <div className='poke-items__body'>
         {pokeItems?.map((item, index) => (
           <Fade key={index}>
-            <Tippy className={`tippy-tooltip item-theme primary-box secondary-border`}
+            <Tippy className={`tippy-tooltip item-theme`}
               plugins={[followCursor]}
               followCursor={true}
               arrow={false}
               content={
                 <div>
-                  <div className='head primary-box secondary-border'>
+                  <div className='head'>
                     <span>{item.name}</span>
                     <span>P$ {item.cost}</span>
                   </div>
@@ -70,16 +70,18 @@ function PokeItems ({ pokemonItems }) {
                   </div>
                 </div>
               }>
-              <div className='item secondary-box'>
+              <div className='item'>
                 <img src={item.image} alt={item.name} />
               </div>
             </Tippy>
           </Fade>
         ))}
         {
-          loadingMore ? <div className='loading-more'><ReactLoading className='loading' type='bubbles' /></div>
+          loadingMore ? <div className='loading-more'>
+            <ReactLoading className='loading' width={30} height={30} type='spin' />
+          </div>
           : (pokeItems?.length < pokemonItems?.length) &&
-            <div className='item load-more secondary-box'
+            <div className='item load-more'
               onClick={async () => {
                 const currentItemsPage = pokemonItems?.slice(pokeItems.length, pokeItems.length + 1)
                 await getItemsDetails(currentItemsPage, true)

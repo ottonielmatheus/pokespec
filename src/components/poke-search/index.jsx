@@ -79,11 +79,11 @@ function PokeSearch () {
   }
 
   return (
-    <div className='poke-search primary-box'>
+    <div className='poke-search'>
       <div className='poke-search__overlay'
         style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
         onClick={() => setShowSuggestions(false)}></div>
-      <div className='poke-search__input-group third-box'>
+      <div className='poke-search__input-group'>
         <input className='poke-search__input-group__input'
           type='text' placeholder='Search pokemon' autoComplete='off'
           ref={queryInput}
@@ -97,8 +97,7 @@ function PokeSearch () {
       </div>
       {
         pokemonSuggestions.length > 0 &&
-        <div className={`primary-box secondary-border
-          poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
+        <div className={`poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
             {
               pokemonSuggestions.map((suggestion, index) => (
                 <div key={index}

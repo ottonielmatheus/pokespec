@@ -24,29 +24,29 @@ function PokeShape ({ pokemonSpecies }) {
       <div className='pokemon-shape__body'>
         <img width={70} height={70} src={pokeSpecies?.shape.image} alt={pokeSpecies?.shape.name} />
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Shape</span>
         <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Name</span>
         <span>{pokeSpecies?.originalName || '???'}</span>
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Color</span>
         <span>{_.capitalize(pokeSpecies?.shape.color) || '???'}</span>
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Habitat</span>
         <span>{_.capitalize(pokeSpecies?.habitat.name).replaceAll('-', ' ') || '???'}</span>
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Growth</span>
         <span>{pokeSpecies?.growthRate.replaceAll('-', ' ') || '???'}</span>
       </div>
-      <div className='pokemon-shape__row secondary-border'>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Catch rate</span>
-        <PercentageBar className='pokemon-stats__bar' color='#0a75ad' value={pokeSpecies?.captureRate} />
+        <PercentageBar className='pokemon-stats__bar' color='rgb(30 158 225)' value={pokeSpecies?.captureRate} />
         <span className='pokemon-shape__row__value'>{Number(pokeSpecies?.captureRate).toFixed(0)}%</span>
       </div>
     </div>

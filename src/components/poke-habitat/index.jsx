@@ -13,7 +13,7 @@ function PokeHabitat ({ pokemonHabitat, children }) {
   }, [pokemonHabitat])
 
   return rootLoading ? <PokeHabitatSkeleton /> : (
-    <div className='pokemon-habitat primary-box'
+    <div className='pokemon-habitat'
       style={{ backgroundImage: `url(${pokeHabitat?.image})` }}>
       <div className={`pokemon-habitat__blackground habitat-${pokeHabitat?.name}`}>
         <div className='pokemon-habitat__blackground__body'>

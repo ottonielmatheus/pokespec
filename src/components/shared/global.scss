@@ -1,25 +1,52 @@
-// colors
-$dark-primary-color: #161616;
-$dark-secondary-color: #2f2f2f;
-$dark-third-color: #202020;
-$dark-font-color: #fff;
-
-$light-primary-color: #fff;
-$light-secondary-color: #EFF0F4;
-$light-third-color: #f4f4f6;
-$light-font-color: rgb(48, 48, 48);
-
 $header-height: 72px;
 
 html {
+  color: var(--font-color);
+
   .skeleton {
     span {
       opacity: .5;
       border-radius: 3px;
+      background-color: var(--secondary-color);
     }
 
     div {
+      border-color: var(--secondary-color) !important;
     }
+  }
+
+  .loading {
+    fill: var(--secondary-color) !important;
+  }
+
+  body {
+    background-color: var(--secondary-color);
+  }
+
+  hr {
+    border: solid .5px var(--secondary-color);
+  }
+
+  input {
+    color: var(--font-color);
+  }
+
+  a, svg {
+    color: var(--font-color);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--primary-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    border: 3px solid var(--primary-color);
   }
 }
 

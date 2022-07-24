@@ -25,6 +25,7 @@
       display: flex;
       flex-direction: column;
       border-radius: 3px;
+      background-color: var(--third-color);
 
       &-header {
         width: 100%;
@@ -34,6 +35,7 @@
         border-bottom: solid .5px;
         padding: 8px 14px;
         box-sizing: border-box;
+        border-color: var(--primary-color);
 
         img {
           width: 22px;
@@ -95,6 +97,7 @@
     padding: 8px;
     font-weight: 600;
     border-radius: 3px;
+    background-color: var(--third-color);
 
     cursor: pointer;
     user-select: none;

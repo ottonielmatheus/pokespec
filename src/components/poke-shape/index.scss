@@ -5,6 +5,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  background-color: var(--primary-color);
+  border-radius: 5px;
 
   &__head {
     width: 100%;
@@ -33,6 +35,7 @@
     padding: 12px;
     border-bottom: solid 0.5px;
     box-sizing: border-box;
+    border-color: var(--secondary-color);
 
     display: flex;
     align-items: center;

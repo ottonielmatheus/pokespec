@@ -15,7 +15,7 @@ function About () {
     <section className='about'>
       <div className='row'>
         <div className='column'>
-          <div className='about__application primary-box'>
+          <div className='about__application'>
             <h2>About</h2>
             <div className='about__application__contribute'>
               <p>
@@ -32,13 +32,13 @@ function About () {
             </div>
           </div>
           <div className='about__credits'>
-            <div className='poke-api primary-box'>
+            <div className='poke-api'>
               <a href='https://pokeapi.co/'>
                 <img src={pokeApiLogo} alt="poke-api" />
               </a>
               <small>All the Pokémon data you&#39;ll ever need in one place, easily accessible through a modern RESTful API.</small>
             </div>
-            <div className='nintendo primary-box'>
+            <div className='nintendo'>
               <a href='https://www.pokemon.com/us/'>
                 <img src={nintendoLogo} alt="nintendo" />
               </a>
@@ -46,7 +46,7 @@ function About () {
             </div>
           </div>
         </div>
-        <div className='about__me primary-box'>
+        <div className='about__me'>
           <h2>Who I am?</h2>
           <GitHubUser username={'ottonielmatheus'} />
           <div className='about__me__links'>

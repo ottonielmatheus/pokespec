@@ -69,15 +69,17 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
           </Fade>
         ))}
         {
-          loadingMore ? <div className='loading-more'><ReactLoading className='loading' type='bubbles' /></div> :
-          (pokeVarieties?.length < pokemonVarieties?.length) &&
-          <div className='variety load-more third-box'
-            onClick={async () => {
-              const currentVarietiesPage = pokemonVarieties?.slice(pokeVarieties.length, pokeVarieties.length + 5)
-              await getVarietiesDetails(currentVarietiesPage, true)
-            }}>
-            <strong>+</strong>
+          loadingMore ? <div className='loading-more'>
+            <ReactLoading className='loading' type='spin' width={50} height={50} />
           </div>
+          : (pokeVarieties?.length < pokemonVarieties?.length) &&
+            <div className='variety load-more'
+              onClick={async () => {
+                const currentVarietiesPage = pokemonVarieties?.slice(pokeVarieties.length, pokeVarieties.length + 5)
+                await getVarietiesDetails(currentVarietiesPage, true)
+              }}>
+              <strong>+</strong>
+            </div>
         }
       </div>
     </div>

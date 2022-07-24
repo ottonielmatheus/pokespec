@@ -63,7 +63,7 @@ function PokeNavigation ({ current }) {
 
   return rootLoading ? <PokeNavigationSkeleton /> : (
     <div className='navigation__box'>
-      <div className='navigation primary-box'>
+      <div className='navigation'>
         {
           loading ? <ReactLoading className='loading' type='bubbles' /> :
           previousPokemon ?

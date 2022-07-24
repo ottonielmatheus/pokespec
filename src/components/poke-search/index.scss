@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
 
+  background-color: var(--primary-color);
+
   &__input-group {
     width: 100%;
     height: 100%;
@@ -19,6 +21,7 @@
     justify-content: space-between;
 
     border-radius: 3px;
+    background-color: var(--third-color);
 
     &__input {
       width: 100%;
@@ -52,6 +55,8 @@
     border-radius: 5px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
 
     visibility: hidden;
     position: relative;

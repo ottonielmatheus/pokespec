@@ -87,11 +87,11 @@ function PokemonDetails () {
       <div className='pokemon'>
         {
           loading ?
-          <div className='pokemon__profile--skeleton primary-box'>
+          <div className='pokemon__profile--skeleton'>
             <ReactLoading className='loading' type='bubbles' />
           </div> :
-          <div className='pokemon__profile primary-box'>
-            <div className='pokemon__profile__header secondary-border'>
+          <div className='pokemon__profile'>
+            <div className='pokemon__profile__header'>
               {pokemon?.formatedName}
               <div className='pokemon__profile__header__types'>
                 {pokemon?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
@@ -130,11 +130,11 @@ function PokemonDetails () {
               </div>
               <PokeStats pokemonStats={pokemon?.stats} />
             </div>
-            <div className='pokemon__profile__footer secondary-border'>
+            <div className='pokemon__profile__footer'>
               <div className='pokemon__profile__footer__damage-table'>
-                <span className='secondary-border'>damage received</span>
+                <span>damage received</span>
                 <div className='pokemon__profile__footer__damage-table__elements'>
-                  <div className='secondary-border'>
+                  <div>
                     <small>x0</small>
                     <div className='elements'>
                       {pokemon?.effectiveness['0']?.map((element, index) => (
@@ -142,7 +142,7 @@ function PokemonDetails () {
                       ))}
                     </div>
                   </div>
-                  <div className='secondary-border'>
+                  <div>
                     <small>x0.25</small>
                     <div className='elements'>
                       {pokemon?.effectiveness['0.25']?.map((element, index) => (
@@ -150,7 +150,7 @@ function PokemonDetails () {
                       ))}
                     </div>
                   </div>
-                  <div className='secondary-border'>
+                  <div>
                     <small>x0.5</small>
                     <div className='elements'>
                       {pokemon?.effectiveness['0.5']?.map((element, index) => (
@@ -158,7 +158,7 @@ function PokemonDetails () {
                       ))}
                     </div>
                   </div>
-                  <div className='secondary-border'>
+                  <div>
                     <small>x2</small>
                     <div className='elements'>
                       {pokemon?.effectiveness['2']?.map((element, index) => (
@@ -166,7 +166,7 @@ function PokemonDetails () {
                       ))}
                     </div>
                   </div>
-                  <div className='secondary-border'>
+                  <div>
                     <small>x4</small>
                     <div className='elements'>
                       {pokemon?.effectiveness['4']?.map((element, index) => (
@@ -179,7 +179,7 @@ function PokemonDetails () {
             </div>
           </div>
         }
-        <div className='pokemon__info primary-box'>
+        <div className='pokemon__info'>
           {
             pokemon?.evolutions &&
             <PokeEvolutions pokemon={pokemon} pokemonEvolutions={pokemon?.evolutions} />
@@ -196,7 +196,7 @@ function PokemonDetails () {
       </div>
       <div className='pokemon__metadata'>
         <div className='pokemon__metadata__column'>
-          <div className='pokemon__metadata__info primary-box'>
+          <div className='pokemon__metadata__info'>
             <PokeHabitat pokemonHabitat={pokemon?.species.habitat}>
               <div className='pokemon__metadata__info__habitat__name'>
                 <small>from </small><span>{pokemon?.species.generation}</span>
@@ -220,12 +220,12 @@ function PokemonDetails () {
           </div>
           {
             pokemon?.held_items.length > 0 &&
-            <div className='pokemon__metadata__items  primary-box'>
+            <div className='pokemon__metadata__items'>
               <PokeItems pokemonItems={pokemon?.held_items} />
             </div>
           }
         </div>
-        <div className='pokemon__metadata__details primary-box'>
+        <div className='pokemon__metadata__details'>
           <PokeShape pokemonSpecies={pokemon?.species} />
         </div>
       </div>

@@ -2,7 +2,8 @@ import React from 'react'
 
 function PokeHabitatSkeleton() {
   return (
-    <div className='skeleton' style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px 12px' }}>
+    <div className='pokemon-habitat__blackground skeleton'
+      style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
       <span style={{ width: '114px', height: '10px' }}></span>
       <span style={{ width: '228px', height: '30px' }}></span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingTop: '10px' }}>

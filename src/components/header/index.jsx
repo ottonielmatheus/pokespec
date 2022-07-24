@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BsList, BsX, BsFillMoonFill } from 'react-icons/bs'
+import { BsList, BsX, BsFillMoonFill, BsFillBrightnessHighFill } from 'react-icons/bs'
 
 import './index.scss'
 
 import PokeSearch from './../poke-search'
 
 function Header () {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
   const [showMenu, setShowMenu] = useState(false)
   const menu = <>
-    <Link to='/' onClick={() => setShowMenu(false)}><li className='secondary-border'>Home</li></Link>
-    <Link to='/about' onClick={() => setShowMenu(false)}><li className='secondary-border'>About</li></Link>
+    <Link to='/' onClick={() => setShowMenu(false)}><li>Home</li></Link>
+    <Link to='/about' onClick={() => setShowMenu(false)}><li>About</li></Link>
   </>
 
   useEffect(() => {
@@ -29,8 +29,8 @@ function Header () {
 
   return (
     <div className={`header${showMenu ? '--expanded' : ''}`}>
-      <div className='header__container primary-box'>
-        <div className='header__container__limit primary-box'>
+      <div className='header__container'>
+        <div className='header__container__limit'>
           <div className='header__container__limit__nav'>
             <div className='header__container__limit__nav__menu'>
               <button className='header__container__limit__nav__menu__button'
@@ -45,9 +45,11 @@ function Header () {
           <div className='header__container__limit__search'>
             <PokeSearch />
           </div>
-          <button className='header__container__limit__theme' onClick={toggleTheme}><BsFillMoonFill size={18} /></button>
+          <button className='header__container__limit__theme' onClick={toggleTheme}>
+            {theme === 'dark' ? <BsFillBrightnessHighFill size={18} /> : <BsFillMoonFill size={18} />}
+          </button>
         </div>
-        <ul className={'primary-box header__container__mobile-menu' + (showMenu ? '--expanded' : '')}>{menu}</ul>
+        <ul className={'header__container__mobile-menu' + (showMenu ? '--expanded' : '')}>{menu}</ul>
       </div>
     </div>
   )

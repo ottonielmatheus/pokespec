@@ -11,7 +11,7 @@ function PokeStats ({ pokemonStats }) {
     .reduce((acc, value) => acc + value, 0)
 
   return (
-    <div className='pokemon-stats secondary-border'>
+    <div className='pokemon-stats'>
       <div className='hp'>
         <span>HP</span>
         <PercentageBar className='pokemon-stats__bar' color='#52b69a' value={pokemonStats?.hp.basePercentage} />

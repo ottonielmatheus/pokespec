@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--primary-color);
 
     z-index: 100;
 
@@ -27,6 +28,7 @@
       padding: 12px 4px;
       box-sizing: border-box;
       gap: 12px;
+      background-color: var(--primary-color);
 
       &__nav {
         display: flex;
@@ -113,12 +115,15 @@
       margin: 0;
       list-style-type: none;
       padding: 0;
+      background-color: var(--primary-color);
 
+      overflow: hidden;
       transition: top ease-in-out .5s;
 
       li {
         border-top: solid .5px;
-        padding: 12px 24px;
+        padding: 24px;
+        border-color: var(--secondary-color);
       }
 
       a {
