@@ -121,6 +121,10 @@
       transition: top ease-in-out .5s;
 
       li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
         border-top: solid .5px;
         padding: 24px;
         border-color: var(--secondary-color);
@@ -186,6 +190,10 @@
               border-radius: 0;
             }
           }
+        }
+
+        &__theme {
+          display: none;
         }
       }
     }

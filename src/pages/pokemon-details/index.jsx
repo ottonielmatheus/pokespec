@@ -131,7 +131,7 @@ function PokemonDetails () {
             </div>
             <div className='pokemon__profile__footer'>
               <div className='pokemon__profile__footer__damage-table'>
-                <span>damage received</span>
+                <span>weaknesses</span>
                 <div className='pokemon__profile__footer__damage-table__elements'>
                   <div>
                     <small>x0</small>

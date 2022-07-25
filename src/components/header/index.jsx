@@ -49,7 +49,16 @@ function Header () {
             {theme === 'dark' ? <BsFillBrightnessHighFill size={18} /> : <BsFillMoonFill size={18} />}
           </button>
         </div>
-        <ul className={'header__container__mobile-menu' + (showMenu ? '--expanded' : '')}>{menu}</ul>
+        <ul className={'header__container__mobile-menu' + (showMenu ? '--expanded' : '')}>
+          {menu}
+          <li onClick={toggleTheme}>
+            {
+              theme === 'dark' ?
+              <><BsFillBrightnessHighFill size={18} /> Light theme</>
+              : <><BsFillMoonFill size={18} /> Dark theme</>
+            }
+          </li>
+        </ul>
       </div>
     </div>
   )
