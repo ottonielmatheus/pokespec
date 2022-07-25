@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BsList, BsX, BsFillMoonFill, BsFillBrightnessHighFill } from 'react-icons/bs'
+import { BsList, BsX } from 'react-icons/bs'
+import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle'
 
 import './index.scss'
 
@@ -45,18 +46,19 @@ function Header () {
           <div className='header__container__limit__search'>
             <PokeSearch />
           </div>
-          <button className='header__container__limit__theme' onClick={toggleTheme}>
-            {theme === 'dark' ? <BsFillBrightnessHighFill size={18} /> : <BsFillMoonFill size={18} />}
-          </button>
+          <div className='header__container__limit__theme'>
+            <DarkModeToggle mode={theme} size='sm' onChange={toggleTheme} />
+          </div>
         </div>
         <ul className={'header__container__mobile-menu' + (showMenu ? '--expanded' : '')}>
           {menu}
-          <li onClick={toggleTheme}>
-            {
-              theme === 'dark' ?
-              <><BsFillBrightnessHighFill size={18} /> Light theme</>
-              : <><BsFillMoonFill size={18} /> Dark theme</>
-            }
+          <li className='toggle'>
+            Theme
+            <DarkModeToggle
+              mode={theme}
+              size='sm'
+              onChange={toggleTheme}
+            />
           </li>
         </ul>
       </div>

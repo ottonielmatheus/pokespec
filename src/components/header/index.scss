@@ -93,12 +93,8 @@
       }
 
       &__theme {
-        width: 42px;
-        height: 42px;
-        border: none;
-        background-color: transparent;
-        transition: color ease-in .5s;
-        cursor: pointer;
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -128,6 +124,12 @@
         border-top: solid .5px;
         padding: 24px;
         border-color: var(--secondary-color);
+
+        &.toggle {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
       }
 
       a {
