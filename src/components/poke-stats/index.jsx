@@ -22,19 +22,19 @@ function PokeStats ({ pokemonStats }) {
         <PercentageBar className='pokemon-stats__bar' color='#ce4257' value={pokemonStats?.attack.basePercentage} />
         <span>{pokemonStats?.attack.baseValue}</span>
       </div>
+      <div className='defense'>
+        <span>Defense</span>
+        <PercentageBar className='pokemon-stats__bar' color='#48cae4' value={pokemonStats?.defense.basePercentage} />
+        <span>{pokemonStats?.defense.baseValue}</span>
+      </div>
       <div className='special-attack'>
         <span>S Attack</span>
         <PercentageBar className='pokemon-stats__bar' color='#ff7f51' value={pokemonStats?.specialAttack.basePercentage} />
         <span>{pokemonStats?.specialAttack.baseValue}</span>
       </div>
-      <div className='defense'>
-        <span>Defense</span>
-        <PercentageBar className='pokemon-stats__bar' color='#A0C4FF' value={pokemonStats?.defense.basePercentage} />
-        <span>{pokemonStats?.defense.baseValue}</span>
-      </div>
       <div className='special-defense'>
         <span>S Defense</span>
-        <PercentageBar className='pokemon-stats__bar' color='#BDB2FF' value={pokemonStats?.specialDefense.basePercentage} />
+        <PercentageBar className='pokemon-stats__bar' color='#be95c4' value={pokemonStats?.specialDefense.basePercentage} />
         <span>{pokemonStats?.specialDefense.baseValue}</span>
       </div>
       <div className='speed'>

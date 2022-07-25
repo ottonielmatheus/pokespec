@@ -1,18 +1,18 @@
 To do:
 
-  - [ ] Pokespec logo (Justrevo)
+  - [ ] Pokespec logo (https://cdn1.sugotoys.com.au/images/20210618104435/PPAPStudioPokemonGengarPokeballAndMasterBallStatue-1.jpg)
 
  - Layout:
-  - [ ] Adicionar flags para Alola, Galar, GMAX, ETERNAMAX (?)
   - [ ] pokemon image error loading
-  - [x] habitat background
   - [ ] mobile menu scroll
+  - [ ] light theme pokemon caracteristics (mythical, legendary...)
 
  - Desempenho:
   - [ ] Image lazy laod
 
  - Feat:
     - [ ] Pokemon passive (hidden ability)
+    - [ ] WTD in pokemon varietes area?
 
  - Bugs:
     - [ ] IOS pokemon search error

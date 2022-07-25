@@ -12,7 +12,9 @@ function PokeBadge ({ badge, type = 'full' }) {
       mega: 'mega',
       'mega-x': 'mega',
       'mega-y': 'mega',
-      eternamax: 'mega'
+      eternamax: 'mega',
+      alola: 'alola',
+      galar: 'galar'
     }[badge]
     setBadgeImage(await getCharacteristicImage(characteristicImage))
   })
