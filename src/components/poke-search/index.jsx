@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 
@@ -12,26 +12,21 @@ function PokeSearch () {
 
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [navigationIndex, setNavigationIndex] = useState(-1)
-  const [storedPokemons, setStoredPokemons] = useState([])
   const [pokemonSuggestions, setPokemonSuggestions] = useState([])
-
-  useEffect(async () => {
-    setStoredPokemons(await store('pokemonsSearch').getAll())
-  }, [showSuggestions, pokemonSuggestions])
+  const [query, setQuery] = useState()
 
   const getPokemonSuggestions = async (query) => {
     let suggestions = []
     query = query.toLowerCase().trim()
 
     if (query) {
-      suggestions = storedPokemons
-        .filter(pokemon => pokemon.name.toLowerCase().includes(query))
-        .slice(0, 4)
+      suggestions = await store('pokemonsSearch').getAll({ like: query }, { offset: 4 })
     }
 
     setNavigationIndex(-1)
     setShowSuggestions(suggestions.length)
     setPokemonSuggestions(suggestions)
+    setQuery(query)
   }
 
   const navigateOnSuggestions = (key) => {
@@ -44,7 +39,6 @@ function PokeSearch () {
   }
 
   const highlightOnMatch = (name) => {
-    const query = queryInput.current.value.toLowerCase().trim()
     return name.toLowerCase().replace(query, `<span style="font-weight: 650">${query}</span>`)
   }
 
@@ -54,8 +48,6 @@ function PokeSearch () {
   }
 
   const handleInputKeyDown = (event) => {
-    const query = event.target.value.toLowerCase().trim()
-
     if (event.key === 'Enter') {
       if (pokemonSuggestions[navigationIndex]) {
         goToPokemon(pokemonSuggestions[navigationIndex].name)

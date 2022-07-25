@@ -17,8 +17,8 @@ const db = async () => {
 }
 
 const store = (storeName) => {
-  const transaction = async (callback) => {
-    const tx = (await db()).transaction(storeName, 'readwrite')
+  const transaction = async (mode, callback) => {
+    const tx = (await db()).transaction(storeName, mode)
     const result = callback(tx.store)
     await tx.done
 
@@ -27,18 +27,28 @@ const store = (storeName) => {
 
   return {
     add: async (value) => {
-      await transaction(async instance => {
-        instance.add(value)
+      await transaction('readwrite', async store => {
+        store.add(value)
       })
     },
     put: async (value) => {
-      await transaction(async instance => {
-        instance.put(value)
+      await transaction('readwrite', async store => {
+        store.put(value)
       })
     },
-    getAll: async () => {
-      return await transaction(async instance => {
-        return await instance.getAll()
+    getAll: async (where, { offset }) => {
+      return await transaction('readonly', async store => {
+        const query = IDBKeyRange.bound(where.like, where.like + '\uffff')
+        let cursor = await store.openCursor(query, 'nextunique')
+
+        let count = 0
+        const results = []
+        while (cursor && count < offset) {
+          results.push(cursor.value)
+          cursor = await cursor.continue()
+          count++
+        }
+        return results
       })
     }
   }
