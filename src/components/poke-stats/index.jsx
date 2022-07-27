@@ -101,7 +101,7 @@ function PokeStats ({ pokemonStats, diffTo, short }) {
       <div className='special-defense'>
         {short ? <span>SD</span> : <span>Su Def</span>}
         <PercentageBar className='pokemon-stats__bar'
-          colors={['#9d4edd', getDiffColor(diffStats?.specialDefense)]}
+          colors={['#e0aaff', getDiffColor(diffStats?.specialDefense)]}
           values={[pokeStats?.specialDefense.basePercentage, diffStats?.specialDefense.basePercentage]} />
         <span>{pokeStats?.specialDefense.baseValue} {getDiffValue(diffStats?.specialDefense)}</span>
       </div>

@@ -4,7 +4,7 @@ import './index.scss'
 function PokeShapeSkeleton () {
   return (
     <>
-      <div className='pokemon-shape skeleton' style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className='pokemon-shape skeleton' style={{ width: '276px', display: 'flex', flexDirection: 'column' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start', padding: '12px' }}>
           <span style={{ width: '64px', height: '22px' }}></span>
         </div>
