@@ -28,6 +28,13 @@ function PokeShape ({ pokemonSpecies }) {
         <span className='pokemon-shape__row__title'>Shape</span>
         <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
       </div>
+      {
+        pokeSpecies?.characteristic &&
+        <div className='pokemon-shape__row'>
+          <span className='pokemon-shape__row__title'>Characteristic</span>
+          <span>{pokeSpecies?.characteristic.name || '???'}</span>
+        </div>
+      }
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Name</span>
         <span>{pokeSpecies?.originalName || '???'}</span>

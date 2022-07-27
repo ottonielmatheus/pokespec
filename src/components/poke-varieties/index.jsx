@@ -3,13 +3,13 @@ import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
 import { Link } from 'react-router-dom'
 
-import './index.scss'
-import PokeVarietiesSkeleton from './skeleton'
-import PokeBadge from '../poke-badge'
-
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 import pokemonUtils from '../../core/pokemon.utils'
+
+import './index.scss'
+import PokeVarietiesSkeleton from './skeleton'
+import PokeProfile from '../poke-profile'
 
 
 function PokeVarieties ({ pokemon, pokemonVarieties }) {
@@ -26,10 +26,11 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
 
     if (!varieties) return
 
-    const requests = varieties.map(async variety => {
-      if (pokemon.name === variety.pokemon.name) return pokemon
-      return pokemonApi.pokemons.getByUrl(variety.pokemon.url)
-    })
+    const requests = varieties
+      .map(async variety => {
+        if (pokemon.name === variety.pokemon.name) return pokemon
+        return pokemonApi.pokemons.getByUrl(variety.pokemon.url)
+      })
     varieties = await Promise.all(requests)
 
     const formatedVarieties = pokemonUtils.formatVarieties(varieties)
@@ -51,20 +52,12 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
         <span className='total-items'>{pokeVarieties?.length || 0}/{pokemonVarieties?.length}</span>
       </div>
       <div className='poke-varieties__body'>
-        {pokeVarieties?.map((pokemon, index) => (
+        {pokeVarieties?.map((variety, index) => (
           <Fade key={index} left>
             <div className='variety'>
-              <div className='variety__pokemon'>
-                <Link to={`/pokemons/${pokemon.name}`}>
-                  <img alt={pokemon.name}
-                    src={pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default}
-                  />
-                </Link>
-              </div>
-              <div className='variety__badges'>
-                {pokemon.badges.region && <PokeBadge type='image' badge={pokemon.badges.region} />}
-                {pokemon.badges.modifier && <PokeBadge type='image' badge={pokemon.badges.modifier} />}
-              </div>
+              <Link to={`/pokemons/${variety.name}`}>
+                <PokeProfile shortStats pokemon={variety} diff={pokemon} />
+              </Link>
             </div>
           </Fade>
         ))}
@@ -73,13 +66,15 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
             <ReactLoading className='loading' type='spin' width={50} height={50} />
           </div>
           : (pokeVarieties?.length < pokemonVarieties?.length) &&
-            <div className='variety load-more'
-              onClick={async () => {
-                const currentVarietiesPage = pokemonVarieties?.slice(pokeVarieties.length, pokeVarieties.length + 5)
-                await getVarietiesDetails(currentVarietiesPage, true)
-              }}>
-              <strong>+</strong>
-            </div>
+            <Fade left>
+              <div className='variety load-more'
+                onClick={async () => {
+                  const currentVarietiesPage = pokemonVarieties?.slice(pokeVarieties.length, pokeVarieties.length + 3)
+                  await getVarietiesDetails(currentVarietiesPage, true)
+                }}>
+                <strong>+</strong>
+              </div>
+            </Fade>
         }
       </div>
     </div>

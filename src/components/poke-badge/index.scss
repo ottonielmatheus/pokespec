@@ -2,8 +2,8 @@
 
 .poke-badge {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 12px;
 
   &__title {
     display: flex;

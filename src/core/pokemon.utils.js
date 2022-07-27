@@ -82,17 +82,32 @@ const formatName = (name) => {
   }
 }
 
-const getStatsValue = (stats, field) => {
-  if (stats) {
-    const stat = _.chain(stats)
-      .map(s => ({ name: s.stat.name, value: s.base_stat }))
-      .find(['name', field]).value()
-    return {
-      baseValue: stat.value,
-      basePercentage: (stat.value / 255) * 100
-    }
+const getStatsDiff = (stats, field, statsA) => {
+  if (!stats) return 0
+
+  const statB = getStatsValue(stats, field)
+  const result = statsA.baseValue - statB.baseValue
+  const diffValue = Math.abs(result)
+
+  return {
+    baseValue: diffValue,
+    basePercentage: (diffValue / 255) * 100,
+    signal: result > 0 ? '+' : '-'
   }
-  return 0
+}
+
+const getStatsValue = (stats, field) => {
+  if (!stats) return 0
+
+  const stat = _.chain(stats)
+    .map(s => ({ name: s.stat.name, value: s.base_stat }))
+    .find(['name', field])
+    .value()
+
+  return {
+    baseValue: stat.value,
+    basePercentage: (stat.value / 255) * 100
+  }
 }
 
 const getMainAbility = async (abilities) => {
@@ -192,19 +207,18 @@ const formatEvolutions = (evolution) => {
 }
 
 const formatSpecies = async (species) => {
-  console.log(species)
-  const characteristics = []
+  let characteristic = null
 
   if (species.is_baby) {
-    characteristics.push({ name: 'Baby', image: await getCharacteristicImage('baby') })
+    characteristic = { name: 'Baby', image: await getCharacteristicImage('baby') }
   }
 
   if (species.is_mythical) {
-    characteristics.push({ name: 'Mythical', image: await getCharacteristicImage('mythical') })
+    characteristic = { name: 'Mythical', image: await getCharacteristicImage('mythical') }
   }
 
   if (species.is_legendary) {
-    characteristics.push({ name: 'Legendary', image: await getCharacteristicImage('legendary') })
+    characteristic = { name: 'Legendary', image: await getCharacteristicImage('legendary') }
   }
 
   const generationNumber = species.generation.name.split('-')[1]
@@ -230,7 +244,7 @@ const formatSpecies = async (species) => {
     captureRate: (species.capture_rate / 255) * 100,
     about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
-    characteristics
+    characteristic
   }
 }
 
@@ -263,6 +277,7 @@ export default {
   formatMoves,
   formatEvolutions,
   getStatsValue,
+  getStatsDiff,
   getMainAbility,
   getWeaknessAndResistance,
   getEffectiveness,

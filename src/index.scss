@@ -10,6 +10,10 @@ input, input:before, input:after {
   user-select: text;
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   :focus {
     outline: none;

@@ -6,6 +6,7 @@ $background-color: rgb(var(--primary-color));
   background-size: cover;
   background-position: center;
   box-sizing: border-box;
+  background-attachment: fixed;
 
   display: flex;
   justify-content: end;
