@@ -74,24 +74,19 @@ function PokemonDetails () {
         </div>
       </div>
       <div className='pokemon__metadata'>
-        <div className='pokemon__metadata__column'>
-          <div className='pokemon__metadata__info'>
+        <div className='pokemon__metadata__info'>
+          <div className='pokemon__metadata__info__body'>
             {
-              (pokemon?.species.varieties.length > 1) &&
-              <div className='pokemon__metadata__info__body'>
-                {
-                  pokemon?.species.varieties.length > 1 &&
-                  <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
-                }
+              pokemon?.species.varieties.length > 1 &&
+              <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
+            }
+            {
+              pokemon?.held_items.length > 0 &&
+              <div className='pokemon__metadata__items'>
+                <PokeItems pokemonItems={pokemon?.held_items} />
               </div>
             }
           </div>
-          {
-            pokemon?.held_items.length > 0 &&
-            <div className='pokemon__metadata__items'>
-              <PokeItems pokemonItems={pokemon?.held_items} />
-            </div>
-          }
         </div>
         <div className='pokemon__metadata__details'>
           <PokeShape pokemonSpecies={pokemon?.species} />

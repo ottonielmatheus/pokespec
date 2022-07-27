@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import getCharacteristicImage from './../shared/characteristics'
+import Tippy from '@tippyjs/react'
 
 import './index.scss'
 
@@ -23,12 +24,22 @@ function PokeBadge ({ badge, type = 'full' }) {
     <div className='poke-badge'>
       {
         (badgeImage && (type === 'full' || type === 'image')) &&
-        <img className={`poke-badge__image ${badge}`} src={badgeImage} alt={badge} />
+        <Tippy
+          className={`tippy-tooltip-badge ${badge}`}
+          arrow={false}
+          content={
+            <div>
+              <span>{badge.toUpperCase().split('-')[0]}</span>
+            </div>
+          }
+          >
+          <img className={`poke-badge__image ${badge}`} src={badgeImage} alt={badge} />
+        </Tippy>
       }
       {
         (type === 'full' || type === 'text') &&
         <p className='poke-badge__title'>
-          {badge?.toUpperCase()}
+          {badge?.toUpperCase().replaceAll('-', ' ')}
         </p>
       }
     </div>

@@ -13,12 +13,15 @@ import PokeProfile from '../poke-profile'
 
 
 function PokeVarieties ({ pokemon, pokemonVarieties }) {
+  const [allVariations, setAllVariations] = useState()
   const { loading: rootLoading } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeVarieties, setPokeVarieties] = useState()
 
   useEffect(async () => {
-    await getVarietiesDetails(pokemonVarieties?.slice(0, 5))
+    const variations = pokemonVarieties?.filter(variety => variety.pokemon.name !== pokemon?.name)
+    setAllVariations(variations)
+    await getVarietiesDetails(variations?.slice(0, 5))
   }, [pokemonVarieties])
 
   const getVarietiesDetails = async (varieties, isToAppend = false) => {
@@ -49,14 +52,14 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
     <div className='poke-varieties'>
       <div className='poke-varieties__header'>
         <span>Varieties</span>
-        <span className='total-items'>{pokeVarieties?.length || 0}/{pokemonVarieties?.length}</span>
+        <span className='total-items'>{pokeVarieties?.length || 0}/{allVariations?.length}</span>
       </div>
       <div className='poke-varieties__body'>
         {pokeVarieties?.map((variety, index) => (
-          <Fade key={index} left>
+          <Fade key={index} bottom>
             <div className='variety'>
               <Link to={`/pokemons/${variety.name}`}>
-                <PokeProfile shortStats pokemon={variety} diff={pokemon} />
+                <PokeProfile short stats pokemon={variety} diff={pokemon} />
               </Link>
             </div>
           </Fade>
@@ -65,11 +68,11 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
           loadingMore ? <div className='loading-more'>
             <ReactLoading className='loading' type='spin' width={50} height={50} />
           </div>
-          : (pokeVarieties?.length < pokemonVarieties?.length) &&
-            <Fade left>
+          : (pokeVarieties?.length < allVariations?.length) &&
+            <Fade bottom>
               <div className='variety load-more'
                 onClick={async () => {
-                  const currentVarietiesPage = pokemonVarieties?.slice(pokeVarieties.length, pokeVarieties.length + 3)
+                  const currentVarietiesPage = allVariations?.slice(pokeVarieties.length, pokeVarieties.length + 3)
                   await getVarietiesDetails(currentVarietiesPage, true)
                 }}>
                 <strong>+</strong>

@@ -9,6 +9,7 @@ To do:
   - [ ] colocar o mega no meio (??) entre os stats e a foto do pokemon
   - [ ] new font to pokemon badges
   - [ ] pokemon varieties skeleton
+  - [ ] light theme stats diffs color problem
 
  - Desempenho:
   - [ ] Image lazy laod

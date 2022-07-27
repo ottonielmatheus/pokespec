@@ -9,7 +9,7 @@ import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
 import PokeBadge from '../../components/poke-badge'
 
-function PokeProfile ({ pokemon, diff, stats = false, shortStats = false, weaknesses = false }) {
+function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses = false }) {
   const { loading } = usePokemonContext()
   const [poke, setPoke] = useState()
 
@@ -41,22 +41,24 @@ function PokeProfile ({ pokemon, diff, stats = false, shortStats = false, weakne
       </div>
       : <div className='poke-profile'>
           <div className='poke-profile__header'>
-            {poke?.formatedName}
+            <span className='poke-profile__header__name'>
+              {poke?.formatedName}
+              {!short && poke?.modifier && <PokeBadge type='text' badge={poke?.modifier} />}
+              {!short && poke?.region && <PokeBadge type='text' badge={poke?.region} />}
+            </span>
             <div className='poke-profile__header__types'>
+              {
+                poke?.modifier &&
+                <PokeBadge type='image' badge={poke?.modifier} />
+              }
+              {
+                poke?.region &&
+                <PokeBadge type='image' badge={poke?.region} />
+              }
               {poke?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
             </div>
           </div>
           <div className='poke-profile__body'>
-            <div className='poke-profile__body__badges'>
-              <div className='poke-profile__body__badges__variations'>
-                {poke?.modifier &&
-                  <PokeBadge badge={poke?.modifier} />
-                }
-                {poke?.region &&
-                  <PokeBadge badge={poke?.region} />
-                }
-              </div>
-            </div>
             <img alt={poke?.formatedName}
               src={poke?.sprites?.other['official-artwork']?.front_default || poke?.sprites.front_default}
             />
@@ -64,7 +66,7 @@ function PokeProfile ({ pokemon, diff, stats = false, shortStats = false, weakne
               <span>{(poke?.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
               <span>{Math.round(poke?.weight / 4.536)} lbs</span>
             </div>
-            {(stats || shortStats) && <PokeStats short={shortStats} pokemonStats={poke?.stats} diffTo={diff?.stats} />}
+            {stats && <PokeStats short={short} pokemonStats={poke?.stats} diffTo={diff?.stats} />}
           </div>
           {
             weaknesses &&

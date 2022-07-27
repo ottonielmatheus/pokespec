@@ -19,9 +19,20 @@
     padding: 12px 12px;
 
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     border-bottom: solid .5px;
     border-color: var(--secondary-color);
+
+    &__name {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+    }
 
     &__types {
       display: flex;
@@ -46,7 +57,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 14px 0 0 0;
+    padding: 44px 0 0 0;
 
     > img {
       width: 230px;
@@ -81,10 +92,10 @@
     }
 
     .pokemon-stats {
-      padding: 14px 24px 14px 24px;
+      padding: 24px 16px;
 
       &--short {
-        padding: 8px 12px 8px 12px;
+        padding: 16px 8px 12px 8px;
       }
     }
   }
