@@ -5,7 +5,10 @@ import './index.scss'
 import pokemonLogo from './../shared/logos/pokemon-logo.png'
 
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
+import {
+  getStatsValue,
+  getMainAbility
+} from '../../core/pokemon.utils'
 
 function PokeCard ({ name }) {
   const [loading, setLoading] = useState(true)
@@ -13,24 +16,13 @@ function PokeCard ({ name }) {
 
   useEffect(async () => {
     const details = await pokemonApi.pokemons.getByName(name)
-
-    const { formatedName, genre, modifier } = pokemonUtils.formatName(details.name)
-    details.name = formatedName
-    details.genre = genre
-    details.modifier = modifier
-
-    details.types = await pokemonUtils.formatTypes(details.types)
-    details.mainAbility = await pokemonUtils.getMainAbility(details.abilities)
-
-    const { weakness, resistance } = await pokemonUtils.getWeaknessAndResistance(details.types)
-    details.weakness = weakness
-    details.resistance = resistance
+    details.mainAbility = await getMainAbility(details.abilities)
 
     details.stats = {
-      hp: pokemonUtils.getStatsValue(details.stats, 'hp'),
-      attack: pokemonUtils.getStatsValue(details.stats, 'attack'),
-      defense: pokemonUtils.getStatsValue(details.stats, 'defense'),
-      speed: pokemonUtils.getStatsValue(details.stats, 'speed')
+      hp: getStatsValue(details.stats, 'hp'),
+      attack: getStatsValue(details.stats, 'attack'),
+      defense: getStatsValue(details.stats, 'defense'),
+      speed: getStatsValue(details.stats, 'speed')
     }
 
     setPokeDetails(details)

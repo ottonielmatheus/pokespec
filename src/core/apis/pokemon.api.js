@@ -1,4 +1,12 @@
-const apiUrl = 'https://pokeapi.co/api/v2/'
+const API_URL = 'https://pokeapi.co/api/v2/'
+import {
+  formatAbility,
+  formatEvolution,
+  formatItem,
+  formatMove,
+  formatPokemon,
+  formatSpecies
+} from './../pokemon.utils'
 
 const querify = (limit, skip) => {
   const queries = []
@@ -9,101 +17,68 @@ const querify = (limit, skip) => {
   return '?' + queries.join('&')
 }
 
-const getAll = async ({ skip, limit, next }) => {
-  const uri = next || apiUrl + 'pokemon' + querify(limit, skip)
+const request = async uri => {
+  if (!uri) return null
   const res = await fetch(uri)
-  const body = await res.json()
+  return await res.json()
+}
 
-  return body
+const formatWith = (formatterFunction, requestFunctions) => {
+  const requests = {}
+  for (const requestKey of Object.keys(requestFunctions)) {
+    requests[requestKey] = async (...args) => {
+      const resource = await requestFunctions[requestKey](...args)
+      return await formatterFunction(resource)
+    }
+  }
+  return requests
+}
+
+const getAll = async ({ skip, limit, next }) => {
+  const uri = next || API_URL + 'pokemon' + querify(limit, skip)
+  return await request(uri)
 }
 
 const getById = async (id) => {
-  try {
-    const uri = apiUrl + `pokemon/${id}`
-    const res = await fetch(uri)
-    const body = await res.json()
-
-    return body
-  } catch (err) {
-    return null
-  }
+  return await request(API_URL + `pokemon/${id}`)
 }
 
-const getByName = async (name) => {
-  try {
-    const uri =apiUrl + `pokemon/${name}`
-    const res = await fetch(uri)
-    const body = await res.json()
-
-    return body
-  } catch (err) {
-    return null
-  }
-}
-
-const getByUrl = async (url) => {
-  try {
-    const res = await fetch(url)
-    const body = await res.json()
-
-    return body
-  } catch (err) {
-    return null
-  }
+const getPokemonByName = async (name) => {
+  if (!name) return null
+  return await request(API_URL + `pokemon/${name}`)
 }
 
 const getAbilityByName = async (name) => {
-  const uri = apiUrl + `ability/${name}`
-  const res = await fetch(uri)
-  const body = await res.json()
-
-  return body
+  return await request(API_URL + `ability/${name}`)
 }
 
 const getMoveByName = async (name) => {
-  const res = await fetch(apiUrl + `move/${name}`)
-  const body = await res.json()
-  return body
-}
-
-const getSpecieByUrl = async (url) => {
-  const res = await fetch(url)
-  const body = await res.json()
-  return body
-}
-
-const getEvolutionByUrl = async (url) => {
-  const res = await fetch(url)
-  const body = await res.json()
-  return body
-}
-
-const getItemByUrl = async (url) => {
-  const res = await fetch(url)
-  const body = await res.json()
-  return body
+  return await request(API_URL + `move/${name}`)
 }
 
 export default {
   pokemons: {
     getAll,
-    getById,
-    getByUrl,
-    getByName
+    getPokemonsPage: request,
+    ...formatWith(formatPokemon, {
+      getById,
+      getByName: getPokemonByName,
+      getByUrl: request
+    })
   },
-  abilities: {
+  abilities: formatWith(formatAbility, {
     getByName: getAbilityByName
-  },
-  moves: {
+  }),
+  moves: formatWith(formatMove, {
     getByName: getMoveByName
-  },
-  species: {
-    getByUrl: getSpecieByUrl
-  },
-  evolution: {
-    getByUrl: getEvolutionByUrl
-  },
-  drops: {
-    getByUrl: getItemByUrl
-  }
+  }),
+  species: formatWith(formatSpecies, {
+    getByUrl: request
+  }),
+  evolution: formatWith(formatEvolution, {
+    getByUrl: request
+  }),
+  items: formatWith(formatItem, {
+    getByUrl: request
+  })
 }

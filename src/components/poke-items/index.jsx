@@ -10,7 +10,6 @@ import PokeItemsSkeleton from './skeleton'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeItems ({ pokemonItems }) {
   const { loading: rootLoading } = usePokemonContext()
@@ -27,20 +26,19 @@ function PokeItems ({ pokemonItems }) {
     if (!items) return
 
     const requests = items.map(async data => {
-      const detailedItem = await pokemonApi.drops.getByUrl(data.item.url)
+      const detailedItem = await pokemonApi.items.getByUrl(data.item.url)
       return {
         ...detailedItem
       }
     })
-    items = await Promise.all(requests)
 
-    const formatedItems = pokemonUtils.formatItems(items)
-    setPokeItems(formatedItems)
+    items = await Promise.all(requests)
+    setPokeItems(items)
 
     if (isToAppend) {
-      setPokeItems(pokeItems.concat(formatedItems))
+      setPokeItems(pokeItems.concat(items))
     } else {
-      setPokeItems(formatedItems)
+      setPokeItems(items)
     }
 
     setLoadingMore(false)

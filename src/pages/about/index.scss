@@ -7,7 +7,6 @@
 
   width: 1200px;
   margin: 0 auto;
-  padding-top: 8px;
 
   .row {
     display: flex;
@@ -41,6 +40,11 @@
     a {
       font-weight: 500;
       text-decoration: underline;
+    }
+
+    img {
+      width: 500px;
+      align-self: center;
     }
 
     &__contribute {
@@ -115,7 +119,6 @@
 @media (min-width: 320px) and (max-width: 1200px) {
   .about {
     width: 100% !important;
-    padding-top: 8px;
 
     .row, .column {
       width: 100%;
@@ -128,6 +131,10 @@
     }
 
     &__application {
+      img {
+        width: 280px;
+      }
+
       &__credits {
         img {
           width: 150px;

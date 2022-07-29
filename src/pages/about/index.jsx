@@ -2,6 +2,7 @@ import React from 'react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
 
 import './index.scss'
+import projectLogo from './../../components/shared/logos/logo.png'
 import pokeApiLogo from './../../components/shared/logos/pokeapi-logo.png'
 import nintendoLogo from './../../components/shared/logos/nintendo-logo.png'
 import ashPokemon from './../../components/shared/logos/ash-about.png'
@@ -17,6 +18,7 @@ function About () {
         <div className='column'>
           <div className='about__application'>
             <h2>About</h2>
+            <img src={projectLogo} alt='project logo' />
             <div className='about__application__contribute'>
               <p>
                 Check attributes, status, abilities, evolutions and characteristics of all pokemons within a click.

@@ -2,7 +2,6 @@
 
 #pokemon-details {
   width: 1200px;
-  padding: 8px 0;
   margin: 0 auto;
 
   display: flex;
@@ -52,7 +51,6 @@
   .pokemon__metadata {
     display: grid;
     grid-template-columns: 916px auto;
-    justify-content: space-between;
     gap: 8px;
 
     &__info {
@@ -93,7 +91,6 @@
   #pokemon-details {
     position: relative;
     width: 100% !important;
-    padding-top: 8px;
 
     flex-direction: column;
     box-sizing: border-box;
@@ -151,7 +148,6 @@
         &__body {
           > div {
             box-sizing: border-box;
-            padding: 16px 12px;
           }
 
           .poke-varieties {

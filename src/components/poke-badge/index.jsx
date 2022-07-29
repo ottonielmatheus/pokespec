@@ -38,9 +38,9 @@ function PokeBadge ({ badge, type = 'full' }) {
       }
       {
         (type === 'full' || type === 'text') &&
-        <p className='poke-badge__title'>
+        <span className='poke-badge__title'>
           {badge?.toUpperCase().replaceAll('-', ' ')}
-        </p>
+        </span>
       }
     </div>
   )

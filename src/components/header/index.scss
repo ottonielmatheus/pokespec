@@ -3,6 +3,7 @@
 .header, .header--expanded {
   height: global.$header-height;
   transition: all ease-out .5s;
+  margin-bottom: 8px;
 
   &--expanded {
     height: 100vh;
@@ -10,7 +11,7 @@
   }
 
   &__container {
-    position: sticky;
+    position: fixed;
     width: 100%;
 
     display: flex;

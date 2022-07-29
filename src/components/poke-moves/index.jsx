@@ -7,7 +7,6 @@ import PokeMovesSkeleton from './skeleton'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeMoves ({ pokemonMoves }) {
   const { loading: rootLoading } = usePokemonContext()
@@ -23,8 +22,7 @@ function PokeMoves ({ pokemonMoves }) {
     if (!moves) return
 
     const requests = moves.map(item => pokemonApi.moves.getByName(item.move.name))
-    const movesResult = await Promise.all(requests)
-    const formatedMoves = await pokemonUtils.formatMoves(movesResult)
+    const formatedMoves = await Promise.all(requests)
 
     if (isToAppend) {
       setPokeMoves(pokeMoves.concat(formatedMoves))

@@ -40,6 +40,24 @@ html {
     color: var(--font-color);
   }
 
+  button {
+    padding: 8px 12px;
+    background-color: var(--font-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    font-weight: 600;
+    opacity: .7;
+    border: 0;
+    font-family: 'Jura';
+    font-size: 14px;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+      transition: all ease .5s;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
   }

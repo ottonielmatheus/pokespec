@@ -7,7 +7,6 @@ import PokeMovesSkeleton from './../poke-moves/skeleton'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
 
 function PokeAbilities ({ pokemonAbilities }) {
   const { loading: rootLoading } = usePokemonContext()
@@ -31,14 +30,12 @@ function PokeAbilities ({ pokemonAbilities }) {
       }
     })
     abilities = await Promise.all(requests)
-
-    const formatedAbilities = pokemonUtils.formatAbilities(abilities)
-    setPokeAbilities(formatedAbilities)
+    setPokeAbilities(abilities)
 
     if (isToAppend) {
-      setPokeAbilities(pokeAbilities.concat(formatedAbilities))
+      setPokeAbilities(pokeAbilities.concat(abilities))
     } else {
-      setPokeAbilities(formatedAbilities)
+      setPokeAbilities(abilities)
     }
 
     setLoadingMore(false)

@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import 'tippy.js/dist/tippy.css'
 import './index.scss'
-import pokemonUtils from '../../core/pokemon.utils'
+import { formatType } from '../../core/pokemon.utils'
 
 
 function PokeType ({ type }) {
@@ -14,7 +14,7 @@ function PokeType ({ type }) {
     if ('icon' in type) {
       setPokemonType(type)
     } else {
-      setPokemonType(await pokemonUtils.formatType(type))
+      setPokemonType(await formatType(type))
     }
   }, [type])
 

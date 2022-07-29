@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import pokemonUtils from '../../core/pokemon.utils'
+import { getStatsValue, getStatsDiff } from '../../core/pokemon.utils'
 
 import './index.scss'
 import PercentageBar from '../../components/shared/percentage-bar'
@@ -14,22 +14,22 @@ function PokeStats ({ pokemonStats, diffTo, short }) {
 
   useEffect(() => {
     const stats = {
-      hp: pokemonUtils.getStatsValue(pokemonStats, 'hp'),
-      attack: pokemonUtils.getStatsValue(pokemonStats, 'attack'),
-      specialAttack: pokemonUtils.getStatsValue(pokemonStats, 'special-attack'),
-      defense: pokemonUtils.getStatsValue(pokemonStats, 'defense'),
-      specialDefense: pokemonUtils.getStatsValue(pokemonStats, 'special-defense'),
-      speed: pokemonUtils.getStatsValue(pokemonStats, 'speed')
+      hp: getStatsValue(pokemonStats, 'hp'),
+      attack: getStatsValue(pokemonStats, 'attack'),
+      specialAttack: getStatsValue(pokemonStats, 'special-attack'),
+      defense: getStatsValue(pokemonStats, 'defense'),
+      specialDefense: getStatsValue(pokemonStats, 'special-defense'),
+      speed: getStatsValue(pokemonStats, 'speed')
     }
 
     if (diffTo) {
       const diff = {
-        hp: pokemonUtils.getStatsDiff(diffTo, 'hp', stats.hp),
-        attack: pokemonUtils.getStatsDiff(diffTo, 'attack', stats.attack),
-        specialAttack: pokemonUtils.getStatsDiff(diffTo, 'special-attack', stats.specialAttack),
-        defense: pokemonUtils.getStatsDiff(diffTo, 'defense', stats.defense),
-        specialDefense: pokemonUtils.getStatsDiff(diffTo, 'special-defense', stats.specialDefense),
-        speed: pokemonUtils.getStatsDiff(diffTo, 'speed', stats.speed)
+        hp: getStatsDiff(diffTo, 'hp', stats.hp),
+        attack: getStatsDiff(diffTo, 'attack', stats.attack),
+        specialAttack: getStatsDiff(diffTo, 'special-attack', stats.specialAttack),
+        defense: getStatsDiff(diffTo, 'defense', stats.defense),
+        specialDefense: getStatsDiff(diffTo, 'special-defense', stats.specialDefense),
+        speed: getStatsDiff(diffTo, 'speed', stats.speed)
       }
       setDiffStats(diff)
       setTotalDiffStat(getTotalStats(diffTo))

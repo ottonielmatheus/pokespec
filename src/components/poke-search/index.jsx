@@ -97,7 +97,7 @@ function PokeSearch () {
                     onClick={() => goToPokemon(suggestion.name)}
                   >
                   <div className='poke-search__suggestions__pokemon__avatar-name'>
-                    {suggestion.sprites?.front_default && <img src={suggestion.sprites.front_default} />}
+                  <img src={suggestion.avatar.default} />
                     <span className='name' dangerouslySetInnerHTML={{ __html: highlightOnMatch(suggestion.name) }}></span>
                   </div>
                   <div className='poke-search__suggestions__pokemon__types-varieties'>

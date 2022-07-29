@@ -20,8 +20,12 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
   }, [pokemonEvolutions])
 
   const downloadEvolutions = async (chain) => {
-    const regionPokemonName = chain?.pokemon.name + (pokemon.region ? `-${pokemon.region}` : '')
-    if (!regionPokemonName) return {}
+    if (!chain?.pokemon?.name) {
+      return {}
+    }
+
+    const regionPokemonName = chain.pokemon.name + (pokemon.region ? `-${pokemon.region}` : '')
+
     if (pokemon?.name === regionPokemonName) {
       chain.pokemon = pokemon
     } else {
@@ -40,7 +44,7 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
         <div className='evolution-node'>
           <div className='evolution-node-pokemon'>
             <Link to={`/pokemons/${chain?.pokemon?.name}`}>
-              <img src={chain.pokemon?.sprites.other['official-artwork'].front_default} alt={chain?.pokemon?.name} />
+              <img src={chain?.pokemon?.avatar.artwork} alt={chain?.pokemon?.name} />
             </Link>
           </div>
           <div className='evolution-node-arrow'>

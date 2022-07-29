@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import _ from 'lodash'
+import { sortBy } from 'lodash'
 
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 
 import './index.scss'
@@ -36,14 +35,11 @@ function PokemonDetails () {
       goNotFound()
     }
 
-    poke.moves = _.sortBy(poke.moves, [item => item.move.name])
-    poke.abilities = _.sortBy(poke.abilities, [item => item.ability.name])
+    poke.moves = sortBy(poke.moves, [item => item.move.name])
+    poke.abilities = sortBy(poke.abilities, [item => item.ability.name])
 
     poke.species = await pokemonApi.species.getByUrl(poke.species.url)
-    poke.evolutions = await pokemonApi.evolution.getByUrl(poke.species.evolution_chain.url)
-
-    poke.species = await pokemonUtils.formatSpecies(poke.species)
-    poke.evolutions = await pokemonUtils.formatEvolutions(poke.evolutions.chain)
+    poke.evolutions = await pokemonApi.evolution.getByUrl(poke.species.evolutionChain?.url)
 
     setPokemon(poke)
     setLoading(false)

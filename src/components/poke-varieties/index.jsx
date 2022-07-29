@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
-import pokemonUtils from '../../core/pokemon.utils'
+import { formatVarieties } from '../../core/pokemon.utils'
 
 import './index.scss'
 import PokeVarietiesSkeleton from './skeleton'
@@ -36,7 +36,7 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
       })
     varieties = await Promise.all(requests)
 
-    const formatedVarieties = pokemonUtils.formatVarieties(varieties)
+    const formatedVarieties = formatVarieties(varieties)
     setPokeVarieties(formatedVarieties)
 
     if (isToAppend) {
@@ -56,7 +56,7 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
       </div>
       <div className='poke-varieties__body'>
         {pokeVarieties?.map((variety, index) => (
-          <Fade key={index} bottom>
+          <Fade key={index}>
             <div className='variety'>
               <Link to={`/pokemons/${variety.name}`}>
                 <PokeProfile short stats pokemon={variety} diff={pokemon} />
@@ -69,7 +69,7 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
             <ReactLoading className='loading' type='spin' width={50} height={50} />
           </div>
           : (pokeVarieties?.length < allVariations?.length) &&
-            <Fade bottom>
+            <Fade>
               <div className='variety load-more'
                 onClick={async () => {
                   const currentVarietiesPage = allVariations?.slice(pokeVarieties.length, pokeVarieties.length + 3)

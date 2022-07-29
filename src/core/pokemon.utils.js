@@ -1,14 +1,15 @@
-import _ from 'lodash'
+import { chain, endsWith, find, capitalize, concat } from 'lodash'
 
 import i18n from './i18n'
 import pokeTypeMapper from './mappers/pokemon-types.mapper'
 import getHabitatImage from '../components/shared/habitats'
 import getShapeImage from '../components/shared/shapes'
 import getCharacteristicImage from '../components/shared/characteristics'
+import defaultPokemonImage from './../components/shared/not-found-pikachu.png'
 
 import pokemonApi from './apis/pokemon.api'
 
-const mapElementType = async (typeName) => {
+export const mapElementType = async (typeName) => {
   const type = pokeTypeMapper[typeName]
   return {
     name: typeName,
@@ -16,7 +17,7 @@ const mapElementType = async (typeName) => {
   }
 }
 
-const formatType = async (t) => {
+export const formatType = async (t) => {
   let type = null
 
   if ('slot' in t) {
@@ -38,7 +39,7 @@ const formatType = async (t) => {
   }
 }
 
-const formatTypes = async (types) => {
+export const formatTypes = async (types) => {
   if (!types) {
     return []
   }
@@ -46,11 +47,11 @@ const formatTypes = async (types) => {
   return await Promise.all(types.map(formatType))
 }
 
-const formatName = (name) => {
+export const formatName = (name) => {
   let genre = null
 
   if (/(-f|-m)$/.test(name)) {
-    genre = _.endsWith(name, '-f') ? 'female' : 'male'
+    genre = endsWith(name, '-f') ? 'female' : 'male'
   }
 
   const regions = [
@@ -66,12 +67,12 @@ const formatName = (name) => {
     { name: 'eternamax', regex: /(-eternamax)$/ }
   ]
 
-  const pokeRegion = _.find(regions, region => region.regex.test(name))
-  const pokeModifier = _.find(modifiers, modifier => modifier.regex.test(name))
+  const pokeRegion = find(regions, region => region.regex.test(name))
+  const pokeModifier = find(modifiers, modifier => modifier.regex.test(name))
 
   const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
     .split('-')
-    .map(_.capitalize)
+    .map(capitalize)
     .join(' ')
 
   return {
@@ -82,7 +83,7 @@ const formatName = (name) => {
   }
 }
 
-const getStatsDiff = (stats, field, statsA) => {
+export const getStatsDiff = (stats, field, statsA) => {
   if (!stats) return 0
 
   const statB = getStatsValue(stats, field)
@@ -96,10 +97,10 @@ const getStatsDiff = (stats, field, statsA) => {
   }
 }
 
-const getStatsValue = (stats, field) => {
+export const getStatsValue = (stats, field) => {
   if (!stats) return 0
 
-  const stat = _.chain(stats)
+  const stat = chain(stats)
     .map(s => ({ name: s.stat.name, value: s.base_stat }))
     .find(['name', field])
     .value()
@@ -110,31 +111,35 @@ const getStatsValue = (stats, field) => {
   }
 }
 
-const getMainAbility = async (abilities) => {
-  const mainAbility = _.find(abilities, ['is_hidden', false])
-  const ability = await pokemonApi.abilities.getByName(mainAbility.ability.name)
+export const getMainAbility = async (abilities) => {
+  const mainAbility = find(abilities, ['hidden', false])
+  const ability = await pokemonApi.abilities.getByName(mainAbility.name)
   return {
-    id: mainAbility.ability.name,
-    name: i18n(ability.names).name,
+    id: mainAbility.name,
+    name: ability.name,
     total: abilities.length - 1
   }
 }
 
-const formatAbilities = (abilities) => {
-  return _.chain(abilities)
-    .map(ability => ({
-      id: ability.name,
-      name: i18n(ability.names).name,
-      description: i18n(ability.effect_entries)?.effect || null,
-      shortDescription: i18n(ability.effect_entries)?.short_effect || null,
-      hidden: ability.hidden
-    }))
+export const formatAbility = (ability) => {
+  return {
+    id: ability.name,
+    name: i18n(ability.names)?.name,
+    description: i18n(ability.effect_entries)?.effect || null,
+    shortDescription: i18n(ability.effect_entries)?.short_effect || null,
+    hidden: ability.hidden
+  }
+}
+
+export const formatAbilities = (abilities) => {
+  return chain(abilities)
+    .map(formatAbility)
     .orderBy('hidden')
     .value()
 }
 
-const formatMoves = async (moves) => {
-  const formatedMoves = moves.map(async move => ({
+export const formatMove = async (move) => {
+  return {
     id: move.name,
     name: i18n(move.names).name,
     description: i18n(move.effect_entries)?.effect,
@@ -144,11 +149,15 @@ const formatMoves = async (moves) => {
     effectChance: move.effect_chance,
     accuracy: move.accuracy,
     pp: move.pp
-  }))
+  }
+}
+
+export const formatMoves = async (moves) => {
+  const formatedMoves = moves.map(formatMove)
   return await Promise.all(formatedMoves)
 }
 
-const getWeaknessAndResistance = async (types) => {
+export const getWeaknessAndResistance = async (types) => {
   const mergedTypes = {
     immune: [],
     weakness: [],
@@ -156,14 +165,14 @@ const getWeaknessAndResistance = async (types) => {
   }
 
   for (const type of types) {
-    mergedTypes.immune = _.concat(mergedTypes.immune, type.immune)
-    mergedTypes.weakness = _.concat(mergedTypes.weakness, type.weakness)
-    mergedTypes.resistance = _.concat(mergedTypes.resistance, type.resistance)
+    mergedTypes.immune = concat(mergedTypes.immune, type.immune)
+    mergedTypes.weakness = concat(mergedTypes.weakness, type.weakness)
+    mergedTypes.resistance = concat(mergedTypes.resistance, type.resistance)
   }
 
   const result = {
-    weakness: _.chain(mergedTypes.weakness).difference(mergedTypes.resistance),
-    resistance: _.chain(mergedTypes.resistance).difference(mergedTypes.weakness),
+    weakness: chain(mergedTypes.weakness).difference(mergedTypes.resistance),
+    resistance: chain(mergedTypes.resistance).difference(mergedTypes.weakness),
     immune: mergedTypes.immune
   }
 
@@ -174,8 +183,8 @@ const getWeaknessAndResistance = async (types) => {
   return result
 }
 
-const getEffectiveness = (weakness, resistance, immune) => {
-  const multipliers = _.chain(resistance)
+export const getEffectiveness = (weakness, resistance, immune) => {
+  const multipliers = chain(resistance)
     .map(r => ({ type: r, calc: total => total / 2 }))
     .concat(weakness.map(w => ({ type: w, calc: total => total * 2 })))
     .concat(immune.map(i => ({ type: i, calc: total => total * 0 })))
@@ -183,7 +192,7 @@ const getEffectiveness = (weakness, resistance, immune) => {
     .value()
 
   const total = {}
-  const types = _.concat(weakness, resistance, immune)
+  const types = concat(weakness, resistance, immune)
 
   for (const type of types) {
     total[type.name] = {
@@ -193,20 +202,21 @@ const getEffectiveness = (weakness, resistance, immune) => {
   }
 
 
-  return _.chain(total)
+  return chain(total)
     .groupBy('value')
     .value()
 }
 
-const formatEvolutions = (evolution) => {
+export const formatEvolution = ({ chain }) => {
+  if (!chain) return null
   return {
-    trigger: evolution.evolution_details[0]?.trigger?.name,
-    pokemon: { name: evolution.species.name },
-    next: evolution.evolves_to.map(formatEvolutions)
+    trigger: chain.evolution_details[0]?.trigger?.name,
+    pokemon: { name: chain.species.name },
+    next: chain.evolves_to.map(chain => formatEvolution({ chain }))
   }
 }
 
-const formatSpecies = async (species) => {
+export const formatSpecies = async (species) => {
   let characteristic = null
 
   if (species.is_baby) {
@@ -244,21 +254,26 @@ const formatSpecies = async (species) => {
     captureRate: (species.capture_rate / 255) * 100,
     about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
-    characteristic
+    characteristic,
+    evolutionChain: species.evolution_chain
   }
 }
 
-const formatItems = (items) => {
-  return items.map(item => ({
+export const formatItem = (item) => {
+  return {
     name: i18n(item.names).name,
     image: item.sprites.default,
     cost: item.cost,
     description: i18n(item.flavor_text_entries).text || null,
     effect: i18n(item.effect_entries).short_effect || null
-  }))
+  }
 }
 
-const formatVarieties = (varieties) => {
+export const formatItems = (items) => {
+  return items.map(formatItem)
+}
+
+export const formatVarieties = (varieties) => {
   return varieties.map(variety => {
     const { region, modifier } = formatName(variety.name)
     return {
@@ -269,19 +284,34 @@ const formatVarieties = (varieties) => {
   })
 }
 
-export default {
-  formatName,
-  formatType,
-  formatTypes,
-  formatAbilities,
-  formatMoves,
-  formatEvolutions,
-  getStatsValue,
-  getStatsDiff,
-  getMainAbility,
-  getWeaknessAndResistance,
-  getEffectiveness,
-  formatSpecies,
-  formatItems,
-  formatVarieties
+export const formatSprites = (sprites) => {
+  const avatars = [
+    sprites?.other['official-artwork']?.front_default,
+    sprites?.front_default,
+    defaultPokemonImage
+  ]
+  return {
+    artwork: avatars[0],
+    default: avatars[1],
+    any: avatars.find(Boolean)
+  }
+}
+
+export const formatPokemon = async (pokemon) => {
+  if (!pokemon) return null
+
+  const { formatedName, modifier, region, genre } = formatName(pokemon.name)
+  const types = await formatTypes(pokemon.types)
+  const { weakness, resistance, immune } = await getWeaknessAndResistance(types)
+
+  return {
+    avatar: formatSprites(pokemon.sprites),
+    formatedName,
+    modifier,
+    region,
+    genre,
+    types,
+    effectiveness: getEffectiveness(weakness, resistance, immune),
+    ...pokemon
+  }
 }

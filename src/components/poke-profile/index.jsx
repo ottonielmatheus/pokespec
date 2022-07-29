@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ReactLoading from 'react-loading'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
-import pokemonUtils from './../../core/pokemon.utils'
 
 import './index.scss'
 import PokeType from '../../components/poke-type'
@@ -15,22 +14,6 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
 
   useEffect(async () => {
     if (!pokemon) return
-
-    const { formatedName, genre, modifier, region } = pokemonUtils.formatName(pokemon.name)
-    pokemon.formatedName = formatedName
-    pokemon.genre = genre
-    pokemon.modifier = modifier
-    pokemon.region = region
-
-    pokemon.types = await pokemonUtils.formatTypes(pokemon.types)
-
-    const { weakness, resistance, immune } = await pokemonUtils.getWeaknessAndResistance(pokemon.types)
-    pokemon.weakness = weakness
-    pokemon.resistance = resistance
-    pokemon.immune = immune
-
-    pokemon.effectiveness = pokemonUtils.getEffectiveness(pokemon.weakness, pokemon.resistance, pokemon.immune)
-
     setPoke(pokemon)
   }, [pokemon])
 
@@ -59,9 +42,7 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
             </div>
           </div>
           <div className='poke-profile__body'>
-            <img alt={poke?.formatedName}
-              src={poke?.sprites?.other['official-artwork']?.front_default || poke?.sprites.front_default}
-            />
+            <img alt={poke?.formatedName} src={poke?.avatar.any}/>
             <div className='poke-profile__body__measures'>
               <span>{(poke?.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
               <span>{Math.round(poke?.weight / 4.536)} lbs</span>

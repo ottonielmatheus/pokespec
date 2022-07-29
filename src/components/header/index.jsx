@@ -29,7 +29,7 @@ function Header () {
   }
 
   return (
-    <div className={`header${showMenu ? '--expanded' : ''}`}>
+    <header className={`header${showMenu ? '--expanded' : ''}`}>
       <div className='header__container'>
         <div className='header__container__limit'>
           <div className='header__container__limit__nav'>
@@ -62,7 +62,7 @@ function Header () {
           </li>
         </ul>
       </div>
-    </div>
+    </header>
   )
 }
 

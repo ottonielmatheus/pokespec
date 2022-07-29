@@ -1,15 +1,12 @@
 import React from 'react'
 
 import './index.scss'
-
-import notFoundImage from './../../../components/shared/not-found.png'
 import pikachuNotFoundImage from './../../../components/shared/not-found-pikachu.png'
 
 function NotFound () {
   return (
     <div className='not-found'>
       <div className='not-found__images'>
-        <img className='not-found' src={notFoundImage} alt='not found' />
         <img className='pikachu' src={pikachuNotFoundImage} alt="pikachu sleeping" />
       </div>
       <div className='not-found__container'>
