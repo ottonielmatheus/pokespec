@@ -59,6 +59,14 @@
         width: 100%;
       }
 
+      &:hover {
+        .poke-profile__body {
+          > img {
+            transform: scale(1.5);
+          }
+        }
+      }
+
       .poke-profile {
         &__header {
           font-size: 16px;
@@ -66,6 +74,7 @@
 
         &__body {
           > img {
+            transition: all ease-out .5s;
             width: 100px;
             height: 100px;
           }
