@@ -92,21 +92,21 @@ function PokeStats ({ pokemonStats, diffTo, short }) {
         <span>{pokeStats?.defense.baseValue} {getDiffValue(diffStats?.defense)}</span>
       </div>
       <div className='special-attack'>
-        {short ? <span>SA</span> : <span>Su Att</span>}
+        {short ? <span>SA</span> : <span>Sp Att</span>}
         <PercentageBar className='pokemon-stats__bar'
           colors={['#ff7f51', getDiffColor(diffStats?.specialAttack)]}
           values={[pokeStats?.specialAttack.basePercentage, diffStats?.specialAttack.basePercentage]} />
         <span>{pokeStats?.specialAttack.baseValue} {getDiffValue(diffStats?.specialAttack)}</span>
       </div>
       <div className='special-defense'>
-        {short ? <span>SD</span> : <span>Su Def</span>}
+        {short ? <span>SD</span> : <span>Sp Def</span>}
         <PercentageBar className='pokemon-stats__bar'
           colors={['#e0aaff', getDiffColor(diffStats?.specialDefense)]}
           values={[pokeStats?.specialDefense.basePercentage, diffStats?.specialDefense.basePercentage]} />
         <span>{pokeStats?.specialDefense.baseValue} {getDiffValue(diffStats?.specialDefense)}</span>
       </div>
       <div className='speed'>
-        {short ? <span>SP</span> : <span>Speed</span>}
+        {short ? <span>S</span> : <span>Speed</span>}
         <PercentageBar className='pokemon-stats__bar'
           colors={['#f4d35e', getDiffColor(diffStats?.speed)]}
           values={[pokeStats?.speed.basePercentage, diffStats?.speed.basePercentage]} />

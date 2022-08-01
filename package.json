@@ -15,6 +15,7 @@
     "chart.js": "^3.7.0",
     "idb": "^7.0.2",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "react": "^17.0.2",
     "react-animated-css": "^1.2.1",
     "react-chartjs-2": "^4.0.1",

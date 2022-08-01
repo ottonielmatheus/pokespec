@@ -112,8 +112,8 @@ export const getStatsValue = (stats, field) => {
 }
 
 export const getMainAbility = async (abilities) => {
-  const mainAbility = find(abilities, ['hidden', false])
-  const ability = await pokemonApi.abilities.getByName(mainAbility.name)
+  const mainAbility = find(abilities, ['is_hidden', false])
+  const ability = await pokemonApi.abilities.getByName(mainAbility.ability.name)
   return {
     id: mainAbility.name,
     name: ability.name,
@@ -305,13 +305,16 @@ export const formatPokemon = async (pokemon) => {
   const { weakness, resistance, immune } = await getWeaknessAndResistance(types)
 
   return {
+    ...pokemon,
     avatar: formatSprites(pokemon.sprites),
     formatedName,
     modifier,
     region,
     genre,
     types,
-    effectiveness: getEffectiveness(weakness, resistance, immune),
-    ...pokemon
+    weakness,
+    resistance,
+    immune,
+    effectiveness: getEffectiveness(weakness, resistance, immune)
   }
 }

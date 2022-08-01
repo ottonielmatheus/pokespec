@@ -9,7 +9,7 @@ function GitHubUser ({ username }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(async () => {
-    setUser(await githubApi.getUser(username))
+    setUser(await githubApi.users.get(username))
     setLoading(false)
   }, [])
 
