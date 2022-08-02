@@ -5,7 +5,6 @@ import pokeTypeMapper from './mappers/pokemon-types.mapper'
 import getHabitatImage from '../components/shared/habitats'
 import getShapeImage from '../components/shared/shapes'
 import getCharacteristicImage from '../components/shared/characteristics'
-import defaultPokemonImage from './../components/shared/not-found-pikachu.png'
 
 import pokemonApi from './apis/pokemon.api'
 
@@ -287,8 +286,7 @@ export const formatVarieties = (varieties) => {
 export const formatSprites = (sprites) => {
   const avatars = [
     sprites?.other['official-artwork']?.front_default,
-    sprites?.front_default,
-    defaultPokemonImage
+    sprites?.front_default
   ]
   return {
     artwork: avatars[0],

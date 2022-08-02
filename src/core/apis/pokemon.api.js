@@ -20,6 +20,7 @@ const querify = (limit, skip) => {
 const request = async uri => {
   if (!uri) return null
   const res = await fetch(uri)
+  if (!res.ok) return null
   return await res.json()
 }
 

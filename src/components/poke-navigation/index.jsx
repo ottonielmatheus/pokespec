@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BsCaretLeftFill, BsCaretRightFill } from 'react-icons/bs'
 import ReactLoading from 'react-loading'
-import _ from 'lodash'
+import { capitalize, padStart } from 'lodash'
 
 import { store } from '../../core/storage'
 import { usePokemonContext } from '../../contexts/pokemon.context'
@@ -69,21 +69,21 @@ function PokeNavigation ({ current }) {
           previousPokemon ?
           <div className='navigation__previous' onClick={goPreviousPokemon}>
             <BsCaretLeftFill size={22} />
-            <span className='pokemon-name'>{_.capitalize(previousPokemon?.name)}</span>
-            <span>#{previousPokemon?.id}</span>
+            <span className='pokemon-name'>{capitalize(previousPokemon?.name)}</span>
+            <span>#{padStart(previousPokemon?.id, 3, '0')}</span>
           </div>
           : null
         }
         <div className='navigation__current'>
-          <span className='pokemon-name'>{_.capitalize(currentPokemon?.name)}</span>
-          <span>#{currentPokemon?.id}</span>
+          <span className='pokemon-name'>{capitalize(currentPokemon?.name)}</span>
+          <span>#{padStart(currentPokemon?.id, 3, '0')}</span>
         </div>
         {
           loading ? <ReactLoading className='loading' type='bubbles' /> :
           nextPokemon ?
           <div className='navigation__next' onClick={goNextPokemon}>
-            <span className='pokemon-name'>{_.capitalize(nextPokemon?.name)}</span>
-            <span>#{nextPokemon?.id}</span>
+            <span className='pokemon-name'>{capitalize(nextPokemon?.name)}</span>
+            <span>#{padStart(nextPokemon?.id, 3, '0')}</span>
             <BsCaretRightFill size={22} />
           </div>
           : null

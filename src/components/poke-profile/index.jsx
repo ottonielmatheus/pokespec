@@ -7,6 +7,7 @@ import './index.scss'
 import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
 import PokeBadge from '../../components/poke-badge'
+import DefaultPokemonImage from './../shared/default-pokemon-image'
 
 function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses = false }) {
   const { loading } = usePokemonContext()
@@ -42,10 +43,11 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
             </div>
           </div>
           <div className='poke-profile__body'>
-            <img alt={poke?.formatedName} src={poke?.avatar.any}/>
+            <DefaultPokemonImage className='poke-profile__body__background' />
+            {poke?.avatar.any && <img className='poke-profile__body__avatar' alt={poke?.formatedName} src={poke?.avatar.any}/>}
             <div className='poke-profile__body__measures'>
-              <span>{(poke?.height * 0.32808).toFixed(1).replace('.0', '')}&quot;</span>
-              <span>{Math.round(poke?.weight / 4.536)} lbs</span>
+              <span>{(poke?.height / 10).toFixed(1).replace('.0', '')}m</span>
+              <span>{Math.round(poke?.weight / 10)}kg</span>
             </div>
             {stats && <PokeStats short={short} pokemonStats={poke?.stats} diffTo={diff?.stats} />}
           </div>
@@ -53,7 +55,10 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
             weaknesses &&
             <div className='poke-profile__footer'>
               <div className='poke-profile__footer__damage-table'>
-                <span>weaknesses</span>
+                <div className='poke-profile__footer__damage-table__header'>
+                  <span>resistent</span>
+                  <span>weak</span>
+                </div>
                 <div className='poke-profile__footer__damage-table__elements'>
                   <div>
                     <small>x0</small>

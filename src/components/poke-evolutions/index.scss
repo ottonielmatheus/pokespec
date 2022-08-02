@@ -37,6 +37,15 @@
           height: 100px;
         }
 
+        .default {
+          width: 90px;
+          height: 90px;
+
+          path {
+            fill: var(--third-color);
+          }
+        }
+
         &:hover {
           transition: opacity 0.5s;
           opacity: 0.5;

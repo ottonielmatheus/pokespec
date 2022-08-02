@@ -61,8 +61,8 @@
 
       &:hover {
         .poke-profile__body {
-          > img {
-            transform: scale(1.5);
+          &__avatar {
+            transform: scale(1.3);
           }
         }
       }
@@ -73,7 +73,7 @@
         }
 
         &__body {
-          > img {
+          > img, svg {
             transition: all ease-out .5s;
             width: 100px;
             height: 100px;

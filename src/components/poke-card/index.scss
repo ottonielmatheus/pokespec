@@ -96,7 +96,7 @@ $eternamax-card-color: #0cbaba;
 
     font-weight: 600;
     font-size: 12px;
-    color: white;
+    color: var(--font-color);
     text-shadow: 0px 1px 2px black;
   }
 
@@ -113,7 +113,7 @@ $eternamax-card-color: #0cbaba;
       width: 25px;
       height: 25px;
 
-      border: solid 4px rgb(22, 22, 22);
+      border: solid 4px var(--primary-color);
       background-color: $default-card-color;
       border-radius: 50%;
 
@@ -164,7 +164,7 @@ $eternamax-card-color: #0cbaba;
           height: 22px;
           margin: 1px;
           border-radius: 50%;
-          border: solid 3px rgb(22, 22, 22);
+          border: solid 3px var(--primary-color);
           background-color: $default-card-color;
         }
       }
@@ -273,7 +273,7 @@ $eternamax-card-color: #0cbaba;
         justify-content: space-between;
 
         font-size: 12px;
-        color: #fff;
+        color: var(--font-color);
         transform: skewX(20deg);
       }
 
