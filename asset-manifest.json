@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pokespec/static/css/main.6be1ca54.css",
-    "main.js": "/pokespec/static/js/main.d27b2e69.js",
+    "main.css": "/pokespec/static/css/main.c0cf7e2d.css",
+    "main.js": "/pokespec/static/js/main.c5a2f3ad.js",
     "static/js/8335.877435c2.chunk.js": "/pokespec/static/js/8335.877435c2.chunk.js",
     "static/js/4640.8734061a.chunk.js": "/pokespec/static/js/4640.8734061a.chunk.js",
     "static/js/9102.92701e7d.chunk.js": "/pokespec/static/js/9102.92701e7d.chunk.js",
@@ -64,9 +64,7 @@
     "static/js/9381.08bf4e40.chunk.js": "/pokespec/static/js/9381.08bf4e40.chunk.js",
     "static/js/5295.3a2354c8.chunk.js": "/pokespec/static/js/5295.3a2354c8.chunk.js",
     "static/js/6247.86f49a1e.chunk.js": "/pokespec/static/js/6247.86f49a1e.chunk.js",
-    "static/js/4409.dc415c59.chunk.js": "/pokespec/static/js/4409.dc415c59.chunk.js",
     "static/js/3805.de3569f7.chunk.js": "/pokespec/static/js/3805.de3569f7.chunk.js",
-    "static/js/2586.dbaff39a.chunk.js": "/pokespec/static/js/2586.dbaff39a.chunk.js",
     "static/js/8530.cd0e5dc2.chunk.js": "/pokespec/static/js/8530.cd0e5dc2.chunk.js",
     "static/js/1667.edad58fd.chunk.js": "/pokespec/static/js/1667.edad58fd.chunk.js",
     "static/js/6086.6ed924a5.chunk.js": "/pokespec/static/js/6086.6ed924a5.chunk.js",
@@ -77,7 +75,6 @@
     "static/media/ash-about.png": "/pokespec/static/media/ash-about.da9ca4aa6f00d3872e4d.png",
     "static/media/forest-habitat.jpg": "/pokespec/static/media/forest-habitat.878ffcc4aa3d4edc109e.jpg",
     "static/media/rare-habitat.jpg": "/pokespec/static/media/rare-habitat.be69926ab22874418d13.jpg",
-    "static/media/galar.png": "/pokespec/static/media/galar.22db2735fda9303200c6.png",
     "static/media/unknowed-habitat.jpg": "/pokespec/static/media/unknowed-habitat.097c5b29e45ef501d340.jpg",
     "static/media/cave-habitat.jpg": "/pokespec/static/media/cave-habitat.1033c4a90a1108812538.jpg",
     "static/media/grassland-habitat.jpg": "/pokespec/static/media/grassland-habitat.9da8747668646d7a7066.jpg",
@@ -88,7 +85,6 @@
     "static/media/not-found-pikachu.png": "/pokespec/static/media/not-found-pikachu.dba7859995a47e366312.png",
     "static/media/pokemon-logo.png": "/pokespec/static/media/pokemon-logo.9dc16171f2cf9c91f9c2.png",
     "static/media/legendary.png": "/pokespec/static/media/legendary.675608e448819d60d8e0.png",
-    "static/media/alola.png": "/pokespec/static/media/alola.cb4ff02ed372fcd16380.png",
     "static/media/logo.png": "/pokespec/static/media/logo.05d95836d974efb69f15.png",
     "static/media/nintendo-logo.png": "/pokespec/static/media/nintendo-logo.8abef6518ec066f9a26e.png",
     "static/media/psychic.jpg": "/pokespec/static/media/psychic.609c2f1f6b47df671164.jpg",
@@ -110,11 +106,11 @@
     "static/media/dark.jpg": "/pokespec/static/media/dark.ab3006658828e87d52b4.jpg",
     "static/media/grass.jpg": "/pokespec/static/media/grass.31e176799dfb7f34aa90.jpg",
     "index.html": "/pokespec/index.html",
-    "main.6be1ca54.css.map": "/pokespec/static/css/main.6be1ca54.css.map",
-    "main.d27b2e69.js.map": "/pokespec/static/js/main.d27b2e69.js.map"
+    "main.c0cf7e2d.css.map": "/pokespec/static/css/main.c0cf7e2d.css.map",
+    "main.c5a2f3ad.js.map": "/pokespec/static/js/main.c5a2f3ad.js.map"
   },
   "entrypoints": [
-    "static/css/main.6be1ca54.css",
-    "static/js/main.d27b2e69.js"
+    "static/css/main.c0cf7e2d.css",
+    "static/js/main.c5a2f3ad.js"
   ]
 }
