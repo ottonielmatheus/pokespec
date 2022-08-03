@@ -11,6 +11,7 @@ import PokeAbilities from '../../components/poke-abilities'
 import PokeEvolutions from '../../components/poke-evolutions'
 import PokeItems from '../../components/poke-items'
 import PokeVarieties from '../../components/poke-varieties'
+import PokeForms from '../../components/poke-forms'
 import PokeNavigation from '../../components/poke-navigation'
 import PokeShape from '../../components/poke-shape'
 import PokeProfile from '../../components/poke-profile'
@@ -75,6 +76,10 @@ function PokemonDetails () {
             {
               pokemon?.species.varieties.length > 1 &&
               <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
+            }
+            {
+              pokemon?.forms.length > 1 &&
+              <PokeForms pokemon={pokemon} pokemonForms={pokemon?.forms} />
             }
             {
               pokemon?.held_items.length > 0 &&

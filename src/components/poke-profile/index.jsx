@@ -28,7 +28,7 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
             <span className='poke-profile__header__name'>
               {poke?.formatedName}
               {!short && poke?.modifier && <PokeBadge type='text' badge={poke?.modifier} />}
-              {!short && poke?.region && <PokeBadge type='text' badge={poke?.region} />}
+              {poke?.region && <PokeBadge type='text' badge={poke?.region} />}
             </span>
             <div className='poke-profile__header__types'>
               {
@@ -46,8 +46,8 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
             <DefaultPokemonImage className='poke-profile__body__background' />
             {poke?.avatar.any && <img className='poke-profile__body__avatar' alt={poke?.formatedName} src={poke?.avatar.any}/>}
             <div className='poke-profile__body__measures'>
-              <span>{(poke?.height / 10).toFixed(1).replace('.0', '')}m</span>
-              <span>{Math.round(poke?.weight / 10)}kg</span>
+              {poke?.height && <span>{(poke?.height / 10).toFixed(1).replace('.0', '')}m</span>}
+              {poke?.weight && <span>{Math.round(poke?.weight / 10)}kg</span>}
             </div>
             {stats && <PokeStats short={short} pokemonStats={poke?.stats} diffTo={diff?.stats} />}
           </div>

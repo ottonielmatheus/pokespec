@@ -33,7 +33,7 @@ function PokeBadge ({ badge, type = 'full' }) {
             </div>
           }
           >
-          <img className={`poke-badge__image ${badge}`} src={badgeImage} alt={badge} />
+          {badgeImage && <img className={`poke-badge__image ${badge}`} src={badgeImage} alt={badge} />}
         </Tippy>
       }
       {

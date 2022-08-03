@@ -55,7 +55,8 @@ export const formatName = (name) => {
 
   const regions = [
     { name: 'alola', regex: /(-alola)/ },
-    { name: 'galar', regex: /(-galar)/ }
+    { name: 'galar', regex: /(-galar)/ },
+    { name: 'hisui', regex: /(-hisui)/ },
   ]
 
   const modifiers = [
@@ -69,7 +70,7 @@ export const formatName = (name) => {
   const pokeRegion = find(regions, region => region.regex.test(name))
   const pokeModifier = find(modifiers, modifier => modifier.regex.test(name))
 
-  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar)$/, '')
+  const formatedName = name.replace(/(-f|-m|-mega|-mega-x|-mega-y|-gmax|-eternamax|-alola|-galar|-hisui)$/, '')
     .split('-')
     .map(capitalize)
     .join(' ')
@@ -285,7 +286,7 @@ export const formatVarieties = (varieties) => {
 
 export const formatSprites = (sprites) => {
   const avatars = [
-    sprites?.other['official-artwork']?.front_default,
+    sprites?.other?.['official-artwork']?.front_default,
     sprites?.front_default
   ]
   return {

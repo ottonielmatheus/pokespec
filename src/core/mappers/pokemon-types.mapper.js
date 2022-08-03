@@ -145,6 +145,14 @@ const pokeTypeMapper = {
     weakness: ['grass', 'electric'],
     resistance: ['steel', 'fire', 'water', 'ice'],
     immune: []
+  },
+  unknown: {
+    color: '#68a090',
+    icon: null,
+    background: null,
+    weakness: [],
+    resistance: [],
+    immune: []
   }
 }
 

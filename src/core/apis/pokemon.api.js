@@ -21,7 +21,7 @@ const request = async uri => {
   if (!uri) return null
   const res = await fetch(uri)
   if (!res.ok) return null
-  return await res.json()
+  return res.json()
 }
 
 const formatWith = (formatterFunction, requestFunctions) => {
@@ -29,7 +29,7 @@ const formatWith = (formatterFunction, requestFunctions) => {
   for (const requestKey of Object.keys(requestFunctions)) {
     requests[requestKey] = async (...args) => {
       const resource = await requestFunctions[requestKey](...args)
-      return await formatterFunction(resource)
+      return formatterFunction(resource)
     }
   }
   return requests
@@ -37,24 +37,24 @@ const formatWith = (formatterFunction, requestFunctions) => {
 
 const getAll = async ({ skip, limit, next }) => {
   const uri = next || API_URL + 'pokemon' + querify(limit, skip)
-  return await request(uri)
+  return request(uri)
 }
 
 const getById = async (id) => {
-  return await request(API_URL + `pokemon/${id}`)
+  return request(API_URL + `pokemon/${id}`)
 }
 
 const getPokemonByName = async (name) => {
   if (!name) return null
-  return await request(API_URL + `pokemon/${name}`)
+  return request(API_URL + `pokemon/${name}`)
 }
 
 const getAbilityByName = async (name) => {
-  return await request(API_URL + `ability/${name}`)
+  return request(API_URL + `ability/${name}`)
 }
 
 const getMoveByName = async (name) => {
-  return await request(API_URL + `move/${name}`)
+  return request(API_URL + `move/${name}`)
 }
 
 export default {
@@ -80,6 +80,9 @@ export default {
     getByUrl: request
   }),
   items: formatWith(formatItem, {
+    getByUrl: request
+  }),
+  forms: formatWith(formatPokemon, {
     getByUrl: request
   })
 }

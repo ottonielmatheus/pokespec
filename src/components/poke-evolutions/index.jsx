@@ -26,11 +26,16 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
 
     const regionPokemonName = chain.pokemon.name + (pokemon.region ? `-${pokemon.region}` : '')
 
-    if (pokemon?.name === regionPokemonName) {
+    if ([regionPokemonName, chain.pokemon.name].includes(pokemon?.name)) {
       chain.pokemon = pokemon
     } else {
+      const chainPokemonName = chain.pokemon.name
       chain.pokemon = await pokemonApi.pokemons.getByName(regionPokemonName)
-        || await pokemonApi.pokemons.getByName(chain.pokemon.name)
+        || await pokemonApi.pokemons.getByName(chainPokemonName)
+
+      if (!chain.pokemon && pokemon?.name.includes(chainPokemonName)) {
+        chain.pokemon = pokemon
+      }
     }
 
     chain.next = await Promise.all(chain.next.map(downloadEvolutions))
