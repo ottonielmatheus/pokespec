@@ -148,7 +148,7 @@ const pokeTypeMapper = {
   },
   unknown: {
     color: '#68a090',
-    icon: null,
+    icon: getIcon('unknown'),
     background: null,
     weakness: [],
     resistance: [],
