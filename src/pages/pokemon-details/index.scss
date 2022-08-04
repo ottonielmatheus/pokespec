@@ -150,7 +150,7 @@
             box-sizing: border-box;
           }
 
-          .poke-varieties {
+          .poke-varieties, .poke-forms {
             padding: 0;
 
             > div {
@@ -161,7 +161,7 @@
               grid-template-columns: repeat(auto-fit, minmax(292.6px, auto));
             }
 
-            .variety {
+            .variety, .form {
               width: 100%;
               border-radius: 0;
             }
