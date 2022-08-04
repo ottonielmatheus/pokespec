@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, BrowserRouter, Route } from 'react-router-dom'
+import { Routes, HashRouter, Route } from 'react-router-dom'
 
 import NotFound from './pages/errors/404'
 import Home from './pages/home'
@@ -14,7 +14,7 @@ function App () {
   return (
   <>
     <PokemonContextProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Routes>
           <Route path='*' element={<NotFound />} />
@@ -23,7 +23,7 @@ function App () {
           <Route path='pokemons/:pokemonName' element={<PokemonDetails />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </PokemonContextProvider>
   </>
   )
