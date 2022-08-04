@@ -27,7 +27,7 @@ function Footer () {
             <div className='container__project__header__gh'>
               <span><BiGitRepoForked size={24} /> {repo?.forks}</span>
               <span><AiFillStar size={24} /> {repo?.stargazers_count}</span>
-              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues_count}</a>
+              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues}</a>
             </div>
           </div>
           <p>{repo?.description}</p>

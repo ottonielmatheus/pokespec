@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
-import { Link } from 'react-router-dom'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -51,9 +50,7 @@ function PokeForms ({ pokemonForms }) {
         {pokeForms?.map((form, index) => (
           <Fade key={index}>
             <div className='form'>
-              <Link to={`/pokemons/${form.name}`}>
-                <PokeProfile short pokemon={form} />
-              </Link>
+              <PokeProfile short pokemon={form} />
             </div>
           </Fade>
         ))}
