@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {  BsGithub, BsLinkedin } from 'react-icons/bs'
-import { BiGitRepoForked } from 'react-icons/bi'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { AiFillStar } from 'react-icons/ai'
 
@@ -25,9 +24,8 @@ function Footer () {
           <div className='container__project__header'>
             <img src={projectLogo} alt='project logo' />
             <div className='container__project__header__gh'>
-              <span><BiGitRepoForked size={24} /> {repo?.forks}</span>
               <span><AiFillStar size={24} /> {repo?.stargazers_count}</span>
-              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues}</a>
+              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues - 1}</a>
             </div>
           </div>
           <p>{repo?.description}</p>

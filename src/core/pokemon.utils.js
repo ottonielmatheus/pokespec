@@ -210,7 +210,14 @@ export const getEffectiveness = (weakness, resistance, immune) => {
 export const formatEvolution = ({ chain }) => {
   if (!chain) return null
   return {
-    trigger: chain.evolution_details[0]?.trigger?.name,
+    evolves: {
+      trigger: chain.evolution_details[0]?.trigger?.name,
+      onLevel: chain.evolution_details[0]?.min_level,
+      withItem: {
+        name: chain.evolution_details[0]?.item?.name,
+        url: chain.evolution_details[0]?.item?.url
+      }
+    },
     pokemon: { name: chain.species.name },
     next: chain.evolves_to.map(chain => formatEvolution({ chain }))
   }
@@ -293,6 +300,13 @@ export const formatSprites = (sprites) => {
     artwork: avatars[0],
     default: avatars[1],
     any: avatars.find(Boolean)
+  }
+}
+
+export const formatGameVersion = (game) => {
+  return {
+    name: game.name,
+    group: game.version_group.name
   }
 }
 

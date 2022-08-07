@@ -20,7 +20,7 @@
       gap: 8px;
       border-radius: 5px;
 
-      .evolution-node-pokemon {
+      &-pokemon {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -52,7 +52,14 @@
         }
       }
 
-      .evolution-node-nexts {
+      &-arrow {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      &-nexts {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap-reverse;
@@ -69,6 +76,46 @@
       > div {
         display: flex;
         align-items: center;
+      }
+    }
+  }
+}
+
+.tippy-tooltip {
+  background-color: var(--primary-color);
+  color: var(--font-color);
+
+  &.evolution-theme {
+    margin: 20px !important;
+    border: solid .5px !important;
+    border-radius: 5px !important;
+    border-color: var(--secondary-color) !important;
+
+    &--first-node {
+      display: none;
+    }
+
+    .evolves {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+
+      .extra {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--use-item {
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }
