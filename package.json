@@ -1,6 +1,6 @@
 {
-  "homepage": "www.pokespec.com",
-  "name": "pokedex",
+  "homepage": "https://www.pokespec.com",
+  "name": "pokespec",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
