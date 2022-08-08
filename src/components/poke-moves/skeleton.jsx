@@ -3,7 +3,7 @@ import React from 'react'
 function PokeMovesSkeleton () {
   return (
     <div className='skeleton' style={{ display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '52px' }}>
         <span style={{ width: '64px', height: '20px' }}></span>
         <span style={{ width: '5%', height: '10px' }}></span>
       </div>

@@ -91,6 +91,7 @@
   #pokemon-details {
     position: relative;
     width: 100% !important;
+    gap: var(--global-gap);
 
     flex-direction: column;
     box-sizing: border-box;
@@ -123,6 +124,40 @@
         box-sizing: border-box;
 
         overflow-y: auto;
+
+        .poke-moves {
+          &__header {
+            display: grid;
+            gap: 8px;
+            grid-template-columns: 1fr 3fr auto;
+
+            &__filters {
+              grid-column: span 3;
+              grid-row: 2;
+            }
+
+            .total-items {
+              grid-column: 3;
+            }
+          }
+
+          .move {
+            &-header {
+              row-gap: 8px;
+
+              &-tags {
+                grid-column: span 3;
+                grid-row: 2;
+                justify-self: flex-start;
+              }
+
+              &-values {
+                grid-column: 3;
+                grid-row: 1;
+              }
+            }
+          }
+        }
       }
     }
 

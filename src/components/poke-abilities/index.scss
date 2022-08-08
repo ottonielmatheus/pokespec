@@ -2,6 +2,7 @@
 
 .poke-abilities {
   &__header {
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,6 +38,12 @@
 
       &-description {
         padding: 14px;
+      }
+
+      &-visibility {
+        border-radius: 2px;
+        background-color: var(--secondary-color);
+        padding: 3px 6px 3px 6px;
       }
     }
   }

@@ -44,8 +44,6 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
       chain.evolves.withItem = await pokemonApi.items.getByUrl(chain.evolves.withItem.url)
     }
 
-    console.log(chain.evolves)
-
     chain.next = await Promise.all(chain.next.map(downloadEvolutions))
     return chain
   }
@@ -68,11 +66,8 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
                       <div className='trigger'>
                         <span>on</span>
                         {{
-                          'level-up': <strong>level up</strong>,
-                          'use-item': <strong>use item</strong>,
-                          'trade': <strong>trade</strong>,
-                          'take-damage': <strong>take damage</strong>
-                        }[chain.evolves?.trigger]}
+                          'three-critical-hits': <strong>3x critial hits</strong>
+                        }[chain.evolves?.trigger] || <strong>{chain.evolves?.trigger?.split('-').join(' ')}</strong>}
                       </div>
                       <div className='extra'>
                         {

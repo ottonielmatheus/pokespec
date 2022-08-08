@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { sortBy } from 'lodash'
 
 import pokemonApi from '../../core/apis/pokemon.api'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 
 import './index.scss'
+import PokeNavigation from '../../components/poke-navigation'
+import GameVersions from '../../components/game-versions'
 import PokeMoves from './../../components/poke-moves'
 import PokeAbilities from '../../components/poke-abilities'
 import PokeEvolutions from '../../components/poke-evolutions'
 import PokeItems from '../../components/poke-items'
 import PokeVarieties from '../../components/poke-varieties'
 import PokeForms from '../../components/poke-forms'
-import PokeNavigation from '../../components/poke-navigation'
 import PokeShape from '../../components/poke-shape'
 import PokeProfile from '../../components/poke-profile'
 
@@ -36,9 +36,6 @@ function PokemonDetails () {
       goNotFound()
     }
 
-    poke.moves = sortBy(poke.moves, [item => item.move.name])
-    poke.abilities = sortBy(poke.abilities, [item => item.ability.name])
-
     poke.species = await pokemonApi.species.getByUrl(poke.species.url)
     poke.evolutions = await pokemonApi.evolution.getByUrl(poke.species.evolutionChain?.url)
 
@@ -53,6 +50,7 @@ function PokemonDetails () {
   return (
     <section id="pokemon-details">
       <PokeNavigation current={pokemon} />
+      <GameVersions versions={pokemon?.game_indices} />
       <div className='pokemon'>
         <PokeProfile stats weaknesses pokemon={pokemon} />
         <div className='pokemon__info'>

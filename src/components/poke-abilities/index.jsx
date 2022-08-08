@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
+import { sortBy } from 'lodash'
 
 import './index.scss'
 import PokeMovesSkeleton from './../poke-moves/skeleton'
@@ -14,7 +15,8 @@ function PokeAbilities ({ pokemonAbilities }) {
   const [pokeAbilities, setPokeAbilities] = useState()
 
   useEffect(async () => {
-    await getAbilitiesDetails(pokemonAbilities?.slice(0, 2))
+    const abilities = sortBy(pokemonAbilities, [item => item.ability.name])
+    await getAbilitiesDetails(abilities?.slice(0, 2))
   }, [pokemonAbilities])
 
   const getAbilitiesDetails = async (abilities, isToAppend = false) => {
@@ -53,7 +55,7 @@ function PokeAbilities ({ pokemonAbilities }) {
             <div className='ability'>
               <div className='ability-header'>
                 <span className='ability-name'>{ability.name}</span>
-                <small className='ability-visibility'>{ability.hidden ? 'hidden' : ''}</small>
+                {ability.hidden && <small className='ability-visibility'>hidden</small>}
               </div>
               <span className='ability-description'>{ability.shortDescription || <i>nothing about.</i>}</span>
             </div>

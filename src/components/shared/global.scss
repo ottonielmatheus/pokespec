@@ -1,5 +1,9 @@
 $header-height: 72px;
 
+:root {
+  --global-gap: 8px;
+}
+
 html {
   color: var(--font-color);
 

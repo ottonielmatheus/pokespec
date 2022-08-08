@@ -5,7 +5,8 @@ import {
   formatItem,
   formatMove,
   formatPokemon,
-  formatSpecies
+  formatSpecies,
+  formatGameVersion
 } from './../pokemon.utils'
 
 const querify = (limit, skip) => {
@@ -83,6 +84,9 @@ export default {
     getByUrl: request
   }),
   forms: formatWith(formatPokemon, {
+    getByUrl: request
+  }),
+  games: formatWith(formatGameVersion, {
     getByUrl: request
   })
 }

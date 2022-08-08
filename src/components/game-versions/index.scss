@@ -1,0 +1,23 @@
+.games-versions {
+  width: 30%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+}
+
+@media (min-width: 320px) and (max-width: 1200px) {
+  .games-versions {
+    margin-top: var(--global-gap);
+    width: 100%;
+    height: 52px;
+
+    > div {
+      width: 100%;
+
+      > div {
+        border-radius: 0;
+      }
+    }
+  }
+}

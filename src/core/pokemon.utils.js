@@ -8,6 +8,10 @@ import getCharacteristicImage from '../components/shared/characteristics'
 
 import pokemonApi from './apis/pokemon.api'
 
+export const fromVersion = (versionList, version) => {
+  return find(versionList, data => data.version_group.name === version)
+}
+
 export const mapElementType = async (typeName) => {
   const type = pokeTypeMapper[typeName]
   return {
@@ -142,6 +146,7 @@ export const formatMove = async (move) => {
   return {
     id: move.name,
     name: i18n(move.names).name,
+    category: move.damage_class.name,
     description: i18n(move.effect_entries)?.effect,
     shortDescription: i18n(move.effect_entries)?.short_effect,
     type: await formatType(move.type),

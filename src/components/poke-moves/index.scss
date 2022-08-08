@@ -1,4 +1,4 @@
-@use './../shared/global.scss' as global;
+$input-size: 42px;
 
 .poke-moves {
   display: flex;
@@ -6,6 +6,7 @@
   gap: 8px;
 
   &__header {
+    min-height: 42px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,6 +14,12 @@
     > span {
       font-size: 18px;
       font-weight: 600;
+    }
+
+    &__filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
   }
 
@@ -29,39 +36,70 @@
 
       &-header {
         width: 100%;
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 3fr 1.5fr auto;
         justify-content: space-between;
         border-bottom: solid .5px;
         padding: 8px 14px;
         box-sizing: border-box;
         border-color: var(--primary-color);
+        gap: 4px;
 
         img {
           width: 22px;
           height: 22px;
         }
 
-        &-values {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          gap: 22px;
-
-          > div {
-            > span {
-              display: flex;
-              align-items: center;
-              gap: 6px;
-            }
-          }
-        }
-
         &-name {
           display: flex;
           align-items: center;
           gap: 12px;
+        }
+
+        &-tags {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 4px;
+
+          > small {
+            font-weight: 600;
+            border-radius: 2px;
+            background-color: var(--secondary-color);
+            padding: 3px 6px 3px 6px;
+            overflow: hidden;
+          }
+
+          .category {
+            &-physical {
+              color: #fff;
+              background-color: #eb5a68 !important;
+            }
+
+            &-special {
+              color: #fff;
+            }
+
+            &-status {
+              color: #fff;
+              background-color: #8b79d9 !important;
+            }
+          }
+        }
+
+        &-values {
+          align-self: flex-end;
+
+          .pp {
+            width: 38px;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            border-radius: 2px;
+            background-image: linear-gradient(-68deg, var(--primary-color) 50%, var(--secondary-color) 50%);
+            padding: 3px 6px;
+            overflow: hidden;
+          }
         }
       }
 
@@ -104,4 +142,12 @@
       opacity: 0.5;
     }
   }
+}
+
+.select-move-categories {
+  min-width: 100px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
