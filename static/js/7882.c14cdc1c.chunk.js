@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[7882],{7882:function(e,p,s){e.exports=s.p+"static/media/ice.d419f0b97bad577dfd30.jpg"}}]);

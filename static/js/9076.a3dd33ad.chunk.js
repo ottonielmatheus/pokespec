@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[9076],{9076:function(e,p,c){e.exports=c.p+"static/media/psychic.609c2f1f6b47df671164.jpg"}}]);

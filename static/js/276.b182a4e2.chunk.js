@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpokedex=self.webpackChunkpokedex||[]).push([[276],{276:function(e,a,p){e.exports=p.p+"static/media/urban-habitat.1284a088c01431fae7ac.jpg"}}]);

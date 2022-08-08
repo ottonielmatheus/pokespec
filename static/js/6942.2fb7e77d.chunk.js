@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[6942],{6942:function(e,p,s){e.exports=s.p+"static/media/1-waters-edge-habitat.ff592dd9bbba54d487a8.jpg"}}]);

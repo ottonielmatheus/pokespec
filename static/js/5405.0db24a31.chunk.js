@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[5405],{5405:function(e,p,s){e.exports=s.p+"static/media/unknowed-habitat.097c5b29e45ef501d340.jpg"}}]);

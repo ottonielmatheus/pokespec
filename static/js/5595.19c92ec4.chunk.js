@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[5595],{5595:function(e,c,p){e.exports=p.p+"static/media/forest-habitat.878ffcc4aa3d4edc109e.jpg"}}]);

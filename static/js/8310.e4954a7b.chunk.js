@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[8310],{8310:function(e,p,s){e.exports=s.p+"static/media/sea-habitat.163dc9e2e8a57add317d.jpg"}}]);

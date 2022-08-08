@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[174],{174:function(e,s,a){e.exports=a.p+"static/media/grassland-habitat.9da8747668646d7a7066.jpg"}}]);

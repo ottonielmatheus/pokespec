@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[8591],{8591:function(e,p,a){e.exports=a.p+"static/media/cave-habitat.1033c4a90a1108812538.jpg"}}]);

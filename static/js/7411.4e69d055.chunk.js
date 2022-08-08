@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[7411],{7411:function(e,p,s){e.exports=s.p+"static/media/fairy.0b113e09b7596452bb12.jpg"}}]);

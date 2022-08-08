@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpokespec=self.webpackChunkpokespec||[]).push([[1372],{1372:function(e,p,s){e.exports=s.p+"static/media/rare-habitat.be69926ab22874418d13.jpg"}}]);
