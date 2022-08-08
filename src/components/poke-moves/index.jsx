@@ -107,6 +107,8 @@ function PokeMoves ({ pokemonMoves }) {
                         }
                       </small>
                     }
+                  </div>
+                  <div className='move-header-values'>
                     {
                       move?.category &&
                       <small className={`category-${move.category}`}
@@ -114,8 +116,6 @@ function PokeMoves ({ pokemonMoves }) {
                         {move.category}
                       </small>
                     }
-                  </div>
-                  <div className='move-header-values'>
                     {
                       move?.pp &&
                       <small className='pp' style={{ color: move?.type?.color }}>

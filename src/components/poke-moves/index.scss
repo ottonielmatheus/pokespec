@@ -56,6 +56,15 @@ $input-size: 42px;
           height: 22px;
         }
 
+        > div {
+          > small {
+            font-weight: 600;
+            border-radius: 2px;
+            background-color: var(--secondary-color);
+            padding: 3px 6px 3px 6px;
+          }
+        }
+
         &-name {
           display: flex;
           align-items: center;
@@ -67,14 +76,12 @@ $input-size: 42px;
           align-items: center;
           justify-content: flex-end;
           gap: 4px;
+        }
 
-          > small {
-            font-weight: 600;
-            border-radius: 2px;
-            background-color: var(--secondary-color);
-            padding: 3px 6px 3px 6px;
-            overflow: hidden;
-          }
+        &-values {
+          display: flex;
+          align-self: flex-end;
+          gap: 4px;
 
           .category {
             &-physical {
@@ -91,10 +98,6 @@ $input-size: 42px;
               background-color: #8b79d9 !important;
             }
           }
-        }
-
-        &-values {
-          align-self: flex-end;
 
           .pp {
             min-width: 38px;
