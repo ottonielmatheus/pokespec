@@ -12,7 +12,6 @@ import PokeMovesSkeleton from './skeleton'
 import CustomSelect from './../shared/custom-select'
 
 function PokeMoves ({ pokemonMoves }) {
-  const selectedMoveLearnMethods = null
   const { loading: rootLoading, gameVersion } = usePokemonContext()
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeMoves, setPokeMoves] = useState([])
@@ -31,7 +30,7 @@ function PokeMoves ({ pokemonMoves }) {
       })
 
     if (selectedMethods.length) {
-      moves = moves.filter(item => selectedMethods.includes(item.learnMethod))
+      moves = moves.filter(item => map(selectedMethods, 'value').includes(item.learnMethod))
     }
 
     moves = sortBy(moves, [
@@ -74,13 +73,13 @@ function PokeMoves ({ pokemonMoves }) {
         <div className='poke-moves__header__filters'>
           <CustomSelect isMulti className='select-move-categories'
             placeholder='Select learn methods'
-            useRef={selectedMoveLearnMethods}
             options={[
               { label: 'egg', value: 'egg' },
               { label: 'level-up', value: 'level-up' },
               { label: 'machine', value: 'machine' }
             ]}
-            onChange={(options) => { setSelectedMethods(map(options, 'value')) }}
+            onChange={setSelectedMethods}
+            value={selectedMethods}
           />
         </div>
         <span className='total-items'>{pokeMoves?.length || 0}/{allMoves.length}</span>

@@ -97,7 +97,7 @@ $input-size: 42px;
           align-self: flex-end;
 
           .pp {
-            width: 38px;
+            min-width: 38px;
             display: flex;
             justify-content: space-between;
             gap: 8px;
