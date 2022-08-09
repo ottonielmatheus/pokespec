@@ -91,7 +91,7 @@ const pokeTypeMapper = {
     immune: ['psychic']
   },
   electric: {
-    color: '#f3d23b',
+    color: '#d1ae11',
     icon: getIcon('electric'),
     background: getBackground('electric'),
     weakness: ['ground'],

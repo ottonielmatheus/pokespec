@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
 import { map, sortBy } from 'lodash'
+import { FaBahai } from 'react-icons/fa'
+import { SiTarget } from'react-icons/si'
+import { RiZzzLine } from 'react-icons/ri'
+import Tippy from '@tippyjs/react'
+import { capitalize } from 'lodash'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -90,7 +95,16 @@ function PokeMoves ({ pokemonMoves }) {
             <div className='move'>
               <div className='move-header'>
                 <div className='move-header-name'>
-                  <img src={move?.type?.icon} alt={move?.type} />
+                  <div className='move-type-category'>
+                    <Tippy className='tippy-tooltip-move' arrow={false} content={capitalize(move?.category)}>
+                      <span className={`category ${move?.category}`} style={{ backgroundColor: move?.type?.color }}>
+                        {move?.category === 'physical' && <FaBahai color='#fdec51' />}
+                        {move?.category === 'status' && <RiZzzLine color='#fff' />}
+                        {move?.category === 'special' && <SiTarget color='#fff' />}
+                      </span>
+                    </Tippy>
+                    <img src={move?.type?.icon} alt={move?.type} />
+                  </div>
                   <span style={{ color: move?.type?.color }}>{move?.name}</span>
                 </div>
                 <div className='move-header-tags'>
@@ -109,13 +123,6 @@ function PokeMoves ({ pokemonMoves }) {
                     }
                   </div>
                   <div className='move-header-values'>
-                    {
-                      move?.category &&
-                      <small className={`category-${move.category}`}
-                        style={{ backgroundColor: move?.type?.color }}>
-                        {move.category}
-                      </small>
-                    }
                     {
                       move?.pp &&
                       <small className='pp' style={{ color: move?.type?.color }}>

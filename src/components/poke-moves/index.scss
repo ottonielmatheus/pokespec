@@ -69,6 +69,26 @@ $input-size: 42px;
           display: flex;
           align-items: center;
           gap: 12px;
+
+          .move-type-category {
+            display: flex;
+            gap: 4px;
+
+            .category {
+              width: 22px;
+              height: 22px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              background-color: var(--font-color) !important;
+              opacity: .8;
+
+              svg {
+                fill: var(--third-color) !important;
+              }
+            }
+          }
         }
 
         &-tags {
@@ -83,22 +103,6 @@ $input-size: 42px;
           align-self: flex-end;
           gap: 4px;
 
-          .category {
-            &-physical {
-              color: #fff;
-              background-color: #eb5a68 !important;
-            }
-
-            &-special {
-              color: #fff;
-            }
-
-            &-status {
-              color: #fff;
-              background-color: #8b79d9 !important;
-            }
-          }
-
           .pp {
             min-width: 38px;
             display: flex;
@@ -108,6 +112,7 @@ $input-size: 42px;
             background-image: linear-gradient(-68deg, var(--primary-color) 50%, var(--secondary-color) 50%);
             padding: 3px 6px;
             box-sizing: content-box;
+            text-shadow: 1px 1px 1px var(--text-shadow-color);
           }
         }
       }
@@ -159,4 +164,10 @@ $input-size: 42px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.tippy-tooltip-move {
+  font-weight: 500;
+  color: var(--third-color) !important;
+  background-color: var(--font-color) !important;
 }
