@@ -151,6 +151,7 @@
               }
 
               &-tags {
+                flex-direction: row-reverse;
                 grid-column: span 3;
                 grid-row: 2;
                 justify-self: flex-start;

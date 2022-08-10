@@ -153,7 +153,12 @@ export const formatMove = async (move) => {
     power: move.power,
     effectChance: move.effect_chance,
     accuracy: move.accuracy,
-    pp: move.pp
+    pp: move.pp,
+    effect: {
+      ailment: move.meta?.ailment?.name !== 'none' ? move.meta?.ailment?.name : null,
+      stage: move.stat_changes.length ? move.stat_changes[0].change : null,
+      stat: move.stat_changes.length ? move.stat_changes[0].stat.name.split('-').join(' ') : null
+    }
   }
 }
 

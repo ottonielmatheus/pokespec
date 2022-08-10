@@ -22,10 +22,10 @@ function Footer () {
       <div className='container'>
         <div className='container__project'>
           <div className='container__project__header'>
-            <img src={projectLogo} alt='project logo' />
+            <Link to='/'><img src={projectLogo} alt='project logo' /></Link>
             <div className='container__project__header__gh'>
               <span><AiFillStar size={24} /> {repo?.stargazers_count}</span>
-              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues - 1}</a>
+              <a href={repo?.html_url + '/issues'}><RiErrorWarningLine size={24} /> {repo?.open_issues}</a>
             </div>
           </div>
           <p>{repo?.description}</p>

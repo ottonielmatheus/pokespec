@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import ReactLoading from 'react-loading'
 import { map, sortBy } from 'lodash'
-import { FaBahai } from 'react-icons/fa'
-import { SiTarget } from'react-icons/si'
-import { RiZzzLine } from 'react-icons/ri'
-import Tippy from '@tippyjs/react'
-import { capitalize } from 'lodash'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -15,6 +10,7 @@ import { fromVersion } from '../../core/pokemon.utils'
 import './index.scss'
 import PokeMovesSkeleton from './skeleton'
 import CustomSelect from './../shared/custom-select'
+import MoveDetails from './move-details'
 
 function PokeMoves ({ pokemonMoves }) {
   const { loading: rootLoading, gameVersion } = usePokemonContext()
@@ -28,8 +24,10 @@ function PokeMoves ({ pokemonMoves }) {
       .map(item => {
         const moveDetails = fromVersion(item.version_group_details, gameVersion)
         return {
-          atLevel: moveDetails?.level_learned_at,
-          learnMethod: moveDetails?.move_learn_method?.name,
+          learn: {
+            atLevel: moveDetails?.level_learned_at,
+            method: moveDetails?.move_learn_method?.name
+          },
           move: item.move
         }
       })
@@ -39,8 +37,8 @@ function PokeMoves ({ pokemonMoves }) {
     }
 
     moves = sortBy(moves, [
-      item => item.learnMethod,
-      item => item.atLevel,
+      item => item.learn.method,
+      item => item.learn.atLevel,
       item => item.move.name
     ])
 
@@ -55,8 +53,7 @@ function PokeMoves ({ pokemonMoves }) {
     const requests = moves
       .map(async item => {
         return {
-          atLevel: item.atLevel,
-          learnMethod: item.learnMethod,
+          learn: item.learn,
           ...await pokemonApi.moves.getByName(item.move.name)
         }
       })
@@ -95,32 +92,15 @@ function PokeMoves ({ pokemonMoves }) {
             <div className='move'>
               <div className='move-header'>
                 <div className='move-header-name'>
-                  <div className='move-type-category'>
-                    <Tippy className='tippy-tooltip-move' arrow={false} content={capitalize(move?.category)}>
-                      <span className={`category ${move?.category}`} style={{ backgroundColor: move?.type?.color }}>
-                        {move?.category === 'physical' && <FaBahai color='#fdec51' />}
-                        {move?.category === 'status' && <RiZzzLine color='#fff' />}
-                        {move?.category === 'special' && <SiTarget color='#fff' />}
-                      </span>
-                    </Tippy>
-                    <img src={move?.type?.icon} alt={move?.type} />
-                  </div>
+                  <img src={move?.type?.icon} alt={move?.type} />
                   <span style={{ color: move?.type?.color }}>{move?.name}</span>
                 </div>
                 <div className='move-header-tags'>
-                    {
-                      move?.learnMethod &&
-                      <small>
-                        {
-                          (move?.learnMethod === 'level-up' && move?.atLevel) &&
-                          <span className='value'>lvl. {move?.atLevel}</span>
-                        }
-                        {
-                          move?.learnMethod !== 'level-up' &&
-                          <span>{move?.learnMethod}</span>
-                        }
-                      </small>
-                    }
+                    <MoveDetails type={move?.type}
+                      learn={move?.learn}
+                      category={move?.category}
+                      effect={move?.effect}
+                      power={move?.power} />
                   </div>
                   <div className='move-header-values'>
                     {

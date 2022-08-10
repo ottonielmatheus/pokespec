@@ -1,0 +1,16 @@
+.move-detail {
+  text-shadow: 1px 1px 1px rgb(29, 29, 29);
+  max-height: 24px !important;
+  color: #fff;
+
+  svg {
+    color: #fff !important;
+    filter: drop-shadow(1px 1px 1px rgb(29, 29, 29));
+  }
+}
+
+.tippy-tooltip-move {
+  font-weight: 500;
+  color: var(--third-color) !important;
+  background-color: var(--font-color) !important;
+}
