@@ -17,7 +17,13 @@ function PokeMoves ({ pokemonMoves }) {
   const [loadingMore, setLoadingMore] = useState(false)
   const [pokeMoves, setPokeMoves] = useState([])
   const [allMoves, setAllMoves] = useState(0)
-  const [selectedMethods, setSelectedMethods] = useState([])
+  const [filters, setFilters] = useState([])
+
+  const filterOptions = [
+    { label: 'egg', value: 'egg' },
+    { label: 'level-up', value: 'level-up' },
+    { label: 'machine', value: 'machine' }
+  ]
 
   useEffect(async () => {
     let moves = pokemonMoves
@@ -32,19 +38,17 @@ function PokeMoves ({ pokemonMoves }) {
         }
       })
 
-    if (selectedMethods.length) {
-      moves = moves.filter(item => map(selectedMethods, 'value').includes(item.learnMethod))
-    }
-
     moves = sortBy(moves, [
       item => item.learn.method,
       item => item.learn.atLevel,
       item => item.move.name
     ])
 
+    moves = applyFilters(moves, filters)
+
     setAllMoves(moves)
     await getMovesDetails(moves?.slice(0, 3))
-  }, [pokemonMoves, selectedMethods, gameVersion])
+  }, [pokemonMoves, filters, gameVersion])
 
   const getMovesDetails = async (moves, isToAppend = false) => {
     setLoadingMore(true)
@@ -68,6 +72,16 @@ function PokeMoves ({ pokemonMoves }) {
     setLoadingMore(false)
   }
 
+  const applyFilters = (moves, filters) => {
+    if (filters.length) {
+      moves = moves.filter(move => {
+        const matchLearnMethod = map(filters, 'value').includes(move.learn.method)
+        return matchLearnMethod
+      })
+    }
+    return moves
+  }
+
   return rootLoading ? <PokeMovesSkeleton /> : (
     <div className='poke-moves'>
       <div className='poke-moves__header'>
@@ -75,13 +89,9 @@ function PokeMoves ({ pokemonMoves }) {
         <div className='poke-moves__header__filters'>
           <CustomSelect isMulti className='select-move-categories'
             placeholder='Select learn methods'
-            options={[
-              { label: 'egg', value: 'egg' },
-              { label: 'level-up', value: 'level-up' },
-              { label: 'machine', value: 'machine' }
-            ]}
-            onChange={setSelectedMethods}
-            value={selectedMethods}
+            options={filterOptions}
+            onChange={setFilters}
+            value={filters}
           />
         </div>
         <span className='total-items'>{pokeMoves?.length || 0}/{allMoves.length}</span>

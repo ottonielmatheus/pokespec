@@ -7,7 +7,7 @@ import { capitalize, padStart } from 'lodash'
 import { store } from '../../core/storage'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
-import { setPageTitle } from './../../core/browserfy.utils'
+import { setPageTitle, setPageIcon } from './../../core/browserfy.utils'
 
 import './index.scss'
 import PokeNavigationSkeleton from './skeleton'
@@ -48,6 +48,7 @@ function PokeNavigation ({ current }) {
       store('pokemonsSearch').put(nextPoke)
 
       setPageTitle(current.formatedName)
+      setPageIcon(current.avatar.any)
     }
 
     setLoading(false)
