@@ -69,3 +69,9 @@ API's used:
   - [idb](https://github.com/jakearchibald/idb)
   
 Thanks for [Gustavo Evaristo](https://www.linkedin.com/in/gustavo-evaristo-4b37a3162/) and [Fernando Kanashiro](https://www.linkedin.com/in/fernando-kanashiro/) for some assets in this project.
+
+----------------
+
+<p align="center">
+  <img src="https://img.shields.io/badge/-linkedin-blue?style=for-the-badge&logo=linkedin">
+</p>
