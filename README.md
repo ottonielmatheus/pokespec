@@ -50,12 +50,11 @@ _To start contribuition, you need to clone project, install dependencies and sta
    ```sh
    npm install
    ```
-3. Start app
-```sh
-npm start
-```
+3. Start app, will run in `localhost:3000`
 
-will run in: `localhost:3000`
+    ```sh
+    npm start
+    ```
 
 ## More
 
