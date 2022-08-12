@@ -73,5 +73,5 @@ Thanks for [Gustavo Evaristo](https://www.linkedin.com/in/gustavo-evaristo-4b37a
 ----------------
 
 <p align="center">
-  <img src="https://img.shields.io/badge/-linkedin-blue?style=for-the-badge&logo=linkedin">
+  <a href="https://www.linkedin.com/in/ottoniel-matheus-de-souza-756a64170/"><img src="https://img.shields.io/badge/-linkedin-blue?style=for-the-badge&logo=linkedin"></a>
 </p>
