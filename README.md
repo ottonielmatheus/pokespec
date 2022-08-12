@@ -19,7 +19,7 @@
 <p align="center" style="flat:left">
   <img src="https://user-images.githubusercontent.com/37461352/184262914-77e50b54-e891-4b70-86a0-3e21fe20c41a.png">
   <img width="47%" height="100%" src="https://user-images.githubusercontent.com/37461352/184282658-b7362de4-6191-427d-9500-598e5f77cf02.gif">
-  <img width="52.55%" height="100%" src="https://user-images.githubusercontent.com/37461352/184283657-f18700c2-05ac-4111-bf74-68d564c344c6.gif">
+  <img width="52%" height="100%" src="https://user-images.githubusercontent.com/37461352/184283657-f18700c2-05ac-4111-bf74-68d564c344c6.gif">
 </p>
 
 Check attributes, status, abilities, evolutions and characteristics of all pokemons within a click.
