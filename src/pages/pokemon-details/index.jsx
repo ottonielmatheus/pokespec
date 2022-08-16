@@ -16,11 +16,9 @@ import PokeForms from '../../components/poke-forms'
 import PokeShape from '../../components/poke-shape'
 import PokeProfile from '../../components/poke-profile'
 
-
 function PokemonDetails () {
   const navigate = useNavigate()
   const { pokemonName } = useParams()
-
   const { setLoading } = usePokemonContext()
   const [pokemon, setPokemon] = useState()
 

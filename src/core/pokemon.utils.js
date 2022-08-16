@@ -217,19 +217,19 @@ export const getEffectiveness = (weakness, resistance, immune) => {
     .value()
 }
 
-export const formatEvolution = ({ chain }) => {
-  if (!chain) return null
+export const formatEvolution = (evolution) => {
+  if (!evolution?.chain) return null
   return {
     evolves: {
-      trigger: chain.evolution_details[0]?.trigger?.name,
-      onLevel: chain.evolution_details[0]?.min_level,
+      trigger: evolution?.chain.evolution_details[0]?.trigger?.name,
+      onLevel: evolution?.chain.evolution_details[0]?.min_level,
       withItem: {
-        name: chain.evolution_details[0]?.item?.name,
-        url: chain.evolution_details[0]?.item?.url
+        name: evolution?.chain.evolution_details[0]?.item?.name,
+        url: evolution?.chain.evolution_details[0]?.item?.url
       }
     },
-    pokemon: { name: chain.species.name },
-    next: chain.evolves_to.map(chain => formatEvolution({ chain }))
+    pokemon: { name: evolution?.chain.species.name },
+    next: evolution?.chain.evolves_to.map(chain => formatEvolution({ chain }))
   }
 }
 
