@@ -1,3 +1,12 @@
+.pokemon-types {
+  display: flex;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 .tippy-tooltip-type {
   font-weight: 600;
   text-shadow: 1px 1px 1px rgb(30, 30, 30);

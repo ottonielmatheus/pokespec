@@ -21,7 +21,7 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
   useEffect(async () => {
     const variations = pokemonVarieties?.filter(variety => variety.pokemon.name !== pokemon?.name)
     setAllVariations(variations)
-    await getVarietiesDetails(variations?.slice(0, 5))
+    await getVarietiesDetails(variations?.slice(0, 3))
   }, [pokemonVarieties])
 
   const getVarietiesDetails = async (varieties, isToAppend = false) => {
@@ -50,10 +50,6 @@ function PokeVarieties ({ pokemon, pokemonVarieties }) {
 
   return rootLoading ? <PokeVarietiesSkeleton /> : (
     <div className='poke-varieties'>
-      <div className='poke-varieties__header'>
-        <span>Varieties</span>
-        <span className='total-items'>{pokeVarieties?.length || 0}/{allVariations?.length}</span>
-      </div>
       <div className='poke-varieties__body'>
         {pokeVarieties?.map((variety, index) => (
           <Fade key={index}>

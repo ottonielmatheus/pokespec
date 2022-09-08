@@ -48,45 +48,51 @@ function PokemonDetails () {
   return (
     <section id="pokemon-details">
       <PokeNavigation current={pokemon} />
-      <GameVersions versions={pokemon?.game_indices} />
-      <div className='pokemon'>
-        <PokeProfile stats weaknesses pokemon={pokemon} />
-        <div className='pokemon__info'>
-          {
-            pokemon?.evolutions &&
-            <PokeEvolutions pokemon={pokemon} pokemonEvolutions={pokemon?.evolutions} />
-          }
-          {
-            (pokemon?.abilities?.length > 0) &&
-            <PokeAbilities pokemonAbilities={pokemon?.abilities} />
-          }
-          {
-            (pokemon?.moves?.length > 0) &&
-            <PokeMoves pokemonMoves={pokemon?.moves} />
-          }
-        </div>
+      <div className='actions'>
+        <div></div>
+        <div></div>
+        <GameVersions versions={pokemon?.game_indices} />
       </div>
-      <div className='pokemon__metadata'>
-        <div className='pokemon__metadata__info'>
-          <div className='pokemon__metadata__info__body'>
-            {
-              pokemon?.species.varieties.length > 1 &&
-              <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
-            }
-            {
-              pokemon?.forms.length > 1 &&
-              <PokeForms pokemon={pokemon} pokemonForms={pokemon?.forms} />
-            }
-            {
-              pokemon?.held_items.length > 0 &&
-              <div className='pokemon__metadata__items'>
-                <PokeItems pokemonItems={pokemon?.held_items} />
-              </div>
-            }
+      <div className='content'>
+        <div className='pokemon__varieties'>
+        {
+          pokemon?.species.varieties.length > 1 &&
+          <PokeVarieties pokemon={pokemon} pokemonVarieties={pokemon?.species.varieties} />
+        }
+        {
+          pokemon?.forms.length > 1 &&
+          <PokeForms pokemon={pokemon} pokemonForms={pokemon?.forms} />
+        }
+        </div>
+        <div>
+          <div className='pokemon'>
+            <PokeProfile stats weaknesses pokemon={pokemon} />
+            <div className='pokemon__info'>
+              {
+                pokemon?.evolutions &&
+                <PokeEvolutions pokemon={pokemon} pokemonEvolutions={pokemon?.evolutions} />
+              }
+              {
+                (pokemon?.abilities?.length > 0) &&
+                <PokeAbilities pokemonAbilities={pokemon?.abilities} />
+              }
+              {
+                (pokemon?.moves?.length > 0) &&
+                <PokeMoves pokemonMoves={pokemon?.moves} />
+              }
+            </div>
           </div>
         </div>
-        <div className='pokemon__metadata__details'>
-          <PokeShape pokemonSpecies={pokemon?.species} />
+        <div className='pokemon__details'>
+          <div className='pokemon__details__shape'>
+            <PokeShape pokemon={pokemon} pokemonSpecies={pokemon?.species} />
+          </div>
+          {
+            pokemon?.held_items.length > 0 &&
+            <div className='pokemon__details__items'>
+              <PokeItems pokemonItems={pokemon?.held_items} />
+            </div>
+          }
         </div>
       </div>
     </section>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import ReactLoading from 'react-loading'
 
 import { usePokemonContext } from '../../contexts/pokemon.context'
 
 import './index.scss'
+import PokeProfileSkeleton from './skeleton'
 import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
-import PokeBadge from '../../components/poke-badge'
+import PokeEffectiveness from '../poke-effectiveness'
 import DefaultPokemonImage from './../shared/default-pokemon-image'
 
 function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses = false }) {
@@ -19,92 +19,59 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
   }, [pokemon])
 
   return (
-    loading ?
-      <div className='poke-profile--skeleton'>
-        <ReactLoading className='loading' type='bubbles' />
-      </div>
-      : <div className='poke-profile'>
+    loading
+      ? <PokeProfileSkeleton />
+      : <div className={`poke-profile ${short ? 'short' : ''}`}>
           <div className='poke-profile__header'>
-            <span className='poke-profile__header__name'>
-              {poke?.formatedName}
-              {!short && poke?.modifier && <PokeBadge type='text' badge={poke?.modifier} />}
-              {poke?.region && <PokeBadge type='text' badge={poke?.region} />}
-            </span>
-            <div className='poke-profile__header__types'>
+            <div className='poke-profile__header__avatar'>
+              <DefaultPokemonImage className='poke-profile__header__avatar__background' />
+              {poke?.avatar.any && <img className='poke-profile__header__avatar__image' alt={poke?.formatedName} src={poke?.avatar.any}/>}
+            </div>
+            <div className='poke-profile__header__pokemon'>
+              <div className='poke-profile__header__pokemon__types'>
+                {poke?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
+              </div>
+              <span className='poke-profile__header__pokemon__name'>
+                <h1>
+                  <span className='formated-name'>{poke?.formatedName}</span>
+                  {
+                    (poke?.modifier || poke?.region) &&
+                    <span className='modifier'>
+                      {poke?.modifier?.toUpperCase()}
+                      {poke?.region?.toUpperCase()}
+                    </span>
+                  }
+                </h1>
+              </span>
               {
-                poke?.modifier &&
-                <PokeBadge type='image' badge={poke?.modifier} />
+                !short &&
+                <>
+                  <span className='poke-profile__header__pokemon__identifier'>
+                    <span>#{poke?.number || '000'}</span>
+                    <span className='original-name'>{poke?.species?.originalName}</span>
+                  </span>
+                  <div className='poke-profile__header__pokemon__overall'>
+                    <span>Overall</span>
+                    <span>{poke?.stats.reduce((acc, stat) => acc + stat.base_stat, 0)}</span>
+                  </div>
+                </>
               }
-              {
-                poke?.region &&
-                <PokeBadge type='image' badge={poke?.region} />
-              }
-              {poke?.types?.map((type, index) => (<PokeType key={index} type={type} />))}
             </div>
           </div>
           <div className='poke-profile__body'>
-            <DefaultPokemonImage className='poke-profile__body__background' />
-            {poke?.avatar.any && <img className='poke-profile__body__avatar' alt={poke?.formatedName} src={poke?.avatar.any}/>}
-            <div className='poke-profile__body__measures'>
-              <span>{poke?.height && (poke?.height / 10).toFixed(1).replace('.0', '')}m</span>
-              <span>{poke?.weight && Math.round(poke?.weight / 10)}kg</span>
-            </div>
-            {stats && <PokeStats short={short} pokemonStats={poke?.stats} diffTo={diff?.stats} />}
+            {
+              stats &&
+              <PokeStats
+                short={short}
+                type={short ? 'bar' : 'radar'}
+                pokemonStats={poke?.stats}
+                pokemonTypes={poke?.types}
+                diffTo={diff?.stats}
+              />
+            }
+            {weaknesses && <PokeEffectiveness effectiveness={poke?.effectiveness} />}
           </div>
-          {
-            weaknesses &&
-            <div className='poke-profile__footer'>
-              <div className='poke-profile__footer__damage-table'>
-                <div className='poke-profile__footer__damage-table__header'>
-                  <span>resistent</span>
-                  <span>weak</span>
-                </div>
-                <div className='poke-profile__footer__damage-table__elements'>
-                  <div>
-                    <small>x0</small>
-                    <div className='elements'>
-                      {poke?.effectiveness['0']?.map((element, index) => (
-                        <img key={index} src={element.icon} alt={element.name} />
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <small>x0.25</small>
-                    <div className='elements'>
-                      {poke?.effectiveness['0.25']?.map((element, index) => (
-                        <img key={index} src={element.icon} alt={element.name} />
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <small>x0.5</small>
-                    <div className='elements'>
-                      {poke?.effectiveness['0.5']?.map((element, index) => (
-                        <img key={index} src={element.icon} alt={element.name} />
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <small>x2</small>
-                    <div className='elements'>
-                      {poke?.effectiveness['2']?.map((element, index) => (
-                        <img key={index} src={element.icon} alt={element.name} />
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <small>x4</small>
-                    <div className='elements'>
-                      {poke?.effectiveness['4']?.map((element, index) => (
-                        <img key={index} src={element.icon} alt={element.name} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          }
-      </div>
+        </div>
   )
 }
 

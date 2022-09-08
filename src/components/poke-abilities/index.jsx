@@ -16,7 +16,7 @@ function PokeAbilities ({ pokemonAbilities }) {
 
   useEffect(async () => {
     const abilities = sortBy(pokemonAbilities, [item => item.ability.name])
-    await getAbilitiesDetails(abilities?.slice(0, 2))
+    await getAbilitiesDetails(abilities?.slice(0, 3))
   }, [pokemonAbilities])
 
   const getAbilitiesDetails = async (abilities, isToAppend = false) => {

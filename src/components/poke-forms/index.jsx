@@ -18,7 +18,7 @@ function PokeForms ({ pokemonForms }) {
 
   useEffect(async () => {
     setAllForms(pokemonForms)
-    await getFormsDetails(pokemonForms?.slice(0, 5))
+    await getFormsDetails(pokemonForms?.slice(0, 2))
   }, [pokemonForms])
 
   const getFormsDetails = async (forms, isToAppend = false) => {
@@ -42,10 +42,6 @@ function PokeForms ({ pokemonForms }) {
 
   return rootLoading ? <PokeFormsSkeleton /> : (
     <div className='poke-forms'>
-      <div className='poke-forms__header'>
-        <span>Forms</span>
-        <span className='total-items'>{pokeForms?.length || 0}/{allForms?.length}</span>
-      </div>
       <div className='poke-forms__body'>
         {pokeForms?.map((form, index) => (
           <Fade key={index}>

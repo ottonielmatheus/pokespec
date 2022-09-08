@@ -46,10 +46,6 @@ function PokeItems ({ pokemonItems }) {
 
   return rootLoading ? <PokeItemsSkeleton /> : (
     <div className='poke-items'>
-      <div className='poke-items__header'>
-        <span>Drops</span>
-        <span className='total-items'>{pokeItems?.length || 0}/{pokemonItems?.length}</span>
-      </div>
       <div className='poke-items__body'>
         {pokeItems?.map((item, index) => (
           <Fade key={index}>

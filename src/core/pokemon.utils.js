@@ -1,4 +1,4 @@
-import { chain, endsWith, find, capitalize, concat } from 'lodash'
+import { chain, endsWith, find, capitalize, concat, padStart } from 'lodash'
 
 import i18n from './i18n'
 import pokeTypeMapper from './mappers/pokemon-types.mapper'
@@ -254,6 +254,7 @@ export const formatSpecies = async (species) => {
     originalName: i18n(species.names, 'ja').name,
     varieties: species.varieties,
     genus: i18n(species.genera).genus,
+    parks: species.pal_park_encounters.map(park => park.area.name),
     habitat: {
       name: species.habitat?.name,
       image: await getHabitatImage(species.habitat?.name)
@@ -272,7 +273,8 @@ export const formatSpecies = async (species) => {
     about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
     characteristic,
-    evolutionChain: species.evolution_chain
+    evolutionChain: species.evolution_chain,
+    eggs: species.egg_groups.map(egg => egg.name)
   }
 }
 
@@ -329,6 +331,7 @@ export const formatPokemon = async (pokemon) => {
 
   return {
     ...pokemon,
+    number: padStart(pokemon.id, 3, '0'),
     avatar: formatSprites(pokemon.sprites),
     formatedName,
     modifier,

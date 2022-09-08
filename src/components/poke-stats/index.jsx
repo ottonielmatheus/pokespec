@@ -4,9 +4,11 @@ import { getStatsValue, getStatsDiff } from '../../core/pokemon.utils'
 
 import './index.scss'
 import PercentageBar from '../../components/shared/percentage-bar'
+import StatsRadar from './stats-radar'
 
+function PokeStats ({ pokemonStats, diffTo, short, type, pokemonTypes }) {
+  const firstTypeColor = pokemonTypes ? pokemonTypes[0].color : null
 
-function PokeStats ({ pokemonStats, diffTo, short }) {
   const [pokeStats, setPokeStats] = useState()
   const [diffStats, setDiffStats] = useState()
   const [totalStat, setTotalStat] = useState(0)
@@ -61,7 +63,7 @@ function PokeStats ({ pokemonStats, diffTo, short }) {
       <span className={stat.signal === '+' ? 'positive' : 'negative'}>
         {
           stat.baseValue !== 0 ?
-          `${stat.signal}${stat.baseValue}`
+          `(${stat.signal}${stat.baseValue})`
           : <span style={{ color: '#7e7e7e' }}>=&nbsp;</span>
         }
       </span>
@@ -87,21 +89,23 @@ function PokeStats ({ pokemonStats, diffTo, short }) {
     )
   }
 
-  return (
-    <div className={`pokemon-stats${short ? '--short' : ''}`}>
-      {statRow('hp', '#52b69a', 'HP', 'HP', pokeStats?.hp, diffStats?.hp)}
-      {statRow('attack', '#ce4257', 'A', 'Attack', pokeStats?.attack, diffStats?.attack)}
-      {statRow('defense', '#48cae4', 'D', 'Defense', pokeStats?.defense, diffStats?.defense)}
-      {statRow('special-attack', '#ff7f51', 'SA', 'Sp Att', pokeStats?.specialAttack, diffStats?.specialAttack)}
-      {statRow('special-defense', '#e0aaff', 'SD', 'Sp Def', pokeStats?.specialDefense, diffStats?.specialDefense)}
-      {statRow('speed', '#f4d35e', 'S', 'Speed', pokeStats?.speed, diffStats?.speed)}
-      <div className='total'>
-        {short ? <span>T</span> : <span>Total</span>}
-        <span className='pokemon-stats__bar'></span>
-        <span>{totalStat} {diffTo && getDiffValue(getTotalDiff(totalStat, totalDiffStat))}</span>
+  return type === 'radar'
+    ? <StatsRadar color={firstTypeColor} stats={pokeStats} />
+    : (
+      <div className={`pokemon-stats${short ? '--short' : ''}`}>
+        {statRow('hp', '#52b69a', 'HP', 'HP', pokeStats?.hp, diffStats?.hp)}
+        {statRow('attack', '#ce4257', 'A', 'Attack', pokeStats?.attack, diffStats?.attack)}
+        {statRow('defense', '#48cae4', 'D', 'Defense', pokeStats?.defense, diffStats?.defense)}
+        {statRow('special-attack', '#ff7f51', 'SA', 'Sp Att', pokeStats?.specialAttack, diffStats?.specialAttack)}
+        {statRow('special-defense', '#e0aaff', 'SD', 'Sp Def', pokeStats?.specialDefense, diffStats?.specialDefense)}
+        {statRow('speed', '#f4d35e', 'S', 'Speed', pokeStats?.speed, diffStats?.speed)}
+        <div className='total'>
+          {short ? <span>OA</span> : <span>Overall</span>}
+          <span className='pokemon-stats__bar'></span>
+          <span>{totalStat} {diffTo && getDiffValue(getTotalDiff(totalStat, totalDiffStat))}</span>
+        </div>
       </div>
-    </div>
-  )
+    )
 }
 
 export default PokeStats

@@ -28,7 +28,9 @@ function PokeType ({ type }) {
         </div>
       }
       >
-      <img width={28} height={28} src={pokemonType?.icon} alt={pokemonType?.name} />
+      <div className='pokemon-types'>
+        <img src={pokemonType?.icon} alt={pokemonType?.name} />
+      </div>
     </Tippy>
   )
 }

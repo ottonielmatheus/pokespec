@@ -6,9 +6,6 @@
   flex-direction: column;
   box-sizing: border-box;
 
-  border-top: solid .5px;
-  border-color: var(--secondary-color);
-
   > div {
     display: grid;
     grid-template-columns: 0.6fr 1.8fr 0.3fr;
@@ -37,12 +34,9 @@
   flex-direction: column;
   box-sizing: border-box;
 
-  border-top: solid .5px;
-  border-color: var(--secondary-color);
-
   > div {
     display: grid;
-    grid-template-columns: 0.2fr 1.3fr 0.6fr;
+    grid-template-columns: 0.2fr 1.2fr 0.7fr;
     grid-auto-flow: column;
     gap: 12px;
     align-items: center;
