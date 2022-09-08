@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.357e5e70.css",
-    "main.js": "/static/js/main.9a3672fa.js",
+    "main.css": "/static/css/main.ad701e1e.css",
+    "main.js": "/static/js/main.e29f57ee.js",
     "static/js/8335.70b3e45e.chunk.js": "/static/js/8335.70b3e45e.chunk.js",
     "static/js/4640.ee40599a.chunk.js": "/static/js/4640.ee40599a.chunk.js",
     "static/js/9102.70017dfc.chunk.js": "/static/js/9102.70017dfc.chunk.js",
@@ -70,6 +70,7 @@
     "static/js/1667.f030ff1a.chunk.js": "/static/js/1667.f030ff1a.chunk.js",
     "static/js/6086.861ed8db.chunk.js": "/static/js/6086.861ed8db.chunk.js",
     "static/media/waters-edge-habitat.jpg": "/static/media/waters-edge-habitat.4f3faa224210ffc689b5.jpg",
+    "static/media/Inter-Variable.ttf": "/static/media/Inter-Variable.aadb65ac45347ff46699.ttf",
     "static/media/mountain-habitat.jpg": "/static/media/mountain-habitat.e67f2fbc6a3e91c82db4.jpg",
     "static/media/rough-terrain-habitat.jpg": "/static/media/rough-terrain-habitat.09c6fd1bc22dc3cbd818.jpg",
     "static/media/sea-habitat.jpg": "/static/media/sea-habitat.163dc9e2e8a57add317d.jpg",
@@ -85,6 +86,7 @@
     "static/media/ocean-habitat.jpg": "/static/media/ocean-habitat.07e87083fd751aa8a957.jpg",
     "static/media/not-found-pikachu.png": "/static/media/not-found-pikachu.dba7859995a47e366312.png",
     "static/media/pokemon-logo.png": "/static/media/pokemon-logo.9dc16171f2cf9c91f9c2.png",
+    "static/media/Gruppo-Regular.ttf": "/static/media/Gruppo-Regular.2393675620be8c54ff95.ttf",
     "static/media/legendary.png": "/static/media/legendary.675608e448819d60d8e0.png",
     "static/media/logo.png": "/static/media/logo.05d95836d974efb69f15.png",
     "static/media/nintendo-logo.png": "/static/media/nintendo-logo.8abef6518ec066f9a26e.png",
@@ -94,7 +96,6 @@
     "static/media/dragon.jpg": "/static/media/dragon.0ecee103fac3c69b0c0c.jpg",
     "static/media/fighting.jpg": "/static/media/fighting.781e480efe173d5d98df.jpg",
     "static/media/bug.jpg": "/static/media/bug.8e3e821b3139a3e7576f.jpg",
-    "static/media/AznUnifiedOblique-ZV5gz.otf": "/static/media/AznUnifiedOblique-ZV5gz.10feb67697496effd6ae.otf",
     "static/media/water.jpg": "/static/media/water.8cdcd2fffd5326357ac2.jpg",
     "static/media/normal.jpg": "/static/media/normal.9ec833ab366a840555f2.jpg",
     "static/media/pokeapi-logo.png": "/static/media/pokeapi-logo.888baca4809420be1126.png",
@@ -107,11 +108,11 @@
     "static/media/dark.jpg": "/static/media/dark.ab3006658828e87d52b4.jpg",
     "static/media/grass.jpg": "/static/media/grass.31e176799dfb7f34aa90.jpg",
     "index.html": "/index.html",
-    "main.357e5e70.css.map": "/static/css/main.357e5e70.css.map",
-    "main.9a3672fa.js.map": "/static/js/main.9a3672fa.js.map"
+    "main.ad701e1e.css.map": "/static/css/main.ad701e1e.css.map",
+    "main.e29f57ee.js.map": "/static/js/main.e29f57ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.357e5e70.css",
-    "static/js/main.9a3672fa.js"
+    "static/css/main.ad701e1e.css",
+    "static/js/main.e29f57ee.js"
   ]
 }
