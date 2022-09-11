@@ -130,13 +130,9 @@
       justify-content: flex-start;
 
       &__name {
-        display: flex;
-        align-items: flex-end;
         gap: 6px;
 
         h1 {
-          display: flex;
-          gap: 8px;
           font-size: 32px;
           margin: 0;
           row-gap: 0;
@@ -147,6 +143,7 @@
             font-size: 42px;
             margin: 0;
             font-weight: 100;
+            padding: 0 8px;
           }
         }
       }

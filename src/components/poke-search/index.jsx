@@ -92,16 +92,17 @@ function PokeSearch () {
         <div className={`poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
             {
               pokemonSuggestions.map((suggestion, index) => (
-                <div key={index}
-                    className={`poke-search__suggestions__pokemon${index === navigationIndex ? '--selected' : ''}`}
-                    onClick={() => goToPokemon(suggestion.name)}
-                  >
-                  <div className='poke-search__suggestions__pokemon__avatar-name'>
-                  {suggestion.avatar?.any && <img src={suggestion.avatar.default} />}
-                    <span className='name' dangerouslySetInnerHTML={{ __html: highlightOnMatch(suggestion.name) }}></span>
+                <div key={index} className='poke-search__suggestions__item' onClick={() => goToPokemon(suggestion.name)}>
+                  <div className={`poke-search__suggestions__item__pokemon${index === navigationIndex ? '--selected' : ''}`}>
+                    <div className='poke-search__suggestions__item__pokemon__avatar-name'>
+                    {suggestion.avatar?.any && <img src={suggestion.avatar.default} />}
+                      <span className='name' dangerouslySetInnerHTML={{ __html: highlightOnMatch(suggestion.name) }}></span>
+                    </div>
+                    <div className='poke-search__suggestions__item__pokemon__types-varieties'>
+                      {suggestion.types?.map((type, index) => (<PokeType key={index} type={type} />))}
+                    </div>
                   </div>
-                  <div className='poke-search__suggestions__pokemon__types-varieties'>
-                    {suggestion.types?.map((type, index) => (<PokeType key={index} type={type} />))}
+                  <div className='poke-search__suggestions__item__hint'>
                   </div>
                 </div>
               ))

@@ -63,6 +63,15 @@ html {
     }
   }
 
+  kbd {
+    padding: 2px 4px;
+    border-radius: 2px;
+    border: solid .5px var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    font-weight: 500;
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
   }

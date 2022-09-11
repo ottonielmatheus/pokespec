@@ -45,16 +45,16 @@ function PokeShape ({ pokemon, pokemonSpecies }) {
         <span>{pokemon?.weight && Math.round(pokemon?.weight / 10)}kg</span>
       </div>
       <div className='pokemon-shape__row'>
+        <span className='pokemon-shape__row__title'>Color</span>
+        <span>{pokeSpecies?.shape.color || '???'}</span>
+      </div>
+      <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Habitat</span>
         <span>{capitalize(pokeSpecies?.habitat.name).replaceAll('-', ' ') || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Park</span>
         <span>{pokeSpecies?.parks.join(', ') || '???'}</span>
-      </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Color</span>
-        <span>{pokeSpecies?.shape.color || '???'}</span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Growth rate</span>

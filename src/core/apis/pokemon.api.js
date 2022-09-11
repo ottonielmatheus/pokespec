@@ -36,7 +36,7 @@ const formatWith = (formatterFunction, requestFunctions) => {
   return requests
 }
 
-const getAll = async ({ skip, limit, next }) => {
+const getAll = async ({ skip = 0, limit = 20, next }) => {
   const uri = next || API_URL + 'pokemon' + querify(limit, skip)
   return request(uri)
 }

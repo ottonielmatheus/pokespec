@@ -50,6 +50,11 @@ const store = (storeName) => {
         }
         return results
       })
+    },
+    count: async () => {
+      return await transaction('readonly', async store => {
+        return store.count()
+      })
     }
   }
 }

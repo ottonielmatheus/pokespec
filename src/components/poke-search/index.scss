@@ -55,58 +55,67 @@
     border-radius: 5px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: var(--primary-color);
+    background-color: var(--third-color);
     border-color: var(--secondary-color);
 
     visibility: hidden;
     position: relative;
     z-index: 11;
 
-    &__pokemon, &__pokemon--selected {
-      min-height: 50px;
+    &__item {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 2px 18px;
-      user-select: none;
-      opacity: .5;
 
-      &__avatar-name {
+      &__pokemon, &__pokemon--selected {
+        width: 100%;
+        min-height: 50px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        padding: 2px 18px;
+        user-select: none;
+        opacity: .5;
 
-        img {
-          width: 50px;
-          height: 50px;
-          margin-right: 6px;
+        &__avatar-name {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 50px;
+            height: 50px;
+            margin-right: 6px;
+          }
+
+          .original-name {
+            margin-left: 6px;
+            font-size: 12px;
+            opacity: .7;
+          }
         }
 
-        .name {
+        &__types-varieties {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 4px;
 
+          img {
+            width: 22px;
+            height: 22px;
+          }
         }
 
-        .original-name {
-          margin-left: 6px;
-          font-size: 12px;
-          opacity: .7;
+        &:hover, &--selected {
+          opacity: 1;
+          cursor: pointer;
         }
       }
 
-      &__types-varieties {
+      &__hint {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        gap: 4px;
-
-        img {
-          width: 22px;
-          height: 22px;
-        }
-      }
-
-      &:hover, &--selected {
-        opacity: 1;
-        cursor: pointer;
+        justify-content: center;
+        gap: 2px;
       }
     }
 
