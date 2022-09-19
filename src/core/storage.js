@@ -36,6 +36,11 @@ const store = (storeName) => {
         store.put(value)
       })
     },
+    get: async (key) => {
+      return await transaction('readonly', async store => {
+        return store.get(key)
+      })
+    },
     getAll: async (where, { offset }) => {
       return await transaction('readonly', async store => {
         const query = IDBKeyRange.bound(where.like, where.like + '\uffff')

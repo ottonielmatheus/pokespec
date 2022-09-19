@@ -47,7 +47,7 @@ function PokeMoves ({ pokemonMoves }) {
     moves = applyFilters(moves, filters)
 
     setAllMoves(moves)
-    await getMovesDetails(moves?.slice(0, 3))
+    await getMovesDetails(moves?.slice(0, 5))
   }, [pokemonMoves, filters, gameVersion])
 
   const getMovesDetails = async (moves, isToAppend = false) => {

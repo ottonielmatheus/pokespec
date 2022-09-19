@@ -85,8 +85,8 @@ function PokeEvolutions ({ pokemonEvolutions, pokemon }) {
                       </div>
                     </div>
                   }>
-                  {chain?.pokemon?.avatar.any ?
-                    <img width={5} height={5} src={chain?.pokemon?.avatar.any} alt={chain?.pokemon?.name} />
+                  {chain?.pokemon?.avatar.any
+                    ? <img width={5} height={5} src={chain?.pokemon?.avatar.any} alt={chain?.pokemon?.name} />
                     : <DefaultPokemonImage className='default' />
                   }
                 </Tippy>

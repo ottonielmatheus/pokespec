@@ -37,7 +37,7 @@
       background-color: var(--primary-color);
       border-radius: var(--global-border-radius);
       overflow: hidden;
-      padding: 24px 0;
+      padding: 12px 0;
 
       a {
         width: 100%;
@@ -45,18 +45,12 @@
 
       &:hover {
         .poke-profile__header {
-          &__avatar {
+          &__pokemon__avatar {
             img {
               transition: all ease-out .5s;
               transform: scale(1.1);
             }
           }
-        }
-      }
-
-      .poke-profile {
-        &__header {
-          font-size: 16px;
         }
       }
 

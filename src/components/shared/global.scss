@@ -1,8 +1,9 @@
-$header-height: 72px;
+$header-height: 82px;
 
 :root {
   --global-gap: 8px;
   --global-border-radius: 3px;
+  --abort-color: #ff595e;
 }
 
 html {
@@ -22,6 +23,12 @@ html {
 
     div {
       border-color: var(--secondary-color) !important;
+
+      svg {
+        path {
+          fill: var(--third-color);
+        }
+      }
     }
   }
 
@@ -55,11 +62,53 @@ html {
     border: 0;
     font-family: 'Jura';
     font-size: 14px;
+    transition: opacity ease .5s;
+    user-select: none;
+    text-transform: uppercase;
+
+    &.outline {
+      opacity: .8;
+      background-color: transparent;
+      border: solid 2px var(--outline-color);
+      color: var(--outline-color);
+
+      &--abort {
+        opacity: .8;
+        color: var(--abort-color);
+        font-size: 16px;
+      }
+    }
+
+    &.icon {
+      background-color: var(--primary-color);
+
+      svg {
+        color: var(--font-color) !important;
+      }
+    }
+
+    &.simple {
+      display: flex;
+      align-items: flex-end;
+      background-color: transparent;
+      color: var(--outline-color);
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: .9;
+
+      svg {
+        fill: var(--outline-color);
+      }
+    }
 
     &:hover {
       opacity: 1;
       cursor: pointer;
-      transition: all ease .5s;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: .4;
     }
   }
 

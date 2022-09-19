@@ -24,7 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 1200px;
+      width: 1366px;
       padding: 12px 4px;
       box-sizing: border-box;
       gap: 12px;
@@ -73,7 +73,7 @@
       }
 
       &__search {
-        width: 50%;
+        width: 40%;
         margin: 0;
         padding: 0;
         list-style-type: none;
@@ -153,6 +153,7 @@
       width: 100%;
 
       &__limit {
+        height: global.$header-height;
         display: flex;
         justify-content: center;
         width: 100%;

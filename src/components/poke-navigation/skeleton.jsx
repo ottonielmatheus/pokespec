@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsCaretLeftFill, BsCaretRightFill } from 'react-icons/bs'
+import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg'
 
 import './index.scss'
 
@@ -14,7 +14,7 @@ function PokeNavigationSkeleton () {
         padding: '0 16px'
       }}>
         <div style={{ display: 'flex', alignSelf: 'center', gap: '8px' }}>
-          <BsCaretLeftFill size={22} />
+          <CgArrowLongLeft size={22} />
           <span style={{ width: '50px', height: '22px' }}></span>
         </div>
 
@@ -24,7 +24,7 @@ function PokeNavigationSkeleton () {
 
         <div style={{ display: 'flex', alignSelf: 'center', gap: '8px' }}>
           <span style={{ width: '50px', height: '22px' }}></span>
-          <BsCaretRightFill size={22} />
+          <CgArrowLongRight size={22} />
         </div>
       </div>
 

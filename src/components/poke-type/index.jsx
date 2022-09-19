@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react'
-import _ from 'lodash'
+import { capitalize } from 'lodash'
 
 import 'tippy.js/dist/tippy.css'
 import './index.scss'
 import { formatType } from '../../core/pokemon.utils'
 
 
-function PokeType ({ type }) {
+function PokeType ({ type, showLabel = true }) {
   const [pokemonType, setPokemonType] = useState()
 
   useEffect(async () => {
@@ -20,11 +20,11 @@ function PokeType ({ type }) {
 
   return (
     <Tippy
-      className={`tippy-tooltip-type ${pokemonType?.name}-theme`}
+      className={`tippy-tooltip-type${showLabel ? '' : '--hidden'} ${pokemonType?.name}-theme`}
       arrow={false}
       content={
         <div>
-          <span>{_.capitalize(pokemonType?.name)}</span>
+          <span>{capitalize(pokemonType?.name)}</span>
         </div>
       }
       >

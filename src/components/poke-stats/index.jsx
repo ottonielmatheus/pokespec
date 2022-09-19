@@ -1,57 +1,35 @@
 import React, { useEffect, useState } from 'react'
 
-import { getStatsValue, getStatsDiff } from '../../core/pokemon.utils'
-
 import './index.scss'
 import PercentageBar from '../../components/shared/percentage-bar'
 import StatsRadar from './stats-radar'
 
-function PokeStats ({ pokemonStats, diffTo, short, type, pokemonTypes }) {
-  const firstTypeColor = pokemonTypes ? pokemonTypes[0].color : null
-
-  const [pokeStats, setPokeStats] = useState()
-  const [diffStats, setDiffStats] = useState()
-  const [totalStat, setTotalStat] = useState(0)
-  const [totalDiffStat, setTotalDiffStat] = useState(null)
+function PokeStats ({ pokemon, diffTo, short, type }) {
+  const firstTypeColor = pokemon?.types[0].color
+  const [diffResult, setDiffResult] = useState()
 
   useEffect(() => {
-    const stats = {
-      hp: getStatsValue(pokemonStats, 'hp'),
-      attack: getStatsValue(pokemonStats, 'attack'),
-      specialAttack: getStatsValue(pokemonStats, 'special-attack'),
-      defense: getStatsValue(pokemonStats, 'defense'),
-      specialDefense: getStatsValue(pokemonStats, 'special-defense'),
-      speed: getStatsValue(pokemonStats, 'speed')
-    }
-
-    if (diffTo) {
+    if (diffTo && pokemon?.stats) {
       const diff = {
-        hp: getStatsDiff(diffTo, 'hp', stats.hp),
-        attack: getStatsDiff(diffTo, 'attack', stats.attack),
-        specialAttack: getStatsDiff(diffTo, 'special-attack', stats.specialAttack),
-        defense: getStatsDiff(diffTo, 'defense', stats.defense),
-        specialDefense: getStatsDiff(diffTo, 'special-defense', stats.specialDefense),
-        speed: getStatsDiff(diffTo, 'speed', stats.speed)
+        hp: getStatsDiff(diffTo.stats.hp, pokemon?.stats.hp),
+        attack: getStatsDiff(diffTo.stats.attack, pokemon?.stats.attack),
+        specialAttack: getStatsDiff(diffTo.stats.specialAttack, pokemon?.stats.specialAttack),
+        defense: getStatsDiff(diffTo.stats.defense, pokemon?.stats.defense),
+        specialDefense: getStatsDiff(diffTo.stats.specialDefense, pokemon?.stats.specialDefense),
+        speed: getStatsDiff(diffTo.stats.speed, pokemon?.stats.speed),
+        overall: getStatsDiff(diffTo.stats.overall, pokemon?.stats.overall)
       }
-      setDiffStats(diff)
-      setTotalDiffStat(getTotalStats(diffTo))
+      setDiffResult(diff)
     }
+  }, [pokemon])
 
-    setPokeStats(stats)
-    setTotalStat(getTotalStats(pokemonStats))
-  }, [pokemonStats])
-
-  const getTotalStats = (stats) => {
-    if (!stats) return 0
-    return stats.reduce((acc, stat) => acc + stat.base_stat, 0)
-  }
-
-  const getTotalDiff = (a, b) => {
-    const result = a - b
+  const getStatsDiff = (statA, statB) => {
+    const result = statB.baseValue - statA.baseValue
     const diffValue = Math.abs(result)
 
     return {
       baseValue: diffValue,
+      basePercentage: (diffValue / 255) * 100,
       signal: result > 0 ? '+' : '-'
     }
   }
@@ -81,29 +59,28 @@ function PokeStats ({ pokemonStats, diffTo, short, type, pokemonTypes }) {
     return (
       <div className={stat}>
         {short ? <span>{shortStatName}</span> : <span>{statName}</span>}
-        <PercentageBar className='pokemon-stats__bar'
-          colors={[statColor, getDiffColor(statDiffValue)]}
-          values={statsValues} />
+        {statColor ?
+          <PercentageBar className='pokemon-stats__bar'
+            colors={[statColor, getDiffColor(statDiffValue)]}
+            values={statsValues} />
+          : <div></div>
+        }
         <span>{statValue?.baseValue} {getDiffValue(statDiffValue)}</span>
       </div>
     )
   }
 
   return type === 'radar'
-    ? <StatsRadar color={firstTypeColor} stats={pokeStats} />
+    ? <StatsRadar color={firstTypeColor} stats={pokemon?.stats} diffTo={diffTo} />
     : (
       <div className={`pokemon-stats${short ? '--short' : ''}`}>
-        {statRow('hp', '#52b69a', 'HP', 'HP', pokeStats?.hp, diffStats?.hp)}
-        {statRow('attack', '#ce4257', 'A', 'Attack', pokeStats?.attack, diffStats?.attack)}
-        {statRow('defense', '#48cae4', 'D', 'Defense', pokeStats?.defense, diffStats?.defense)}
-        {statRow('special-attack', '#ff7f51', 'SA', 'Sp Att', pokeStats?.specialAttack, diffStats?.specialAttack)}
-        {statRow('special-defense', '#e0aaff', 'SD', 'Sp Def', pokeStats?.specialDefense, diffStats?.specialDefense)}
-        {statRow('speed', '#f4d35e', 'S', 'Speed', pokeStats?.speed, diffStats?.speed)}
-        <div className='total'>
-          {short ? <span>OA</span> : <span>Overall</span>}
-          <span className='pokemon-stats__bar'></span>
-          <span>{totalStat} {diffTo && getDiffValue(getTotalDiff(totalStat, totalDiffStat))}</span>
-        </div>
+        {statRow('hp', '#52b69a', 'HP', 'HP', pokemon?.stats.hp, diffResult?.hp)}
+        {statRow('attack', '#ce4257', 'AT', 'Attack', pokemon?.stats.attack, diffResult?.attack)}
+        {statRow('defense', '#48cae4', 'DF', 'Defense', pokemon?.stats.defense, diffResult?.defense)}
+        {statRow('special-attack', '#ff7f51', 'SA', 'Sp Att', pokemon?.stats.specialAttack, diffResult?.specialAttack)}
+        {statRow('special-defense', '#e0aaff', 'SD', 'Sp Def', pokemon?.stats.specialDefense, diffResult?.specialDefense)}
+        {statRow('speed', '#f4d35e', 'SP', 'Speed', pokemon?.stats.speed, diffResult?.speed)}
+        {statRow('overall', null, 'OA', 'Overall', pokemon?.stats.overall, diffResult?.overall)}
       </div>
     )
 }

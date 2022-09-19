@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 
-import './index.scss'
 import { store } from './../../core/storage'
+
+import './index.scss'
 import PokeType from './../poke-type'
 
-function PokeSearch () {
-  const navigate = useNavigate()
+function PokeSearch ({ placeholder, onSearch }) {
   const queryInput = useRef()
 
   const [showSuggestions, setShowSuggestions] = useState(false)
@@ -42,18 +41,18 @@ function PokeSearch () {
     return name.toLowerCase().replace(query, `<span style="font-weight: 650">${query}</span>`)
   }
 
-  const goToPokemon = (id) => {
-    setShowSuggestions(false)
-    navigate(`/pokemons/${id}`)
+  const searchPokemon = () => {
+    if (pokemonSuggestions[navigationIndex]) {
+      onSearch(pokemonSuggestions[navigationIndex].name)
+    } else if (query) {
+      onSearch(query)
+    }
   }
 
   const handleInputKeyDown = (event) => {
     if (event.key === 'Enter') {
-      if (pokemonSuggestions[navigationIndex]) {
-        goToPokemon(pokemonSuggestions[navigationIndex].name)
-      } else if (query) {
-        goToPokemon(query)
-      }
+      searchPokemon()
+      setShowSuggestions(false)
     }
 
     if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
@@ -70,14 +69,19 @@ function PokeSearch () {
     }
   }
 
+  const handleOnSearch = (suggestion) => {
+    setShowSuggestions(false)
+    onSearch(suggestion)
+  }
+
   return (
     <div className='poke-search'>
       <div className='poke-search__overlay'
         style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
         onClick={() => setShowSuggestions(false)}></div>
       <div className='poke-search__input-group'>
-        <input className='poke-search__input-group__input'
-          type='text' placeholder='Search pokemon' autoComplete='off'
+        <input id="poke-search" className='poke-search__input-group__input'
+          type='text' placeholder={placeholder} autoComplete='off'
           ref={queryInput}
           onFocus={() => setShowSuggestions(pokemonSuggestions.length > 0)}
           onChange={async (e) => await getPokemonSuggestions(e.target.value)}
@@ -92,7 +96,7 @@ function PokeSearch () {
         <div className={`poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
             {
               pokemonSuggestions.map((suggestion, index) => (
-                <div key={index} className='poke-search__suggestions__item' onClick={() => goToPokemon(suggestion.name)}>
+                <div key={index} className='poke-search__suggestions__item' onClick={() => handleOnSearch(suggestion.name)}>
                   <div className={`poke-search__suggestions__item__pokemon${index === navigationIndex ? '--selected' : ''}`}>
                     <div className='poke-search__suggestions__item__pokemon__avatar-name'>
                     {suggestion.avatar?.any && <img src={suggestion.avatar.default} />}
@@ -101,8 +105,6 @@ function PokeSearch () {
                     <div className='poke-search__suggestions__item__pokemon__types-varieties'>
                       {suggestion.types?.map((type, index) => (<PokeType key={index} type={type} />))}
                     </div>
-                  </div>
-                  <div className='poke-search__suggestions__item__hint'>
                   </div>
                 </div>
               ))

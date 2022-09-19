@@ -12,3 +12,7 @@ To do:
 
  - Feat:
     - [ ] Pokemon passive (hidden ability)
+
+ - Bugs:
+    - [x] skeleton pokemon comparison
+    - [x] mobile pokemon comparison (removed)

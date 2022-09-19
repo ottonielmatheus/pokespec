@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 
+import DefaultPokemonImage from '../shared/default-pokemon-image'
+
 function PokeProfileSkeleton () {
   const { isMobile } = usePokemonContext()
 
@@ -9,14 +11,16 @@ function PokeProfileSkeleton () {
 
   return (
     <>
-      <div className='skeleton' style={{ display: 'flex', flexDirection: 'column', gap: '72px', padding: '24px' }}>
+      <div className='skeleton' style={{ display: 'flex', flexDirection: 'column', gap: '72px' }}>
         <div style={{
           display: 'flex',
-          gap: '24px',
+          gap: '8px',
           flexDirection: isMobile ? 'column' : 'row',
-          alignItems: isMobile ? 'center' : 'initial'
+          alignItems: 'center'
         }}>
-          <span style={{ width: '200px', height: '200px', borderRadius: '50%' }}></span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '230px', height: '230px', opacity: '.5' }}>
+            <DefaultPokemonImage width='200' height='200' />
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center'  }}>
             <div style={{ display: 'flex', gap: '6px', justifyContent: isMobile ? 'center' : 'initial' }}>
               <span style={{ width: '26px', height: '26px', borderRadius: '50%' }}></span>

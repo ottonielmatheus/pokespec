@@ -8,6 +8,7 @@ export function PokemonContextProvider ({ children }) {
   const [loading, setLoading] = useState(true)
   const [gameVersion, setGameVersion] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [theme, setTheme] = useState(localStorage.getItem('theme'))
 
   useEffect(async () => {
     await downloadAllPokemonsToStore()
@@ -37,7 +38,8 @@ export function PokemonContextProvider ({ children }) {
     <PokemonContext.Provider value={{
       loading, setLoading,
       gameVersion, setGameVersion,
-      isMobile, setIsMobile
+      isMobile, setIsMobile,
+      theme, setTheme
     }}>
       { children }
     </PokemonContext.Provider>

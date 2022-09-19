@@ -1,0 +1,91 @@
+.poke-competitors {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .competitor, .competitor--selected {
+    border-radius: var(--global-border-radius);
+    background-color: var(--primary-color);
+    user-select: none;
+    cursor: pointer;
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 12px;
+
+      &__pokemon {
+        min-width: 242px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+
+        span {
+          opacity: .7;
+          color: var(--font-color);
+          text-align: center;
+        }
+
+        &:hover {
+          span {
+            transition: opacity .5s ease-out;
+            opacity: 1;
+          }
+        }
+      }
+
+      &__actions {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        button {
+          display: flex;
+          align-items: center;
+          padding: 8px;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+
+    &__body {
+      max-height: 0px;
+      transition: max-height .5s ease-in-out;
+      overflow: hidden;
+    }
+  }
+
+  .competitor--selected {
+    cursor: default;
+
+    .competitor {
+      &__header {
+        justify-content: flex-end;
+
+        &__actions {
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      &__body {
+        max-height: 440px;
+        padding-bottom: 12px;
+      }
+    }
+  }
+}

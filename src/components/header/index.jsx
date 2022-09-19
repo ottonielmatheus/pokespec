@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { BsList, BsX } from 'react-icons/bs'
 import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle'
@@ -6,9 +7,11 @@ import { DarkModeToggle } from '@anatoliygatt/dark-mode-toggle'
 import './index.scss'
 
 import PokeSearch from './../poke-search'
+import { usePokemonContext } from '../../contexts/pokemon.context'
 
 function Header () {
-  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const navigate = useNavigate()
+  const { theme, setTheme } = usePokemonContext()
   const [showMenu, setShowMenu] = useState(false)
   const menu = <>
     <Link to='/' onClick={() => setShowMenu(false)}><li>Home</li></Link>
@@ -28,6 +31,10 @@ function Header () {
     localStorage.setItem('theme', newTheme)
   }
 
+  const goToPokemon = (id) => {
+    navigate(`/pokemons/${id}`)
+  }
+
   return (
     <header className={`header${showMenu ? '--expanded' : ''}`}>
       <div className='header__container'>
@@ -44,7 +51,7 @@ function Header () {
             </div>
           </div>
           <div className='header__container__limit__search'>
-            <PokeSearch />
+            <PokeSearch placeholder='Search pokémon' onSearch={goToPokemon} />
           </div>
           <div className='header__container__limit__theme'>
             <DarkModeToggle mode={theme} size='sm' onChange={toggleTheme} />

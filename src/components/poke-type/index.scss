@@ -12,6 +12,10 @@
   text-shadow: 1px 1px 1px rgb(30, 30, 30);
   color: white;
 
+  &--hidden {
+    display: none !important;
+  }
+
   &.grass-theme {
     background-color: #63bb5b !important;
   }

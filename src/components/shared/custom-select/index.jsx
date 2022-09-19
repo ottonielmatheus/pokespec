@@ -8,16 +8,18 @@ function CustomSelect ({ className, placeholder, defaultValue, options, value, i
       width: '100%',
       height: '100%'
     }),
-    control: (styles) => ({
+    control: (styles, { isFocused }) => ({
       ...styles,
       backgroundColor: 'var(--primary-color)',
       borderColor: 'var(--primary-color)',
       height: '100%',
+      boxShadow: isFocused ? '0 0 0 1px var(--outline-color)' : 'none',
       ':hover': {
         borderColor: 'var(--primary-color)'
       },
       ':focus': {
-        borderColor: 'var(--primary-color)'
+        borderColor: 'var(--primary-color)',
+        boxShadow: '0px 0px 1px var(--outline-color)'
       }
     }),
     option: (styles, { isDisabled, isFocused, isSelected }) => {

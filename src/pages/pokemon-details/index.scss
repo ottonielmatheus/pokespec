@@ -8,18 +8,11 @@
   flex-direction: column;
   gap: 8px;
 
-  .actions {
-    display: grid;
-    grid-template-columns: .8fr 2fr 25%;
-    grid-auto-flow: dense;
-    gap: 8px;
-  }
-
   .content {
     width: 100%;
     overflow: hidden;
     display: grid;
-    grid-template-columns: .8fr 2fr 25%;
+    grid-template-columns: .9fr 2fr .9fr;
     gap: 8px;
 
     > div {
@@ -28,11 +21,59 @@
       overflow: hidden;
     }
 
-    .pokemon__varieties {
+    &__actions {
+      &__compare {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        &__icon-buttons {
+          display: flex;
+          gap: 4px;
+        }
+      }
+
+      &__pokemon {
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+          display: flex;
+          align-items: center;
+
+          button {
+            gap: 8px;
+          }
+        }
+      }
+    }
+
+    .pokemon__compare {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 8px;
+
+      .poke-search {
+        &__suggestions__item__pokemon__avatar-name {
+          img {
+            width: 30px;
+            height: 30px;
+            margin-right: 6px;
+          }
+        }
+
+        &__suggestions__item__pokemon__types-varieties {
+          img {
+            display: none;
+          }
+        }
+      }
     }
 
     .pokemon {
@@ -42,7 +83,7 @@
       gap: 12px;
       width: 100%;
       background-color: var(--primary-color);
-      padding: 12px 24px;
+      padding: 24px;
       box-sizing: border-box;
 
       &__info {
@@ -79,13 +120,6 @@
     flex-direction: column;
     gap: 8px;
 
-    .actions {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
     .content {
       width: 100%;
       overflow: hidden;
@@ -97,8 +131,30 @@
         border-radius: 0;
       }
 
-      .pokemon__varieties {
-        order: 3;
+      &__actions {
+        &__compare {
+          display: none;
+          order: 2;
+        }
+
+        &__pokemon {
+          order: 3;
+          display: none;
+        }
+
+        &__game-versions {
+          order: 1;
+          overflow: visible !important;
+        }
+      }
+
+      .pokemon__compare {
+        order: 6;
+
+        .poke-search {
+          display: none;
+        }
+
         .poke-varieties {
           &__body {
             .variety {
@@ -108,69 +164,12 @@
         }
       }
 
-      .pokemon {
-        order: 1;
-
-        .poke-profile {
-          &__header {
-            display: flex;
-            flex-direction: column;
-
-            &__pokemon {
-              &__types {
-                display: flex;
-                justify-content: center;
-              }
-
-              &__name {
-                display: flex;
-                justify-content: center;
-
-                h1 {
-                  flex-wrap: wrap;
-                  display: flex;
-                  justify-content: center;
-                }
-              }
-
-              &__identifier {
-                display: flex;
-                justify-content: center;
-              }
-
-              &__overall {
-                display: flex;
-                justify-content: center;
-              }
-            }
-          }
-
-          &__body {
-            display: flex;
-            flex-direction: column;
-
-            .stats-radar {
-              canvas {
-                margin: auto;
-                width: 350px !important;
-                height: 350px !important;
-              }
-            }
-
-            .poke-effectiveness {
-              width: 100%;
-
-              &__elements {
-                justify-content: center;
-                flex-direction: row;
-              }
-            }
-          }
-        }
+      .pokemon__main {
+        order: 4;
       }
 
       .pokemon__details {
-        order: 2;
+        order: 5;
 
         .pokemon-shape {
           border-radius: 0;

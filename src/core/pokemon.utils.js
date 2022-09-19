@@ -87,20 +87,6 @@ export const formatName = (name) => {
   }
 }
 
-export const getStatsDiff = (stats, field, statsA) => {
-  if (!stats) return 0
-
-  const statB = getStatsValue(stats, field)
-  const result = statsA.baseValue - statB.baseValue
-  const diffValue = Math.abs(result)
-
-  return {
-    baseValue: diffValue,
-    basePercentage: (diffValue / 255) * 100,
-    signal: result > 0 ? '+' : '-'
-  }
-}
-
 export const getStatsValue = (stats, field) => {
   if (!stats) return 0
 
@@ -328,6 +314,7 @@ export const formatPokemon = async (pokemon) => {
   const { formatedName, modifier, region, genre } = formatName(pokemon.name)
   const types = await formatTypes(pokemon.types)
   const { weakness, resistance, immune } = await getWeaknessAndResistance(types)
+  const pokemonOverall = pokemon.stats?.reduce((acc, stat) => acc + stat.base_stat, 0) || 0
 
   return {
     ...pokemon,
@@ -341,6 +328,18 @@ export const formatPokemon = async (pokemon) => {
     weakness,
     resistance,
     immune,
-    effectiveness: getEffectiveness(weakness, resistance, immune)
+    effectiveness: getEffectiveness(weakness, resistance, immune),
+    stats: {
+      hp: getStatsValue(pokemon.stats, 'hp'),
+      attack: getStatsValue(pokemon.stats, 'attack'),
+      specialAttack: getStatsValue(pokemon.stats, 'special-attack'),
+      defense: getStatsValue(pokemon.stats, 'defense'),
+      specialDefense: getStatsValue(pokemon.stats, 'special-defense'),
+      speed: getStatsValue(pokemon.stats, 'speed'),
+      overall: {
+        baseValue: pokemonOverall,
+        basePercentage: (pokemonOverall / 1530) * 100
+      }
+    }
   }
 }
