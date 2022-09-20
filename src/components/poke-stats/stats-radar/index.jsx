@@ -26,16 +26,18 @@ function StatsRadar ({ color, stats, diffTo }) {
     setGridColor(theme === 'dark' ? '#2f2f2f' : '#ccc')
   }, [theme, diffTo])
 
+  const renderRadarLabel = (stat, diffStat) => diffTo ? `(${stat || 0} vs ${diffStat || 0})` : `(${stat || 0})`
+
   return (
     <div className='stats-radar'>
       <Radar data={{
         labels: [
-          ['HP', `(${stats?.hp.baseValue || 0})`],
-          ['Defense', `(${stats?.defense.baseValue || 0})`],
-          ['Sp Defense', `(${stats?.specialDefense.baseValue || 0})`],
-          ['Speed', `(${stats?.speed.baseValue || 0})`],
-          ['Sp Attack', `(${stats?.specialAttack.baseValue || 0})`],
-          ['Attack', `(${stats?.attack.baseValue || 0})`]
+          ['HP', renderRadarLabel(stats?.hp.baseValue, diffTo?.stats.hp.baseValue)],
+          ['Defense', renderRadarLabel(stats?.defense.baseValue, diffTo?.stats.defense.baseValue)],
+          ['Sp Defense', renderRadarLabel(stats?.specialDefense.baseValue, diffTo?.stats.specialDefense.baseValue)],
+          ['Speed', renderRadarLabel(stats?.speed.baseValue, diffTo?.stats.speed.baseValue)],
+          ['Sp Attack', renderRadarLabel(stats?.specialAttack.baseValue, diffTo?.stats.specialAttack.baseValue)],
+          ['Attack', renderRadarLabel(stats?.attack.baseValue, diffTo?.stats.attack.baseValue)]
         ],
         datasets: [
           {

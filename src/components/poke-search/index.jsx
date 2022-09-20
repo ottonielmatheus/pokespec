@@ -44,8 +44,6 @@ function PokeSearch ({ placeholder, onSearch }) {
   const searchPokemon = () => {
     if (pokemonSuggestions[navigationIndex]) {
       onSearch(pokemonSuggestions[navigationIndex].name)
-    } else if (query) {
-      onSearch(query)
     }
   }
 
