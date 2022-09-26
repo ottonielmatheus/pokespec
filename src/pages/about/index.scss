@@ -1,11 +1,9 @@
-@use './../../components/shared/global.scss' as global;
-
 .about {
   display: flex;
   flex-direction: column;
   gap: 8px;
 
-  width: 1200px;
+  width: var(--global-container-width);
   margin: 0 auto;
 
   .row {

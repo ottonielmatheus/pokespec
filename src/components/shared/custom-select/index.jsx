@@ -16,13 +16,12 @@ function CustomSelect ({ className, placeholder, defaultValue, options, value, i
       borderStyle: 'solid',
       borderWidth: '1px',
       borderColor: isFocused ? 'var(--outline-color)' : 'var(--primary-color)',
+      boxShadow: 'none',
       ':focus': {
-        boxShadow: 'none',
         borderColor: isFocused ? 'var(--outline-color)' : 'var(--primary-color)',
       },
       ':hover': {
-        borderColor: isFocused ? 'var(--outline-color)' : 'var(--primary-color)',
-        boxShadow: 'none'
+        borderColor: isFocused ? 'var(--outline-color)' : 'var(--primary-color)'
       }
     }),
     option: (styles, { isDisabled, isFocused, isSelected }) => {

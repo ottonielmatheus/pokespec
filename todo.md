@@ -14,5 +14,4 @@ To do:
     - [ ] Pokemon passive (hidden ability)
 
  - Bugs:
-    - [x] skeleton pokemon comparison
-    - [x] mobile pokemon comparison (removed)
+    - [ ] fix outline border game versions select

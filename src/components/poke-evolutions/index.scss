@@ -15,6 +15,11 @@
     display: flex;
     justify-content: space-between;
     overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .evolution-node {
       display: flex;

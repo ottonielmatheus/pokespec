@@ -1,14 +1,12 @@
-import React, { useRef, useState } from 'react'
-import { BsSearch } from 'react-icons/bs'
+import React, { useState } from 'react'
 
 import { store } from './../../core/storage'
 
 import './index.scss'
+import CustomSearch from '../shared/custom-search'
 import PokeType from './../poke-type'
 
 function PokeSearch ({ placeholder, onSearch }) {
-  const queryInput = useRef()
-
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [navigationIndex, setNavigationIndex] = useState(-1)
   const [pokemonSuggestions, setPokemonSuggestions] = useState([])
@@ -74,21 +72,13 @@ function PokeSearch ({ placeholder, onSearch }) {
 
   return (
     <div className='poke-search'>
-      <div className='poke-search__overlay'
-        style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
+      <div className='poke-search__overlay' style={{ visibility: showSuggestions ? 'visible' : 'hidden' }}
         onClick={() => setShowSuggestions(false)}></div>
-      <div className='poke-search__input-group'>
-        <input id="poke-search" className='poke-search__input-group__input'
-          type='text' placeholder={placeholder} autoComplete='off'
-          ref={queryInput}
+        <CustomSearch placeholder={placeholder}
           onFocus={() => setShowSuggestions(pokemonSuggestions.length > 0)}
           onChange={async (e) => await getPokemonSuggestions(e.target.value)}
           onKeyDown={handleInputKeyDown}
         />
-        <div className='poke-search__input-group__icon'>
-          <BsSearch size={16} />
-        </div>
-      </div>
       {
         pokemonSuggestions.length > 0 &&
         <div className={`poke-search__suggestions${showSuggestions ? '--visible' : ''}`}>
@@ -101,7 +91,7 @@ function PokeSearch ({ placeholder, onSearch }) {
                       <span className='name' dangerouslySetInnerHTML={{ __html: highlightOnMatch(suggestion.name) }}></span>
                     </div>
                     <div className='poke-search__suggestions__item__pokemon__types-varieties'>
-                      {suggestion.types?.map((type, index) => (<PokeType key={index} type={type} />))}
+                      {suggestion.types?.map((type, index) => (<PokeType hiddeLabel key={index} type={type} />))}
                     </div>
                   </div>
                 </div>

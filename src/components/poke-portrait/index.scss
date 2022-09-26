@@ -1,0 +1,96 @@
+.poke-item {
+  position: relative;
+  border-radius: var(--global-border-radius);
+  background-color: var(--primary-color);
+  cursor: pointer;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__skeleton {
+    width: 257.2px;
+    height: 257.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--primary-color);
+
+    img {
+      width: 50%;
+      animation: loading-logo-pulse 2s infinite ease;
+    }
+  }
+
+  &__background {
+    width: 257.2px;
+    height: 257.2px;
+    position: absolute;
+    font-size: 62px;
+    font-weight: 700;
+    color: var(--third-color);
+    transition: color .3s ease-out;
+  }
+
+  &__body {
+    width: 257.2px;
+    height: 257.2px;
+    position: relative;
+    gap: 8px;
+    opacity: .7;
+
+    &__avatar {
+      width: 100px;
+      height: 100px;
+      transition-property: width height;
+      transition: .3s ease-in-out;
+    }
+
+    &__types {
+      display: flex;
+      gap: 4px;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__name {
+      display: flex;
+
+      span {
+        font-size: 18px;
+        font-weight: 500;
+
+        &:last-child {
+          padding-left: 4px;
+        }
+      }
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+  }
+
+  &:hover {
+    .poke-item__body {
+      opacity: 1;
+
+      &__avatar {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .poke-item__background {
+      color: var(--secondary-color);
+    }
+  }
+}

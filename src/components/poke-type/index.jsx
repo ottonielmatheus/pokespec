@@ -7,7 +7,7 @@ import './index.scss'
 import { formatType } from '../../core/pokemon.utils'
 
 
-function PokeType ({ type, showLabel = true }) {
+function PokeType ({ type, hiddeLabel }) {
   const [pokemonType, setPokemonType] = useState()
 
   useEffect(async () => {
@@ -20,7 +20,7 @@ function PokeType ({ type, showLabel = true }) {
 
   return (
     <Tippy
-      className={`tippy-tooltip-type${showLabel ? '' : '--hidden'} ${pokemonType?.name}-theme`}
+      className={`tippy-tooltip-type${hiddeLabel ? '--hidden' : ''} ${pokemonType?.name}-theme`}
       arrow={false}
       content={
         <div>

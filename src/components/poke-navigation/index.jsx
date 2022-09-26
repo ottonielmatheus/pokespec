@@ -70,21 +70,21 @@ function PokeNavigation ({ current }) {
           previousPokemon ?
           <div className='navigation__previous' onClick={goPreviousPokemon}>
             <CgArrowLongLeft size={22} />
+            <span className='identifier'>#{previousPokemon?.number}</span>
             <span className='pokemon-name'>{capitalize(previousPokemon?.name)}</span>
-            <span>#{previousPokemon?.number}</span>
           </div>
           : null
         }
         <div className='navigation__current'>
           <span className='pokemon-name'>{capitalize(currentPokemon?.name)}</span>
-          <span>#{currentPokemon?.number}</span>
+          <span className='identifier'>#{currentPokemon?.number}</span>
         </div>
         {
           loading ? <ReactLoading className='loading' type='bubbles' /> :
           nextPokemon ?
           <div className='navigation__next' onClick={goNextPokemon}>
             <span className='pokemon-name'>{capitalize(nextPokemon?.name)}</span>
-            <span>#{nextPokemon?.number}</span>
+            <span className='identifier'>#{nextPokemon?.number}</span>
             <CgArrowLongRight size={22} />
           </div>
           : null

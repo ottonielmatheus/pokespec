@@ -1,11 +1,11 @@
 import React from 'react'
 import './index.scss'
 
-function PokeEffectiveness ({ effectiveness }) {
+function PokeEffectiveness ({ effectiveness, short = false }) {
   const pokemonEffectiveness = effectiveness || []
   return (
-    <div className='poke-effectiveness'>
-      <div className='poke-effectiveness__elements'>
+    <div className={`poke-effectiveness${short ? '--short' : ''}`}>
+      <div className={`poke-effectiveness__elements`}>
         <div>
           <small>0x</small>
           <div className='elements'>

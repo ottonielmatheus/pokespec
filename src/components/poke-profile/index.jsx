@@ -10,7 +10,7 @@ import PokeStats from '../../components/poke-stats'
 import PokeEffectiveness from '../poke-effectiveness'
 import DefaultPokemonImage from './../shared/default-pokemon-image'
 
-function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses = false }) {
+function PokeProfile ({ pokemon, diff, short = false, stats = false, effectiveness = false }) {
   const { loading } = usePokemonContext()
   const [poke, setPoke] = useState()
 
@@ -26,14 +26,14 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
           className='poke-profile__header__pokemon__avatar__background'
           type={(diff && short) ? 'versus' : 'default'} />
         {
-          poke?.avatar.any &&
+          pokemon?.avatar.any &&
           <img className='poke-profile__header__pokemon__avatar__image' alt={pokemon?.formatedName} src={pokemon?.avatar.any}/>
         }
       </div>
-      <Fade spy={diff} right={!short} left={short}>
+      <Fade spy={diff} right={!short} left={short} distance='5%'>
         <div className='poke-profile__header__pokemon__basics'>
           <div className='poke-profile__header__pokemon__basics__types'>
-            {pokemon?.types?.map((type, index) => (<PokeType key={index} type={type} showLabel={!short} />))}
+            {pokemon?.types?.map((type, index) => (<PokeType key={index} type={type} hiddeLabel={short} />))}
           </div>
           <span className='poke-profile__header__pokemon__basics__name'>
             <h1>
@@ -68,7 +68,7 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
   return (
     loading
       ? <PokeProfileSkeleton />
-      : <div className={`poke-profile ${short ? 'short' : ''}`}>
+      : <div className={`poke-profile${short ? '--short' : ''}`}>
           <div className={`poke-profile__header${(!short && diff) ? '--with-diff' : ''}`}>
             {pokemonProfile(poke)}
             {
@@ -88,7 +88,7 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, weaknesses 
               stats &&
               <PokeStats short={short} type={short ? 'bar' : 'radar'} pokemon={pokemon} diffTo={diff} />
             }
-            {weaknesses && <PokeEffectiveness effectiveness={poke?.effectiveness} />}
+            {effectiveness && <PokeEffectiveness short={short} effectiveness={poke?.effectiveness} />}
           </div>
         </div>
   )

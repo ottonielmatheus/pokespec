@@ -1,13 +1,11 @@
-.poke-effectiveness {
+.poke-effectiveness, .poke-effectiveness--short {
   display: flex;
   flex-direction: column;
 
   &__elements {
     height: 100%;
-
     display: flex;
     flex-direction: column-reverse;
-
     font-weight: 500;
 
     > div {
@@ -31,6 +29,12 @@
           height: 22px;
         }
       }
+    }
+  }
+
+  &--short {
+    .poke-effectiveness__elements {
+      flex-direction: row;
     }
   }
 }

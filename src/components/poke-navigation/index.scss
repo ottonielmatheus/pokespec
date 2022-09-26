@@ -21,25 +21,46 @@ $nav-height: 70px;
   }
 
   > div {
+    width: 30%;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
     font-weight: 600;
-
     opacity: 0.5;
     cursor: pointer;
     user-select: none;
+
+
+    .identifier {
+      font-family: 'Inter';
+      font-size: 18px;
+      font-weight: 500;
+    }
 
     &:hover {
       transition: opacity 0.5s;
       opacity: 1;
     }
+
+    &:first-child {
+      justify-content: flex-start;
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+    }
   }
 
   &__current {
+    justify-content: center;
     opacity: 1 !important;
     cursor: unset !important;
+
+    .identifier {
+      font-family: 'Inter';
+      font-size: 18px;
+      font-weight: 500;
+    }
   }
 }
 

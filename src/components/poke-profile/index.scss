@@ -2,81 +2,6 @@
   width: 100%;
   font-weight: 600;
 
-  &.short {
-    .poke-profile {
-      &__header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        box-sizing: border-box;
-
-        &__pokemon {
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-
-          &__avatar {
-            width: 150px;
-            height: 150px;
-
-            &__background {
-              width: 150px;
-              height: 150px;
-            }
-
-            &__image {
-              width: 150px;
-              height: 150px;
-            }
-          }
-
-          &__basics {
-            gap: 4px;
-
-            &__types {
-              align-items: center;
-              justify-content: center;
-              padding-bottom: 4px;
-              gap: 4px;
-
-              .pokemon-types {
-                img {
-                  width: 22px !important;
-                  height: 22px !important;
-                }
-              }
-            }
-
-            &__name {
-              h1 {
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-                font-size: 22px;
-                margin: 0;
-                row-gap: 0;
-                column-gap: 8px;
-
-                .modifier {
-                  font-family: 'Gruppo';
-                  font-size: 32px;
-                  margin: 0;
-                  font-weight: 100;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      &__body {
-        padding: 0 8px;
-      }
-    }
-  }
-
   &--skeleton {
     width: 100%;
     display: flex;
@@ -307,6 +232,81 @@
 
     .poke-effectiveness {
       width: 30%;
+    }
+  }
+
+  &--short {
+    .poke-profile {
+      &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        box-sizing: border-box;
+
+        &__pokemon {
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+
+          &__avatar {
+            width: 150px;
+            height: 150px;
+
+            &__background {
+              width: 150px;
+              height: 150px;
+            }
+
+            &__image {
+              width: 150px;
+              height: 150px;
+            }
+          }
+
+          &__basics {
+            gap: 4px;
+
+            &__types {
+              align-items: center;
+              justify-content: center;
+              gap: 4px;
+
+              .pokemon-types {
+                img {
+                  width: 26px !important;
+                  height: 26px !important;
+                }
+              }
+            }
+
+            &__name {
+              h1 {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                font-size: 22px;
+                margin: 0;
+                row-gap: 0;
+                column-gap: 8px;
+
+                .modifier {
+                  font-family: 'Gruppo';
+                  font-size: 32px;
+                  margin: 0;
+                  font-weight: 100;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__body {
+        padding: 0 8px;
+        flex-direction: column;
+      }
     }
   }
 }

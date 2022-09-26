@@ -111,7 +111,7 @@ function PokemonDetails () {
         </div>
         <div className='pokemon__main'>
           <div className='pokemon'>
-            <PokeProfile stats weaknesses pokemon={pokemon} diff={selectedCompetitor} />
+            <PokeProfile stats effectiveness pokemon={pokemon} diff={selectedCompetitor} />
             <div className='pokemon__info'>
               {
                 pokemon?.evolutions &&

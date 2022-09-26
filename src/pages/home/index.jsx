@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Fade from 'react-reveal/Fade'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import './index.scss'
-
 import { store } from './../../core/storage'
 import pokemonApi from '../../core/apis/pokemon.api'
-import PokeCard from '../../components/poke-card'
 
+import './index.scss'
+import PokePortrait from '../../components/poke-portrait'
+import CustomSearch from '../../components/shared/custom-search'
+// import DroppableCompare from '../../components/droppable-compare'
 
 function Home () {
-  const navigate = useNavigate()
-
   const [nextPage, setNextPage] = useState()
   const [pokemons, setPokemons] = useState([])
   const [totalPokemons, setTotalPokemons] = useState(0)
 
   useEffect(async () => {
-    await searchPokemons(0, 20)
+    await searchPokemons(0, 30)
   }, [])
 
   const searchPokemons = async ({ skip, limit, next }) => {
@@ -38,26 +36,32 @@ function Home () {
     await searchPokemons({ next: nextPage })
   }
 
-  const getDetailsFromPokemon = (pokemonName) => {
-    navigate(`/pokemons/${pokemonName}`)
-  }
-
   return (
-    <section id="home">
-      <InfiniteScroll className='poke-cards'
-        next={loadMore}
-        dataLength={pokemons.length}
-        hasMore={pokemons.length < totalPokemons}>
-          {
-            pokemons.map((pokemon, index) => (
-              <Fade key={index} bottom>
-                <div onClick={() => getDetailsFromPokemon(pokemon.name)}>
-                  <PokeCard name={pokemon.name} />
-                </div>
-              </Fade>
-            ))
-          }
-      </InfiniteScroll>
+    <section className='home'>
+      <div className='home__top'>
+        <div className='home__top__compare'>
+          {/* <DroppableCompare /> */}
+        </div>
+      </div>
+      <div className='home__pokemons'>
+        <div className='home__pokemons__header'>
+          <CustomSearch placeholder='Type here to filter pokémons' onKeyDown={console.log} />
+        </div>
+        <div className='home__pokemons__body'>
+          <InfiniteScroll className='home__pokemons__list'
+            next={loadMore}
+            dataLength={pokemons.length}
+            hasMore={pokemons.length < totalPokemons}>
+              {
+                pokemons.map((pokemon, index) => (
+                  <Fade key={index} bottom>
+                    <PokePortrait pokemonName={pokemon.name} />
+                  </Fade>
+                ))
+              }
+          </InfiniteScroll>
+        </div>
+      </div>
     </section>
   )
 }
