@@ -220,18 +220,18 @@ export const formatEvolution = (evolution) => {
 }
 
 export const formatSpecies = async (species) => {
-  let characteristic = null
+  let classType = null
 
   if (species.is_baby) {
-    characteristic = { name: 'Baby', image: await getCharacteristicImage('baby') }
+    classType = { name: 'Baby', image: await getCharacteristicImage('baby') }
   }
 
   if (species.is_mythical) {
-    characteristic = { name: 'Mythical', image: await getCharacteristicImage('mythical') }
+    classType = { name: 'Mythical', image: await getCharacteristicImage('mythical') }
   }
 
   if (species.is_legendary) {
-    characteristic = { name: 'Legendary', image: await getCharacteristicImage('legendary') }
+    classType = { name: 'Legendary', image: await getCharacteristicImage('legendary') }
   }
 
   const generationNumber = species.generation.name.split('-')[1]
@@ -258,7 +258,7 @@ export const formatSpecies = async (species) => {
     captureRate: (species.capture_rate / 255) * 100,
     about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
-    characteristic,
+    classType,
     evolutionChain: species.evolution_chain,
     eggs: species.egg_groups.map(egg => egg.name)
   }
@@ -324,6 +324,8 @@ export const formatPokemon = async (pokemon) => {
     modifier,
     region,
     genre,
+    weight: { literal: pokemon.weight, formated: Math.round(pokemon.weight / 10) + 'kg' },
+    height: { literal: pokemon.height, formated: (pokemon?.height / 10).toFixed(1).replace('.0', '') + 'm' },
     types,
     weakness,
     resistance,

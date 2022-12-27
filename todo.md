@@ -10,8 +10,8 @@ To do:
  - Desempenho:
   - [ ] Image lazy load
 
- - Feat:
-    - [ ] Pokemon passive (hidden ability)
-
  - Bugs:
-    - [ ] fix outline border game versions select
+    - [x] fix outline border game versions select
+
+ - Layout fix:
+    - [ ] pokemon-varieties right padding on mobile - pokemon details

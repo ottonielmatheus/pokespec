@@ -5,7 +5,7 @@ import { usePokemonContext } from '../../contexts/pokemon.context'
 import pokemonApi from '../../core/apis/pokemon.api'
 
 import './index.scss'
-import CustomSelect from './../shared/custom-select'
+import CustomSelect from './../shared/inputs/custom-select'
 
 function GameVersions ({ versions }) {
   const { setGameVersion } = usePokemonContext()

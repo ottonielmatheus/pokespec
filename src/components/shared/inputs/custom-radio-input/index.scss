@@ -1,0 +1,43 @@
+.custom-radio-group {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+    font: inherit;
+    color: var(--font-color);
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid var(--outline-color);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em var(--outline-color);
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+}
+
+.radio-option-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}

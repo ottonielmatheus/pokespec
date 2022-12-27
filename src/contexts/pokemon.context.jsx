@@ -8,7 +8,7 @@ export function PokemonContextProvider ({ children }) {
   const [loading, setLoading] = useState(true)
   const [gameVersion, setGameVersion] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
-  const [theme, setTheme] = useState(localStorage.getItem('theme'))
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark')
 
   useEffect(async () => {
     await downloadAllPokemonsToStore()

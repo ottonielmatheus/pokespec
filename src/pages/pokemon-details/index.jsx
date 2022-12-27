@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { IoClose } from 'react-icons/io5'
 
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -72,10 +72,10 @@ function PokemonDetails () {
         </div>
         <div className='content__actions__pokemon'>
           {
-            (pokemon && selectedCompetitor) &&
-            <Link to={`/compare/${pokemon?.name}/vs/${selectedCompetitor.name}`}>
-              <button className='simple'>Go to full comparison</button>
-            </Link>
+            // (pokemon && selectedCompetitor) &&
+            // <Link to={`/compare/${pokemon?.name}/vs/${selectedCompetitor.name}`}>
+            //   <button className='simple'>Go to full comparison ({selectedCompetitor.formatedName})</button>
+            // </Link>
           }
         </div>
         <div className='content__actions__game-versions'>
@@ -111,7 +111,7 @@ function PokemonDetails () {
         </div>
         <div className='pokemon__main'>
           <div className='pokemon'>
-            <PokeProfile stats effectiveness pokemon={pokemon} diff={selectedCompetitor} />
+            <PokeProfile stats effectiveness pokemon={pokemon} />
             <div className='pokemon__info'>
               {
                 pokemon?.evolutions &&

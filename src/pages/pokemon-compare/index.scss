@@ -1,0 +1,204 @@
+.pokemon-compare-page {
+  display: grid;
+  grid-template-columns: 378px 616px 378px;
+  align-items: flex-start;
+  width: var(--global-container-width);
+  margin: 0 auto;
+  gap: 8px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--global-border-radius);
+    box-sizing: border-box;
+    gap: 8px;
+
+    > div {
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: var(--global-border-radius);
+      background-color: var(--primary-color);
+      align-items: center;
+    }
+  }
+
+  &__fighter, &__opponent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__fighter {
+      height: 600px;
+      align-items: flex-start !important;
+      background-color: var(--primary-color);
+    }
+
+    &__moves-priority {
+      background-color: var(--primary-color);
+    }
+  }
+
+  &__result {
+    display: flex;
+    flex-direction: column;
+    min-width: 45%;
+    padding: 32px !important;
+    background-color: var(--primary-color);
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      align-self: flex-start;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    hr {
+      width: 100%;
+      margin: 24px;
+    }
+
+    &__stats-diff {
+      width: 100%;
+      border-collapse: collapse;
+
+      th {
+        > div {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            width: 32px;
+            height: 32px;
+          }
+        }
+      }
+
+      tr {
+        &:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+
+      td {
+        padding: 8px;
+        border-bottom: solid .5px var(--secondary-color);
+
+        > div {
+          width: 100%;
+          display: flex;
+
+          &.value {
+            font-size: 16px;
+            font-weight: 500;
+
+            &--loser {
+              opacity: .5;
+            }
+          }
+        }
+
+        &:nth-child(odd) {
+          > div {
+            justify-content: flex-start;
+          }
+        }
+
+        &:nth-child(even) {
+          > div {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+
+    &__moves-diff {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        tr {
+          display: grid;
+          grid-template-columns: auto 15% auto;
+
+          th {
+            > div {
+              display: flex;
+              gap: 8px;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                width: 32px;
+                height: 32px;
+              }
+            }
+          }
+        }
+      }
+
+      tr {
+        display: grid;
+        grid-template-columns: 40% 20% 40%;
+
+        .move {
+          display: flex;
+          gap: 8px;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+
+          &--empty {
+            opacity: .5;
+          }
+        }
+
+        td:nth-child(2) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 500;
+        }
+
+        &:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+
+      td {
+        padding: 8px;
+        border-bottom: solid .5px var(--secondary-color);
+
+        > div {
+          width: 100%;
+          display: flex;
+        }
+
+        &:nth-child(odd) {
+          > div {
+            justify-content: flex-start;
+          }
+        }
+
+        &:nth-child(even) {
+          > div {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

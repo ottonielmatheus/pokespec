@@ -9,7 +9,7 @@ import { fromVersion } from '../../core/pokemon.utils'
 
 import './index.scss'
 import PokeMovesSkeleton from './skeleton'
-import CustomSelect from './../shared/custom-select'
+import CustomSelect from './../shared/inputs/custom-select'
 import MoveDetails from './move-details'
 
 function PokeMoves ({ pokemonMoves }) {

@@ -30,19 +30,19 @@ function PokeShape ({ pokemon, pokemonSpecies }) {
         <span>{pokeSpecies?.generation || '???'}</span>
       </div>
       {
-        pokeSpecies?.characteristic &&
+        pokeSpecies?.classType &&
         <div className='pokemon-shape__row'>
-          <span className='pokemon-shape__row__title'>Characteristic</span>
-          <span>{pokeSpecies?.characteristic.name || '???'}</span>
+          <span className='pokemon-shape__row__title'>Class</span>
+          <span>{pokeSpecies?.classType.name || '???'}</span>
         </div>
       }
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Height</span>
-        <span>{pokemon?.height && (pokemon?.height / 10).toFixed(1).replace('.0', '')}m</span>
+        <span>{pokemon?.height.formated}</span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Weight</span>
-        <span>{pokemon?.weight && Math.round(pokemon?.weight / 10)}kg</span>
+        <span>{pokemon?.weight.formated}</span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Color</span>

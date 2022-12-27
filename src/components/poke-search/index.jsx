@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { store } from './../../core/storage'
 
 import './index.scss'
-import CustomSearch from '../shared/custom-search'
+import CustomSearch from '../shared/inputs/custom-search'
 import PokeType from './../poke-type'
 
 function PokeSearch ({ placeholder, onSearch }) {

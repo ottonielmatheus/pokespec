@@ -67,26 +67,19 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, effectivene
 
   return (
     loading
-      ? <PokeProfileSkeleton />
+      ? <PokeProfileSkeleton short={short} />
       : <div className={`poke-profile${short ? '--short' : ''}`}>
-          <div className={`poke-profile__header${(!short && diff) ? '--with-diff' : ''}`}>
+          <div className='poke-profile__header'>
             {pokemonProfile(poke)}
-            {
-              (!short && diff) &&
-              <>
-                <DefaultPokemonImage className='poke-profile__header__versus' type='versus' />
-                <Fade left>
-                  <Fade spy={diff} left>
-                    {pokemonProfile(diff)}
-                  </Fade>
-                </Fade>
-              </>
-            }
           </div>
           <div className='poke-profile__body'>
             {
               stats &&
-              <PokeStats short={short} type={short ? 'bar' : 'radar'} pokemon={pokemon} diffTo={diff} />
+              <PokeStats short={short}
+                type={short ? 'bar' : 'radar'}
+                pokemon={pokemon}
+                diffTo={diff}
+              />
             }
             {effectiveness && <PokeEffectiveness short={short} effectiveness={poke?.effectiveness} />}
           </div>

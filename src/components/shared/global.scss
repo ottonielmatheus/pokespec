@@ -4,6 +4,7 @@ $header-height: 82px;
   --global-container-width: 1366px;
   --global-gap: 8px;
   --global-border-radius: 10px;
+  --global-input-border-radius: 3px;
   --abort-color: #ff595e;
 }
 
@@ -47,6 +48,15 @@ html {
 
   input {
     color: var(--font-color);
+
+    &:focus {
+      outline: none;
+      border: solid 1px var(--outline-color);
+    }
+
+    &:invalid {
+      border: solid 1px var(--abort-color);
+    }
   }
 
   a, svg {

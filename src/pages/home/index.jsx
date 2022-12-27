@@ -7,8 +7,7 @@ import pokemonApi from '../../core/apis/pokemon.api'
 
 import './index.scss'
 import PokePortrait from '../../components/poke-portrait'
-import CustomSearch from '../../components/shared/custom-search'
-// import DroppableCompare from '../../components/droppable-compare'
+import CustomSearch from '../../components/shared/inputs/custom-search'
 
 function Home () {
   const [nextPage, setNextPage] = useState()
@@ -39,9 +38,6 @@ function Home () {
   return (
     <section className='home'>
       <div className='home__top'>
-        <div className='home__top__compare'>
-          {/* <DroppableCompare /> */}
-        </div>
       </div>
       <div className='home__pokemons'>
         <div className='home__pokemons__header'>
