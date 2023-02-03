@@ -1,0 +1,54 @@
+.cone {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 4px 0;
+  width: 100%;
+
+  .lvl {
+    width: 8px;
+    border-radius: 2px;
+
+    &.l-1 {
+      height: 2px;
+      background-color: #bfd200;
+    }
+    &.l-2 {
+      height: 4px;
+      background-color: #ffba08;
+    }
+    &.l-3 {
+      height: 6px;
+      background-color: #f48c06;
+    }
+    &.l-4 {
+      height: 8px;
+      background-color: #dc2f02;
+    }
+    &.l-5 {
+      height: 10px;
+      background-color: #950706;
+    }
+    &.l-6 {
+      height: 12px;
+      background-color: #750227;
+    }
+    &.l-7 {
+      height: 14px;
+      background-color: #570044;
+    }
+    &.l-8 {
+      height: 16px;
+      background-color: #3B005C;
+    }
+    &.l-9 {
+      height: 18px;
+      background-color: #250740;
+    }
+    &.l-10 {
+      height: 20px;
+      background-color: #03071e;
+    }
+  }
+}

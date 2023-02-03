@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { capitalize } from 'lodash'
 import Tippy from '@tippyjs/react'
 
+import { usePokemonContext } from '../../contexts/pokemon.context'
 import './index.scss'
 import PokeShapeSkeleton from './skeleton'
+import Power from '../shared/power'
 
-import { usePokemonContext } from '../../contexts/pokemon.context'
 
 
 function PokeShape ({ pokemon, pokemonSpecies }) {
@@ -24,6 +25,10 @@ function PokeShape ({ pokemon, pokemonSpecies }) {
           <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
         </span>
         <img width={70} height={70} src={pokeSpecies?.shape.image} alt={pokeSpecies?.shape.name} />
+      </div>
+      <div className='pokemon-shape__row'>
+        <span className='pokemon-shape__row__title'>Power</span>
+        <span><Power value={pokemon?.stats.overall.baseValue} max={255 * 6} /></span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Generation</span>
@@ -93,7 +98,7 @@ function PokeShape ({ pokemon, pokemonSpecies }) {
           }
         </div>
       </div>
-      <div className='pokemon-shape__row'>
+      <div className='pokemon-shape__row__tags'>
         <span className='pokemon-shape__row__title'>Genus</span>
         <span>{pokeSpecies?.genus || '???'}</span>
       </div>
