@@ -8,7 +8,6 @@ import PokeShapeSkeleton from './skeleton'
 import Power from '../shared/power'
 
 
-
 function PokeShape ({ pokemon, pokemonSpecies }) {
   const { loading: rootLoading } = usePokemonContext()
   const [pokeSpecies, usePokeSpecies] = useState()

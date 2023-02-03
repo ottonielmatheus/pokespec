@@ -239,7 +239,7 @@ export const formatSpecies = async (species) => {
   return {
     originalName: i18n(species.names, 'ja').name,
     varieties: species.varieties,
-    genus: i18n(species.genera).genus,
+    genus: i18n(species.genera)?.genus,
     parks: species.pal_park_encounters.map(park => park.area.name),
     habitat: {
       name: species.habitat?.name,
@@ -256,7 +256,7 @@ export const formatSpecies = async (species) => {
     },
     growthRate: species.growth_rate.name,
     captureRate: (species.capture_rate / 255) * 100,
-    about: i18n(species.flavor_text_entries).flavor_text.replace('', ' '),
+    about: i18n(species.flavor_text_entries)?.flavor_text.replace('', ' '),
     generation: 'Generation ' + generationNumber.toUpperCase(),
     classType,
     evolutionChain: species.evolution_chain,

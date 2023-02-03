@@ -9,6 +9,7 @@ import PokeType from '../../components/poke-type'
 import PokeStats from '../../components/poke-stats'
 import PokeEffectiveness from '../poke-effectiveness'
 import DefaultPokemonImage from './../shared/default-pokemon-image'
+import Power from './../shared/power'
 
 function PokeProfile ({ pokemon, diff, short = false, stats = false, effectiveness = false }) {
   const { loading } = usePokemonContext()
@@ -57,6 +58,9 @@ function PokeProfile ({ pokemon, diff, short = false, stats = false, effectivene
               <div className='poke-profile__header__pokemon__basics__overall'>
                 <span>Overall</span>
                 <span>{pokemon?.stats.overall.baseValue || 0}</span>
+              </div>
+              <div className='poke-profile__header__pokemon__basics__overall-power'>
+                <Power value={pokemon?.stats.overall.baseValue} max={255 * 6} />
               </div>
             </>
           }
