@@ -7,7 +7,7 @@ import './index.scss'
 
 function Power ({ value = 0, max = 0 }) {
   max = max || 0
-  const lvl = max / 10
+  const lvl = max / 9
   return (
     <Tippy
       arrow={false}
@@ -22,7 +22,6 @@ function Power ({ value = 0, max = 0 }) {
         {value > (lvl * 7) && <Fade left delay={1200}><div className='lvl l-7'></div></Fade>}
         {value > (lvl * 8) && <Fade left delay={1400}><div className='lvl l-8'></div></Fade>}
         {value > (lvl * 9) && <Fade left delay={1600}><div className='lvl l-9'></div></Fade>}
-        {value > (lvl * 10) && <Fade left delay={1800}><div className='lvl l-10'></div></Fade>}
       </div>
     </Tippy>
   )
