@@ -6,9 +6,10 @@
   padding: 4px 0;
 
   .lvl {
-    width: 8px;
+    width: 10px;
     height: 12px;
     border-radius: 2px;
+    background-color: var(--secondary-color);
 
     &.l-1 {
       background-color: #bfd200;

@@ -5,7 +5,6 @@ import Tippy from '@tippyjs/react'
 import { usePokemonContext } from '../../contexts/pokemon.context'
 import './index.scss'
 import PokeShapeSkeleton from './skeleton'
-import Power from '../shared/power'
 
 
 function PokeShape ({ pokemon, pokemonSpecies }) {
@@ -24,10 +23,6 @@ function PokeShape ({ pokemon, pokemonSpecies }) {
           <span>{pokeSpecies?.shape.name?.replaceAll('-', ' ') || '???'}</span>
         </span>
         <img width={70} height={70} src={pokeSpecies?.shape.image} alt={pokeSpecies?.shape.name} />
-      </div>
-      <div className='pokemon-shape__row'>
-        <span className='pokemon-shape__row__title'>Power</span>
-        <span><Power value={pokemon?.stats.overall.baseValue} max={255 * 6} /></span>
       </div>
       <div className='pokemon-shape__row'>
         <span className='pokemon-shape__row__title'>Generation</span>
