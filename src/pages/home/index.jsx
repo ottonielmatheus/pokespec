@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Fade from 'react-reveal/Fade'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { debounce } from 'lodash'
 
 import { store } from './../../core/storage'
 import pokemonApi from '../../core/apis/pokemon.api'
@@ -10,21 +11,23 @@ import PokePortrait from '../../components/poke-portrait'
 import CustomSearch from '../../components/shared/inputs/custom-search'
 
 function Home () {
-  const [nextPage, setNextPage] = useState()
+  const limit = 30
   const [pokemons, setPokemons] = useState([])
-  const [totalPokemons, setTotalPokemons] = useState(0)
+  const [skip, setSkip] = useState(0)
+  const [query, setQuery] = useState({})
+  const [hasMore, setHasMore] = useState(true)
 
   useEffect(async () => {
-    await searchPokemons(0, 30)
-  }, [])
+    await searchPokemons(query, { skip, limit })
+  }, [query])
 
-  const searchPokemons = async ({ skip, limit, next }) => {
-    const res = await pokemonApi.pokemons.getAll({ skip, limit, next })
+  const searchPokemons = async (where, { skip, limit }) => {
+    const result = await pokemonApi.pokemons.search(where, { limit, skip })
 
-    setNextPage(res.next)
-    setTotalPokemons(res.count)
-    setPokemons(pokemons.concat(res.results))
+    setPokemons(result)
     storePokemons(pokemons)
+    setSkip(skip + result.length)
+    setHasMore(result.length > 0)
   }
 
   const storePokemons = async (pokemons) => {
@@ -32,8 +35,20 @@ function Home () {
   }
 
   const loadMore = async () => {
-    await searchPokemons({ next: nextPage })
+    const result = await pokemonApi.pokemons.search(query, { limit, skip })
+
+    setPokemons(pokemons.concat(result))
+    setSkip(skip + result.length)
+    setHasMore(result.length > 0)
   }
+
+  const filterPokemonBy = debounce(async (field, op, value) => {
+    const newQuery = {}
+    newQuery[field] = {}
+    newQuery[field]['_' + op] = value
+    setSkip(0)
+    setQuery({ ...query, ...newQuery })
+  }, 700)
 
   return (
     <section className='home'>
@@ -41,13 +56,13 @@ function Home () {
       </div>
       <div className='home__pokemons'>
         <div className='home__pokemons__header'>
-          <CustomSearch placeholder='Type here to filter pokémons' onKeyDown={console.log} />
+          <CustomSearch placeholder='Type here to filter pokémons' onChange={e => filterPokemonBy('name', 'ilike', e.target.value.trim() + '%')} />
         </div>
         <div className='home__pokemons__body'>
           <InfiniteScroll className='home__pokemons__list'
             next={loadMore}
             dataLength={pokemons.length}
-            hasMore={pokemons.length < totalPokemons}>
+            hasMore={hasMore}>
               {
                 pokemons.map((pokemon, index) => (
                   <Fade key={index} bottom>

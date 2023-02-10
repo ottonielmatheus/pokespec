@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@anatoliygatt/dark-mode-toggle": "^1.0.0",
+    "@apollo/client": "^3.7.7",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@testing-library/jest-dom": "^5.16.1",
