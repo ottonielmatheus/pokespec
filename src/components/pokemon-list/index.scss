@@ -1,0 +1,13 @@
+.pokemon-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  gap: 8px;
+
+  overflow: visible !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import Fade from 'react-reveal/Fade'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import { debounce } from 'lodash'
 
 import { store } from './../../core/storage'
 import pokemonApi from '../../core/apis/pokemon.api'
+import { usePokemonContext } from '../../contexts/pokemon.context'
 
 import './index.scss'
-import PokePortrait from '../../components/poke-portrait'
 import CustomSearch from '../../components/shared/inputs/custom-search'
+import PokemonList from '../../components/pokemon-list'
 
 function Home () {
+  const { setLoading } = usePokemonContext()
+
   const limit = 30
   const [pokemons, setPokemons] = useState([])
   const [skip, setSkip] = useState(0)
@@ -18,7 +19,9 @@ function Home () {
   const [hasMore, setHasMore] = useState(true)
 
   useEffect(async () => {
+    setLoading(true)
     await searchPokemons(query, { skip, limit })
+    setLoading(false)
   }, [query])
 
   const searchPokemons = async (where, { skip, limit }) => {
@@ -48,7 +51,7 @@ function Home () {
     newQuery[field]['_' + op] = value
     setSkip(0)
     setQuery({ ...query, ...newQuery })
-  }, 700)
+  }, 300)
 
   return (
     <section className='home'>
@@ -59,18 +62,7 @@ function Home () {
           <CustomSearch placeholder='Type here to filter pokémons' onChange={e => filterPokemonBy('name', 'ilike', e.target.value.trim() + '%')} />
         </div>
         <div className='home__pokemons__body'>
-          <InfiniteScroll className='home__pokemons__list'
-            next={loadMore}
-            dataLength={pokemons.length}
-            hasMore={hasMore}>
-              {
-                pokemons.map((pokemon, index) => (
-                  <Fade key={index} bottom>
-                    <PokePortrait pokemonName={pokemon.name} />
-                  </Fade>
-                ))
-              }
-          </InfiniteScroll>
+          <PokemonList pokemons={pokemons} loadMore={loadMore} hasMore={hasMore} />
         </div>
       </div>
     </section>
