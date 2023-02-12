@@ -10,7 +10,7 @@ import CustomSearch from '../../components/shared/inputs/custom-search'
 import PokemonList from '../../components/pokemon-list'
 
 function Home () {
-  const { setLoading } = usePokemonContext()
+  const { loading, setLoading } = usePokemonContext()
 
   const limit = 30
   const [pokemons, setPokemons] = useState([])
@@ -63,6 +63,7 @@ function Home () {
         </div>
         <div className='home__pokemons__body'>
           <PokemonList pokemons={pokemons} loadMore={loadMore} hasMore={hasMore} />
+          {!loading && !pokemons.length && <h3 className='home__pokemons__body__not-found'>No pokémons found for this search.</h3>}
         </div>
       </div>
     </section>

@@ -38,6 +38,12 @@
         width: 30%;
       }
     }
+
+    &__body {
+      &__not-found {
+        opacity: .7;
+      }
+    }
   }
 }
 
@@ -73,6 +79,14 @@
         top: $pokemon-filter-height;
         position: relative;
         padding: 8px 0;
+
+        .pokemon-list {
+          justify-content: center;
+        }
+
+        &__not-found {
+          text-align: center;
+        }
       }
     }
   }
