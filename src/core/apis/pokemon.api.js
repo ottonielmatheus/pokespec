@@ -86,7 +86,7 @@ const searchPokemons = async (where, options) => {
   return items.map(pokemon => ({
     types: pokemon.pokemon_v2_pokemontypes.map(({ pokemon_v2_type }) => ({ name: pokemon_v2_type.name })),
     stats: pokemon.pokemon_v2_pokemonstats.map(({ base_stat }) => ({ base_stat })),
-    sprites: JSON.parse(pokemon.pokemon_v2_pokemonsprites[0].sprites),
+    sprites: pokemon.pokemon_v2_pokemonsprites[0].sprites,
     ...pokemon
   }))
 }

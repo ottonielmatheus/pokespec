@@ -5,7 +5,7 @@ export default function PokemonListSkeleton () {
   return (
     <>
       <div className='pokemon-list skeleton' style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
-        {Array.from(Array(9)).map(index => <div key={index}
+        {Array.from(Array(10)).map((_, index) => <div key={index}
           style={{
             width: '257.2px',
             height: '257.2px',
