@@ -32,6 +32,10 @@ The application was developed using the React library, consuming the open PokeAP
   <img src="https://img.shields.io/badge/-react-black?style=?style=for-the-badge&logo=react">
 </p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c1c762d8-3622-479d-bd3b-e914b052180e">
+</p>
+
 ## Getting Started
 
 Here you follow some steps to start contributing to the project.
