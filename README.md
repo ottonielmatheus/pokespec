@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.pokespec.com">view demo</a>
+  <a href="https://pokespec.vercel.app/">view demo</a>
   ·
   <a href="https://github.com/ottonielmatheus/pokespec/issues">report bug</a>
   ·
